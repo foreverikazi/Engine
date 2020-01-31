@@ -4,7 +4,7 @@ struct Vertex
 {
 	XMFLOAT3 position;
 	XMFLOAT2 uv;
-	//XMFLOAT3 normal;
+	XMFLOAT3 normal;
 };
 
 struct Texture

@@ -74,7 +74,7 @@ bool Shader::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename
 		return false;
 	}
 
-	D3D11_INPUT_ELEMENT_DESC polygonLayout[2];
+	D3D11_INPUT_ELEMENT_DESC polygonLayout[3];
 	polygonLayout[0].SemanticName = "POSITION";
 	polygonLayout[0].SemanticIndex = 0;
 	polygonLayout[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
@@ -91,13 +91,13 @@ bool Shader::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename
 	polygonLayout[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 	polygonLayout[1].InstanceDataStepRate = 0;
 
-	/*polygonLayout[2].SemanticName = "NORMAL";
+	polygonLayout[2].SemanticName = "NORMAL";
 	polygonLayout[2].SemanticIndex = 0;
 	polygonLayout[2].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
 	polygonLayout[2].InputSlot = 0;
 	polygonLayout[2].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
 	polygonLayout[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-	polygonLayout[2].InstanceDataStepRate = 0;*/
+	polygonLayout[2].InstanceDataStepRate = 0;
 
 	unsigned int numElements = sizeof(polygonLayout) / sizeof(polygonLayout[0]);
 
@@ -146,7 +146,7 @@ bool Shader::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename
 		return false;
 	}
 
-	/*D3D11_BUFFER_DESC lightBufferDesc;
+	D3D11_BUFFER_DESC lightBufferDesc;
 	lightBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
 	lightBufferDesc.ByteWidth = sizeof(LightBufferType);
 	lightBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
@@ -157,7 +157,7 @@ bool Shader::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename
 	if (FAILED(device->CreateBuffer(&lightBufferDesc, NULL, &mLightBuffer)))
 	{
 		return false;
-	}*/
+	}
 
 	/*D3D11_BUFFER_DESC cameraBufferDesc;
 	cameraBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
@@ -234,9 +234,10 @@ bool Shader::SetLightShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOA
 
 	LightBufferType* dataPtr = (LightBufferType*)mappedResource.pData;
 
-	dataPtr->ambientColor = ambientColor;
+	//dataPtr->ambientColor = ambientColor;
 	dataPtr->diffuseColor = diffuseColor;
 	dataPtr->lightDirection = lightDirection;
+	dataPtr->padding = 0.0f;
 	//dataPtr->specularColor = specularColor;
 	//dataPtr->specularPower = specularPower;
 

@@ -67,7 +67,7 @@ void ViewportClient::OnInitialUpdate()
 	InitCamera();
 	InitShader();
 	InitModel();
-	//InitLight();
+	InitLight();
 }
 
 void ViewportClient::OnDraw(CDC* pDC)
@@ -82,7 +82,7 @@ void ViewportClient::OnDraw(CDC* pDC)
 	GetViewMatrix(viewMatrix);
 	GetProjectionMatrix(projectionMatrix);
 	SetMatrixShaderParameters(deviceContext, worldMatrix, viewMatrix, projectionMatrix);
-	//SetLightShaderParameters(deviceContext, GetAmbientColor(), GetDiffuseColor(), GetLightDirection(), GetSpecularColor(), GetSpecularPower());
+	SetLightShaderParameters(deviceContext, GetAmbientColor(), GetDiffuseColor(), GetLightDirection(), GetSpecularColor(), GetSpecularPower());
 	//SetCameraShaderParameters(deviceContext, GetCameraPosition());
 	ShaderRender2(deviceContext, worldMatrix, viewMatrix, projectionMatrix);
 	ModelRender(deviceContext);
@@ -110,8 +110,8 @@ void ViewportClient::InitShader()
 
 	//WCHAR vs[] = L"../Shader/color.vs";
 	//WCHAR ps[] = L"../Shader/color.ps";
-	WCHAR vs[] = L"../Shader/texture.vs";
-	WCHAR ps[] = L"../Shader/texture.ps";
+	WCHAR vs[] = L"../Shader/light.vs";
+	WCHAR ps[] = L"../Shader/light.ps";
 	InitializeShader(device, mHwnd, vs, ps);
 }
 
@@ -130,8 +130,8 @@ void ViewportClient::InitModel()
 void ViewportClient::InitLight()
 {
 	//SetAmbientColor(XMFLOAT4(0.15f, 0.15f, 0.15f, 1.0f));
-	//SetDiffuseColor(XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
+	SetDiffuseColor(XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
 	//SetSpecularColor(XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
-	//SetLightDirection(XMFLOAT3(0.0f, 1.0f, -1.0f));
+	SetLightDirection(XMFLOAT3(0.0f, 1.0f, -1.0f));
 	//SetSpecularPower(32.0f);
 }

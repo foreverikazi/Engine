@@ -117,7 +117,7 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene, wstring directoryPat
 
 		if (mesh->mNormals)
 		{
-			//vertex.normal = XMFLOAT3(n.x, n.y, n.z);
+			vertex.normal = XMFLOAT3(n.x, n.y, n.z);
 		}
 
 		vertices.emplace_back(vertex);

@@ -109,7 +109,7 @@ EXTERN SYSTEM_DLL void SetMatrixShaderParameters(ID3D11DeviceContext* deviceCont
 
 EXTERN SYSTEM_DLL void SetLightShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOAT4 ambientColor, XMFLOAT4 diffuseColor, XMFLOAT3 lightDirection, XMFLOAT4 specularColor, float specularPower)
 {
-	(*(Shader::GetInst()))->SetLightShaderParameters(deviceContext, diffuseColor, ambientColor, lightDirection,specularColor, specularPower);
+	(*(Shader::GetInst()))->SetLightShaderParameters(deviceContext, ambientColor, diffuseColor, lightDirection,specularColor, specularPower);
 }
 
 EXTERN SYSTEM_DLL void SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOAT3 cameraPosition)
