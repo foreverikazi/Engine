@@ -234,7 +234,7 @@ bool Shader::SetLightShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOA
 
 	LightBufferType* dataPtr = (LightBufferType*)mappedResource.pData;
 
-	//dataPtr->ambientColor = ambientColor;
+	dataPtr->ambientColor = ambientColor;
 	dataPtr->diffuseColor = diffuseColor;
 	dataPtr->lightDirection = lightDirection;
 	dataPtr->padding = 0.0f;

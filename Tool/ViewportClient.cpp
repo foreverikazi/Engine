@@ -129,7 +129,7 @@ void ViewportClient::InitModel()
 
 void ViewportClient::InitLight()
 {
-	//SetAmbientColor(XMFLOAT4(0.15f, 0.15f, 0.15f, 1.0f));
+	SetAmbientColor(XMFLOAT4(0.15f, 0.15f, 0.15f, 1.0f));
 	SetDiffuseColor(XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
 	//SetSpecularColor(XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
 	SetLightDirection(XMFLOAT3(0.0f, 1.0f, -1.0f));

@@ -21,7 +21,7 @@ private:
 
 	struct LightBufferType
 	{
-		//XMFLOAT4 ambientColor;
+		XMFLOAT4 ambientColor;
 		XMFLOAT4 diffuseColor;
 		XMFLOAT3 lightDirection;
 		//float specularPower;
