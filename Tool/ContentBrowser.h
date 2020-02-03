@@ -22,6 +22,8 @@ public:
 	virtual void Dump(CDumpContext& dc) const;
 #endif
 #endif
+public:
+	virtual void OnDraw(CDC* pDC);
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.

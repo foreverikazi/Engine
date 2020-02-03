@@ -77,7 +77,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	//  Window 클래스 또는 스타일을 수정합니다.
 
 	cs.cx = 1600;
-	cs.cy = 900;
+	cs.cy = 1000;
 
 	cs.style &= ~WS_THICKFRAME; //창 크기 조절 기능 비활성화
 	cs.style &= ~WS_MAXIMIZEBOX; //창 최대화버튼 비활성화

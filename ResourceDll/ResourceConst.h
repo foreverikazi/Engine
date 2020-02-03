@@ -5,3 +5,8 @@ enum class MESHTYPE
 	MESHTYPE_STATIC,
 	MESHTYPE_DYNAMIC,
 };
+
+enum class BUFFERTYPE
+{
+	BUFFERTYPE_CUBE,
+};

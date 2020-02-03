@@ -51,7 +51,7 @@ bool SceneView::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	//{
 	//	return false;
 	//}
-	AddBuffer(GetDevice());
+	//AddBuffer(GetDevice());
 	//// m_Model 객체 초기화
 	//if (!m_Model->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), "../Dx11Demo_05/data/stone01.tga"))
 	//{
@@ -67,9 +67,9 @@ bool SceneView::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	//}
 	//WCHAR vs[] = L"../Shader/color.vs";
 	//WCHAR ps[] = L"../Shader/color.ps";
-	WCHAR vs[] = L"../Shader/Shader.vs";
-	WCHAR ps[] = L"../Shader/texture.ps";
-	InitializeShader(GetDevice(), hwnd, vs, ps);
+	//WCHAR vs[] = L"../Shader/Shader.vs";
+	//WCHAR ps[] = L"../Shader/texture.ps";
+	//InitializeShader(GetDevice(), hwnd, vs, ps);
 	//// m_TextureShader 객체 초기화
 	//if (!m_TextureShader->Initialize(m_Direct3D->GetDevice(), hwnd))
 	//{
@@ -99,7 +99,7 @@ void SceneView::Shutdown()
 	//	delete m_Model;
 	//	m_Model = 0;
 	//}
-	ReleaseBuffer();
+	ReleaseBuffers();
 	
 	//// m_Camera 객체 반환
 	//if (m_Camera)
@@ -138,7 +138,7 @@ bool SceneView::Render()
 
 	//// 모델 버텍스와 인덱스 버퍼를 그래픽 파이프 라인에 배치하여 드로잉을 준비합니다.
 	//m_Model->Render(m_Direct3D->GetDeviceContext());
-	Buffer_Render(GetDeviceContext());
+	RenderBuffers(GetDeviceContext());
 	//// 텍스쳐 쉐이더를 사용하여 모델을 렌더링합니다.
 	//if (!m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture()))
 	//{
@@ -149,7 +149,7 @@ bool SceneView::Render()
 	GetViewMatrix(viewMatrix);
 	GetProjectionMatrix(projectionMatrix);
 
-	ShaderRender(GetDeviceContext(), GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
+	//ShaderRender(GetDeviceContext(), GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
 	//// 버퍼의 내용을 화면에 출력합니다
 	//m_Direct3D->EndScene();
 	EndScene();

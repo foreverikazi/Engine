@@ -38,7 +38,7 @@ BOOL CChildFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/, CCreateContext* pConte
 		return FALSE;
 	}
 
-	if (!m_wndSplitter.CreateView(0, 0, RUNTIME_CLASS(ViewportClient), CSize(1600, 700), pContext))
+	if (!m_wndSplitter.CreateView(0, 0, RUNTIME_CLASS(ViewportClient), CSize(1600, 600), pContext))
 	{
 		return FALSE;
 	}

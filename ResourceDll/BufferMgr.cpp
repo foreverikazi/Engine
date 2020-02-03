@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "BufferMgr.h"
 #include "Buffer.h"
-
+#include "CubeBuffer.h"
 
 BufferMgr::BufferMgr()
 	: mBuffer(nullptr)
@@ -14,26 +14,34 @@ BufferMgr::~BufferMgr()
 
 }
 
-bool BufferMgr::AddBuffer(ID3D11Device* device)
+bool BufferMgr::AddBuffer(ID3D11Device* device, BUFFERTYPE type)
 {
-	mBuffer = new Buffer;
-	mBuffer->CreateBuffers(device);
+	switch (type)
+	{
+	case BUFFERTYPE::BUFFERTYPE_CUBE :
+		mBuffer = new CubeBuffer();
+		mBuffer->CreateBuffers(device);
+		break;
+	}
+	
 	return true;
 }
 
-void BufferMgr::Buffer_Render(ID3D11DeviceContext* deviceContext)
+void BufferMgr::RenderBuffers(ID3D11DeviceContext* deviceContext)
 {
 	if (mBuffer != nullptr)
 	{
-		mBuffer->Render(deviceContext);
+		mBuffer->RenderBuffers(deviceContext);
 	}
 }
 
-void BufferMgr::ReleaseBuffer()
+void BufferMgr::ReleaseBuffers()
 {
 	if (mBuffer != nullptr)
 	{
 		mBuffer->ReleaseBuffer();
+		delete mBuffer;
+		mBuffer = nullptr;
 	}
 }
 

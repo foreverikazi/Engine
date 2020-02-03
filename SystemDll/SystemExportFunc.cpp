@@ -4,6 +4,7 @@
 #include "CameraController.h"
 #include "Shader.h"
 #include "Light.h"
+#include "ShaderMgr.h"
 
 EXTERN SYSTEM_DLL bool InitializeD3D(int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscreen, float screenDepth, float screenNear)
 {
@@ -77,9 +78,9 @@ EXTERN SYSTEM_DLL void GetViewMatrix(XMMATRIX& viewMatrix)
 }
 
 // Shader
-EXTERN SYSTEM_DLL bool InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename, WCHAR* psFilename)
+EXTERN SYSTEM_DLL bool InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename, WCHAR* psFilename, SHADERBUFFERTYPE type)
 {
-	return (*(Shader::GetInst()))->InitializeShader(device, hwnd, vsFilename, psFilename);
+	return (*(ShaderMgr::GetInst()))->InitializeShader(device, hwnd, vsFilename, psFilename, type);
 }
 
 //EXTERN SYSTEM_DLL bool InitializeShader2(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename, WCHAR* psFilename)
@@ -89,33 +90,27 @@ EXTERN SYSTEM_DLL bool InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 
 EXTERN SYSTEM_DLL void ReleaseShader()
 {
-	(*(Shader::GetInst()))->ReleaseShader();
+	(*(ShaderMgr::GetInst()))->ReleaseShader();
 }
 
-EXTERN SYSTEM_DLL bool ShaderRender(ID3D11DeviceContext* deviceContext, int indexCount, XMMATRIX worldMat, XMMATRIX viewMat, XMMATRIX projMat)
+EXTERN SYSTEM_DLL bool SetShader(ID3D11DeviceContext* deviceContext)
 {
-	return (*(Shader::GetInst()))->Render(deviceContext, indexCount, worldMat, viewMat, projMat);
-}
-
-EXTERN SYSTEM_DLL bool ShaderRender2(ID3D11DeviceContext* deviceContext,XMMATRIX worldMat, XMMATRIX viewMat, XMMATRIX projMat)
-{
-	return (*(Shader::GetInst()))->Render2(deviceContext, worldMat, viewMat, projMat);
+	return (*(ShaderMgr::GetInst()))->SetShader(deviceContext);
 }
 
 EXTERN SYSTEM_DLL void SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, XMMATRIX worldMat, XMMATRIX viewMat, XMMATRIX projMat)
 {
-	(*(Shader::GetInst()))->SetMatrixShaderParameters(deviceContext, worldMat, viewMat, projMat);
+	(*(ShaderMgr::GetInst()))->SetMatrixShaderParameters(deviceContext, worldMat, viewMat, projMat);
 }
 
 EXTERN SYSTEM_DLL void SetLightShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOAT4 ambientColor, XMFLOAT4 diffuseColor, XMFLOAT3 lightDirection, XMFLOAT4 specularColor, float specularPower)
 {
-	(*(Shader::GetInst()))->SetLightShaderParameters(deviceContext, ambientColor, diffuseColor, lightDirection,specularColor, specularPower);
+	(*(ShaderMgr::GetInst()))->SetLightShaderParameters(deviceContext, ambientColor, diffuseColor, lightDirection,specularColor, specularPower);
 }
 
 EXTERN SYSTEM_DLL void SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOAT3 cameraPosition)
 {
-	(*(Shader::GetInst()))->SetCameraShaderParameters(deviceContext, cameraPosition);
-
+	(*(ShaderMgr::GetInst()))->SetCameraShaderParameters(deviceContext, cameraPosition);
 }
 
 EXTERN SYSTEM_DLL void SetAmbientColor(XMFLOAT4 ambientColor)
@@ -171,7 +166,7 @@ EXTERN SYSTEM_DLL float GetSpecularPower()
 // System
 EXTERN SYSTEM_DLL void ReleaseSystem()
 {
-	(*(Shader::GetInst()))->DestroyInst();
+	(*(ShaderMgr::GetInst()))->DestroyInst();
 	(*(D3DApp::GetInst()))->DestroyInst();
 	(*(EditorCameraController::GetInst()))->DestroyInst();
 	(*(Light::GetInst()))->DestroyInst();

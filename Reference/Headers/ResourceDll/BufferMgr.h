@@ -10,7 +10,7 @@ private :
 	Buffer* mBuffer;
 
 public:
-	bool AddBuffer(ID3D11Device* pDevice);
+	bool AddBuffer(ID3D11Device* pDevice, BUFFERTYPE type);
 		//, BUFFERTYPE Type
 		//, const TCHAR* pBufferKey);
 	int GetIndexCount();
@@ -19,11 +19,11 @@ public:
 		, const DWORD& dwVtxCntX
 		, const DWORD& dwVtxCntZ
 		, const DWORD& dwVtxInterval);*/
-	void Buffer_Render(ID3D11DeviceContext* deviceContext);
+	void RenderBuffers(ID3D11DeviceContext* deviceContext);
 		//const TCHAR* pBufferKey,
 		//_D3DPRIMITIVETYPE iType = D3DPT_TRIANGLELIST);
 
-	void ReleaseBuffer(void);
+	void ReleaseBuffers();
 	//void Terrain_Release(const TCHAR* pBufferKey);
 	BufferMgr();
 	~BufferMgr();

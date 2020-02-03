@@ -1,10 +1,24 @@
-﻿  ResourceDll.vcxproj -> C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.dll
+﻿  pch.cpp
+  Buffer.cpp
+  BufferMgr.cpp
+  CubeBuffer.cpp
+  dllmain.cpp
+  Mesh.cpp
+  MeshMgr.cpp
+  Model.cpp
+  ResourceExportFunc.cpp
+  StaticMesh.cpp
+  StringUtil.cpp
+  TextureUtil.cpp
+  코드를 생성하고 있습니다...
+     C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.lib 라이브러리 및 C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.exp 개체를 생성하고 있습니다.
+  ResourceDll.vcxproj -> C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.dll
   C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.lib
   C:\Users\user\Desktop\Engine\x64\Debug\SystemDll.lib
           2개 파일이 복사되었습니다.
   C:\Users\user\Desktop\Engine\ResourceDll\Buffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\BufferMgr.h
-  C:\Users\user\Desktop\Engine\ResourceDll\ColorBuffer.h
+  C:\Users\user\Desktop\Engine\ResourceDll\CubeBuffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\framework.h
   C:\Users\user\Desktop\Engine\ResourceDll\Mesh.h
   C:\Users\user\Desktop\Engine\ResourceDll\MeshMgr.h

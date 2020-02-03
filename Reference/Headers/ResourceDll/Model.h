@@ -24,7 +24,7 @@ public :
 	Mesh processMesh(aiMesh* mesh, const aiScene* scene, wstring directoryPath);
 	//bool createSRVFromAssimpMat(aiMaterial* mat, aiTextureType type, ID3D11ShaderResourceView** srv);
 	vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, wstring typeName, wstring directoryPath);
-	void Render(ID3D11DeviceContext* deviceContext);
+	void RenderModel(ID3D11DeviceContext* deviceContext);
 	void ReleaseModel();
 
 public :

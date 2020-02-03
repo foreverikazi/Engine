@@ -63,6 +63,18 @@
     <ClInclude Include="Light.h">
       <Filter>Light</Filter>
     </ClInclude>
+    <ClInclude Include="SystemConst.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelShader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeShader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderMgr.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -85,6 +97,15 @@
     </ClCompile>
     <ClCompile Include="Light.cpp">
       <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelShader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeShader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderMgr.cpp">
+      <Filter>Shader</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

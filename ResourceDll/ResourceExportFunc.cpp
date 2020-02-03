@@ -5,19 +5,19 @@
 #include "StringUtil.h"
 #include "TextureUtil.h"
 
-EXTERN RESOURCE_DLL bool AddBuffer(ID3D11Device* device)
+EXTERN RESOURCE_DLL bool AddBuffer(ID3D11Device* device, BUFFERTYPE type)
 {
-	return (*(BufferMgr::GetInst()))->AddBuffer(device);
+	return (*(BufferMgr::GetInst()))->AddBuffer(device, type);
 }
 
-EXTERN RESOURCE_DLL void Buffer_Render(ID3D11DeviceContext* deviceContext)
+EXTERN RESOURCE_DLL void RenderBuffers(ID3D11DeviceContext* deviceContext)
 {
-	(*(BufferMgr::GetInst()))->Buffer_Render(deviceContext);
+	(*(BufferMgr::GetInst()))->RenderBuffers(deviceContext);
 }
 
-EXTERN RESOURCE_DLL void ReleaseBuffer(void)
+EXTERN RESOURCE_DLL void ReleaseBuffers(void)
 {
-	(*(BufferMgr::GetInst()))->ReleaseBuffer();
+	(*(BufferMgr::GetInst()))->ReleaseBuffers();
 }
 
 EXTERN RESOURCE_DLL int GetIndexCount()
@@ -31,9 +31,9 @@ EXTERN RESOURCE_DLL bool LoadModel(ID3D11Device* device, ID3D11DeviceContext* de
 	return (*(Model::GetInst()))->LoadModel(device, deviceContext, pPath);
 }
 
-EXTERN RESOURCE_DLL void ModelRender(ID3D11DeviceContext* deviceContext)
+EXTERN RESOURCE_DLL void RenderModel(ID3D11DeviceContext* deviceContext)
 {
-	(*(Model::GetInst()))->Render(deviceContext);
+	(*(Model::GetInst()))->RenderModel(deviceContext);
 }
 
 EXTERN RESOURCE_DLL void ReleaseModel()

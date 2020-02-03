@@ -18,7 +18,7 @@ IMPLEMENT_DYNCREATE(ViewportClient, CFormView)
 ViewportClient::ViewportClient()
 	: CFormView(IDD_VIEWPORT),
 	mScreenWidth(1600),
-	mScreenHeight(1200)
+	mScreenHeight(600)
 {
 
 }
@@ -27,7 +27,7 @@ ViewportClient::~ViewportClient()
 {
 	ReleaseModel();
 	ReleaseShader();
-	ReleaseBuffer();
+	ReleaseBuffers();
 	Release3D();
 
 	ReleaseResource();
@@ -66,8 +66,9 @@ void ViewportClient::OnInitialUpdate()
 	InitializeD3D(mScreenWidth, mScreenHeight, VSYNC_ENABLED, mHwnd, FULL_SCREEN, SCREEN_DEPTH, SCREEN_NEAR);
 	InitCamera();
 	InitShader();
-	InitModel();
-	InitLight();
+	InitBuffers();
+	//InitModel();
+	//InitLight();
 }
 
 void ViewportClient::OnDraw(CDC* pDC)
@@ -75,18 +76,26 @@ void ViewportClient::OnDraw(CDC* pDC)
 	ID3D11DeviceContext* deviceContext = GetDeviceContext();
 	BeginScene(0.0f, 0.0f, 0.0f, 1.0f);
 	UpdateCamera();
-	
-	//Buffer_Render(GetDeviceContext());
+
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
 	GetWorldMatrix(worldMatrix);
 	GetViewMatrix(viewMatrix);
 	GetProjectionMatrix(projectionMatrix);
 	SetMatrixShaderParameters(deviceContext, worldMatrix, viewMatrix, projectionMatrix);
+	
+	/*
 	SetLightShaderParameters(deviceContext, GetAmbientColor(), GetDiffuseColor(), GetLightDirection(), GetSpecularColor(), GetSpecularPower());
-	//SetCameraShaderParameters(deviceContext, GetCameraPosition());
-	ShaderRender2(deviceContext, worldMatrix, viewMatrix, projectionMatrix);
+	SetCameraShaderParameters(deviceContext, GetCameraPosition());
+	*/
+
+	SetShader(deviceContext);
+	RenderBuffers(deviceContext);
+
+	/*
 	ModelRender(deviceContext);
-	//ShaderRender(GetDeviceContext(), GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
+	ShaderRender(GetDeviceContext(), GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
+	*/
+
 	Invalidate(false); 
 	EndScene();
 }
@@ -99,7 +108,7 @@ void ViewportClient::OnDraw(CDC* pDC)
 
 void ViewportClient::InitCamera()
 {
-	SetCameraPosition(XMFLOAT3(0.0f, 1.0f, -10.0f));
+	SetCameraPosition(XMFLOAT3(0.0f, 1.0f, -20.0f));
 	SetCameraRotation(XMFLOAT3(0, 0, 0));
 	//SetCameraRotation(XMFLOAT3(90, 0, 180));
 }
@@ -108,11 +117,16 @@ void ViewportClient::InitShader()
 {
 	ID3D11Device* device = GetDevice();
 
-	//WCHAR vs[] = L"../Shader/color.vs";
-	//WCHAR ps[] = L"../Shader/color.ps";
-	WCHAR vs[] = L"../Shader/light.vs";
-	WCHAR ps[] = L"../Shader/light.ps";
-	InitializeShader(device, mHwnd, vs, ps);
+	WCHAR vs[] = L"../Shader/color.vs";
+	WCHAR ps[] = L"../Shader/color.ps";
+	//WCHAR vs[] = L"../Shader/light.vs";
+	//WCHAR ps[] = L"../Shader/light.ps";
+	InitializeShader(device, mHwnd, vs, ps, SHADERBUFFERTYPE::CUBE);
+}
+
+void ViewportClient::InitBuffers()
+{
+	AddBuffer(GetDevice(), BUFFERTYPE::BUFFERTYPE_CUBE);
 }
 
 void ViewportClient::InitModel()
@@ -130,8 +144,8 @@ void ViewportClient::InitModel()
 void ViewportClient::InitLight()
 {
 	SetAmbientColor(XMFLOAT4(0.15f, 0.15f, 0.15f, 1.0f));
-	SetDiffuseColor(XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
-	//SetSpecularColor(XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
+	SetDiffuseColor(XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
+	SetSpecularColor(XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
 	SetLightDirection(XMFLOAT3(0.0f, 1.0f, -1.0f));
-	//SetSpecularPower(32.0f);
+	SetSpecularPower(32.0f);
 }

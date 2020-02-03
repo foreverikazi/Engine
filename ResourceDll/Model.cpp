@@ -183,7 +183,7 @@ vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType type,
 	return textures;
 }
 
-void Model::Render(ID3D11DeviceContext* deviceContext)
+void Model::RenderModel(ID3D11DeviceContext* deviceContext)
 {
 	if (meshes.empty()) 	
 		return;

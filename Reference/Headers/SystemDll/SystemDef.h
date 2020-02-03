@@ -7,3 +7,4 @@ using namespace std;
 
 #include "SystemMacro.h"
 #include "SystemStruct.h"
+#include "SystemConst.h"

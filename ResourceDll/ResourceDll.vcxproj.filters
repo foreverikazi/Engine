@@ -81,7 +81,7 @@
     <ClInclude Include="Model.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="ColorBuffer.h">
+    <ClInclude Include="CubeBuffer.h">
       <Filter>Buffer</Filter>
     </ClInclude>
   </ItemGroup>
@@ -119,7 +119,7 @@
     <ClCompile Include="Model.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="ColorBuffer.cpp">
+    <ClCompile Include="CubeBuffer.cpp">
       <Filter>Buffer</Filter>
     </ClCompile>
   </ItemGroup>

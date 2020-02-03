@@ -18,7 +18,7 @@ struct PixelInputType
 ////////////////////////////////////////////////////////////////////////////////
 float4 psMain(PixelInputType input) : SV_TARGET
 {
-	float4 color2 = float4(1.0f, 0.0f, 0.0f, 1.0f);
-	return color2;
-    //return input.color;
+	//float4 color2 = float4(1.0f, 0.0f, 0.0f, 1.0f);
+	//return color2;
+    return input.color;
 }

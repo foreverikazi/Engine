@@ -7,6 +7,12 @@ struct Vertex
 	XMFLOAT3 normal;
 };
 
+struct ColorVertex
+{
+	XMFLOAT3 position;
+	XMFLOAT4 color;
+};
+
 struct Texture
 {
 	ID3D11ShaderResourceView *textureRV;

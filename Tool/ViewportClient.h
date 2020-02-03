@@ -42,6 +42,7 @@ protected:
 private :
 	void InitCamera();
 	void InitShader();
+	void InitBuffers();
 	void InitModel();
 	void InitLight();
 };
