@@ -1,12 +1,25 @@
-﻿  CubeShader.cpp
+﻿  pch.cpp
+  Camera.cpp
+  CubeShader.cpp
+  D3DApp.cpp
+  dllmain.cpp
+  Input.cpp
+  Light.cpp
+  ModelShader.cpp
+  Shader.cpp
+  ShaderMgr.cpp
+  SystemExportFunc.cpp
+  코드를 생성하고 있습니다...
+     C:\Users\user\Desktop\Engine\x64\Debug\SystemDll.lib 라이브러리 및 C:\Users\user\Desktop\Engine\x64\Debug\SystemDll.exp 개체를 생성하고 있습니다.
   SystemDll.vcxproj -> C:\Users\user\Desktop\Engine\x64\Debug\SystemDll.dll
   C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.lib
   C:\Users\user\Desktop\Engine\x64\Debug\SystemDll.lib
           2개 파일이 복사되었습니다.
-  C:\Users\user\Desktop\Engine\SystemDll\CameraController.h
+  C:\Users\user\Desktop\Engine\SystemDll\Camera.h
   C:\Users\user\Desktop\Engine\SystemDll\CubeShader.h
   C:\Users\user\Desktop\Engine\SystemDll\D3DApp.h
   C:\Users\user\Desktop\Engine\SystemDll\framework.h
+  C:\Users\user\Desktop\Engine\SystemDll\Input.h
   C:\Users\user\Desktop\Engine\SystemDll\Light.h
   C:\Users\user\Desktop\Engine\SystemDll\ModelShader.h
   C:\Users\user\Desktop\Engine\SystemDll\pch.h
@@ -17,4 +30,4 @@
   C:\Users\user\Desktop\Engine\SystemDll\SystemExportFunc.h
   C:\Users\user\Desktop\Engine\SystemDll\SystemMacro.h
   C:\Users\user\Desktop\Engine\SystemDll\SystemStruct.h
-         14개 파일이 복사되었습니다.
+         15개 파일이 복사되었습니다.

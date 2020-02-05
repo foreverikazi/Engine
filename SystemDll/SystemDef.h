@@ -1,7 +1,10 @@
 #pragma once
 #include <fstream>
 #include <vector>
-using namespace std; 
+#define DIRECTINPUT_VERSION 0x0800
+#include "dinput.h"
+
+using namespace std;
 
 #pragma warning (disable : 4251)
 

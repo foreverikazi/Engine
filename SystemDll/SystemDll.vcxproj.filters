@@ -31,6 +31,9 @@
     <Filter Include="Light">
       <UniqueIdentifier>{1aa418ea-7dd2-48ce-82c3-a552d0648c1e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{4b5191b6-4b18-4966-9381-1c20f16396bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -44,9 +47,6 @@
     </ClInclude>
     <ClInclude Include="SystemMacro.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraController.h">
-      <Filter>Camera</Filter>
     </ClInclude>
     <ClInclude Include="SystemExportFunc.h">
       <Filter>Export</Filter>
@@ -75,6 +75,12 @@
     <ClInclude Include="ShaderMgr.h">
       <Filter>Shader</Filter>
     </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -82,9 +88,6 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraController.cpp">
-      <Filter>Camera</Filter>
     </ClCompile>
     <ClCompile Include="SystemExportFunc.cpp">
       <Filter>Export</Filter>
@@ -106,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="ShaderMgr.cpp">
       <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Camera</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

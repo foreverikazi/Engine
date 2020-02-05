@@ -96,7 +96,7 @@ void ViewportClient::OnDraw(CDC* pDC)
 	ShaderRender(GetDeviceContext(), GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
 	*/
 
-	Invalidate(false); 
+	//Invalidate(false); 
 	EndScene();
 }
 

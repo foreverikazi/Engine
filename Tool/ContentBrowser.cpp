@@ -150,12 +150,10 @@ void ContentBrowser::UpdateListControlItem()
 
 void ContentBrowser::OnTvnSelchangedTree1(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	//UpdateData(TRUE);
 	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	mListCtrl.DeleteAllItems();
 	UpdateListControlItem();
 
 	*pResult = 0;
-	//UpdateData(FALSE);
 }

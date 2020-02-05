@@ -20,6 +20,12 @@ EXTERN SYSTEM_DLL XMFLOAT3 GetCameraRotation();
 EXTERN SYSTEM_DLL void UpdateCamera();
 EXTERN SYSTEM_DLL void GetViewMatrix(XMMATRIX& viewMatrix);
 
+// Input
+EXTERN SYSTEM_DLL bool InitializeInput(HINSTANCE hinstance, HWND hwnd);
+EXTERN SYSTEM_DLL void UpdateInput();
+EXTERN SYSTEM_DLL BOOL GetKeyBoardState(BYTE keyID);
+EXTERN SYSTEM_DLL const DIMOUSESTATE* GetMouseState();
+
 // Shader
 EXTERN SYSTEM_DLL bool InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename, WCHAR* psFilename, SHADERBUFFERTYPE type);
 EXTERN SYSTEM_DLL void ReleaseShader();

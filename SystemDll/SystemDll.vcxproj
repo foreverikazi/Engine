@@ -164,10 +164,11 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\SystemDll\*.h"</Comm
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CameraController.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="CubeShader.h" />
     <ClInclude Include="D3DApp.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="ModelShader.h" />
     <ClInclude Include="pch.h" />
@@ -180,10 +181,11 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\SystemDll\*.h"</Comm
     <ClInclude Include="SystemStruct.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CameraController.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CubeShader.cpp" />
     <ClCompile Include="D3DApp.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="ModelShader.cpp" />
     <ClCompile Include="pch.cpp">

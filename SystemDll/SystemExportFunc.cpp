@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "SystemExportFunc.h"
 #include "D3DApp.h"
-#include "CameraController.h"
+#include "Camera.h"
+#include "Input.h"
 #include "Shader.h"
 #include "Light.h"
 #include "ShaderMgr.h"
@@ -49,32 +50,52 @@ EXTERN SYSTEM_DLL void GetWorldMatrix(XMMATRIX& worldMatrix)
 // Camera
 EXTERN SYSTEM_DLL void SetCameraPosition(XMFLOAT3 position)
 {
-    (*(EditorCameraController::GetInst()))->SetPosition(position);
+    (*(Camera::GetInst()))->SetPosition(position);
 }
 
 EXTERN SYSTEM_DLL void SetCameraRotation(XMFLOAT3 rotation)
 {
-	(*(EditorCameraController::GetInst()))->SetRotation(rotation);
+	(*(Camera::GetInst()))->SetRotation(rotation);
 }
 
 EXTERN SYSTEM_DLL XMFLOAT3 GetCameraPosition()
 {
-	return (*(EditorCameraController::GetInst()))->GetPosition();
+	return (*(Camera::GetInst()))->GetPosition();
 }
 
 EXTERN SYSTEM_DLL XMFLOAT3 GetCameraRotation()
 {
-	return (*(EditorCameraController::GetInst()))->GetRotation();
+	return (*(Camera::GetInst()))->GetRotation();
 }
 
 EXTERN SYSTEM_DLL void UpdateCamera()
 {
-	(*(EditorCameraController::GetInst()))->UpdateCamera();
+	(*(Camera::GetInst()))->UpdateCamera();
 }
 
 EXTERN SYSTEM_DLL void GetViewMatrix(XMMATRIX& viewMatrix)
 {
-	(*(EditorCameraController::GetInst()))->GetViewMatrix(viewMatrix);
+	(*(Camera::GetInst()))->GetViewMatrix(viewMatrix);
+}
+
+EXTERN SYSTEM_DLL bool InitializeInput(HINSTANCE hinstance, HWND hwnd)
+{
+	return (*(Input::GetInst()))->InitializeInput(hinstance, hwnd);
+}
+
+EXTERN SYSTEM_DLL void UpdateInput()
+{
+	(*(Input::GetInst()))->UpdateInput();
+}
+
+EXTERN SYSTEM_DLL BOOL GetKeyBoardState(BYTE keyID)
+{
+	return (*(Input::GetInst()))->GetKeyBoardState(keyID);
+}
+
+EXTERN SYSTEM_DLL const DIMOUSESTATE* GetMouseState()
+{
+	return (*(Input::GetInst()))->GetMouseState();
 }
 
 // Shader
@@ -168,7 +189,7 @@ EXTERN SYSTEM_DLL void ReleaseSystem()
 {
 	(*(ShaderMgr::GetInst()))->DestroyInst();
 	(*(D3DApp::GetInst()))->DestroyInst();
-	(*(EditorCameraController::GetInst()))->DestroyInst();
+	(*(Camera::GetInst()))->DestroyInst();
 	(*(Light::GetInst()))->DestroyInst();
 }
 
