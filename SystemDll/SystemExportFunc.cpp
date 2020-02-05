@@ -6,6 +6,7 @@
 #include "Shader.h"
 #include "Light.h"
 #include "ShaderMgr.h"
+#include "TimeMgr.h"
 
 EXTERN SYSTEM_DLL bool InitializeD3D(int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscreen, float screenDepth, float screenNear)
 {
@@ -45,6 +46,11 @@ EXTERN SYSTEM_DLL void GetProjectionMatrix(XMMATRIX& projectionMatrix)
 EXTERN SYSTEM_DLL void GetWorldMatrix(XMMATRIX& worldMatrix)
 {
 	(*(D3DApp::GetInst()))->GetWorldMatrix(worldMatrix);
+}
+
+EXTERN SYSTEM_DLL void InitializeCamera(XMFLOAT3 up, XMFLOAT3 look, XMFLOAT3 position)
+{
+	(*(Camera::GetInst()))->InitializeCamera(up, look, position);
 }
 
 // Camera
@@ -96,6 +102,16 @@ EXTERN SYSTEM_DLL BOOL GetKeyBoardState(BYTE keyID)
 EXTERN SYSTEM_DLL const DIMOUSESTATE* GetMouseState()
 {
 	return (*(Input::GetInst()))->GetMouseState();
+}
+
+EXTERN SYSTEM_DLL void InitializeTimer()
+{
+	(*(TimeMgr::GetInst()))->InitializeTimer();
+}
+
+EXTERN SYSTEM_DLL void UpdateTimer()
+{
+	(*(TimeMgr::GetInst()))->UpdateTimer();
 }
 
 // Shader
@@ -190,6 +206,8 @@ EXTERN SYSTEM_DLL void ReleaseSystem()
 	(*(ShaderMgr::GetInst()))->DestroyInst();
 	(*(D3DApp::GetInst()))->DestroyInst();
 	(*(Camera::GetInst()))->DestroyInst();
+	(*(Input::GetInst()))->DestroyInst();
+	(*(TimeMgr::GetInst()))->DestroyInst();
 	(*(Light::GetInst()))->DestroyInst();
 }
 

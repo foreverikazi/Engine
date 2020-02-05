@@ -6,7 +6,7 @@ EXTERN class SYSTEM_DLL Camera
 {
 	DECLARE_SINGLE(Camera);
 public :
-	void InitCamera(XMFLOAT3 up, XMFLOAT3 look, XMFLOAT3 position);
+	void InitializeCamera(XMFLOAT3 up, XMFLOAT3 look, XMFLOAT3 position);
 	void SetPosition(XMFLOAT3 position);
 	void SetRotation(XMFLOAT3 rotation);
 
@@ -20,7 +20,7 @@ public :
 
 private:
 	XMFLOAT3 mUp;
-	XMFLOAT3 mLook;
+	XMFLOAT3 mLookAt;
 	XMFLOAT3 mPosition;
 	XMFLOAT3 mRotation;
 	XMMATRIX mViewMatrix;

@@ -41,7 +41,6 @@ bool Input::InitializeKeyboard(HWND hwnd)
 	{
 		return false;
 	}
-
 	if (FAILED(mKeyboard->SetDataFormat(&c_dfDIKeyboard)))
 	{
 		return false;
@@ -64,7 +63,6 @@ bool Input::InitializeMouse(HWND hwnd)
 	{
 		return false;
 	}
-
 	if (FAILED(mMouse->SetDataFormat(&c_dfDIMouse)))
 	{
 		return false;
@@ -73,7 +71,6 @@ bool Input::InitializeMouse(HWND hwnd)
 	{
 		return false;
 	}
-
 	if (FAILED(mMouse->Acquire()))
 	{
 		return false;
@@ -84,8 +81,25 @@ bool Input::InitializeMouse(HWND hwnd)
 
 void Input::UpdateInput()
 {
-	mKeyboard->GetDeviceState(sizeof(mKeyboardState), mKeyboardState);
-	mMouse->GetDeviceState(sizeof(mMouseState), &mMouseState);
+	HRESULT result;
+
+	if (mKeyboard)
+	{
+		result = mKeyboard->GetDeviceState(sizeof(mKeyboardState), mKeyboardState);
+		if ((result == DIERR_INPUTLOST) || (result == DIERR_NOTACQUIRED))
+		{
+			mKeyboard->Acquire();
+		}
+	}
+	
+	if (mMouse)
+	{
+		result = mMouse->GetDeviceState(sizeof(mMouseState), &mMouseState);
+		if ((result == DIERR_INPUTLOST) || (result == DIERR_NOTACQUIRED))
+		{
+			mMouse->Acquire();
+		}
+	}
 }
 
 void Input::ReleaseInput()

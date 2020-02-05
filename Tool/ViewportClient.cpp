@@ -60,11 +60,14 @@ void ViewportClient::OnInitialUpdate()
 {
 	CScrollView::OnInitialUpdate();
 
-	mHwnd = m_hWnd;
+	
+	mHwnd = m_hWnd; 
 	mHinstance = AfxGetInstanceHandle();
 
 	InitializeD3D(mScreenWidth, mScreenHeight, VSYNC_ENABLED, mHwnd, FULL_SCREEN, SCREEN_DEPTH, SCREEN_NEAR);
+	InitializeInput(mHinstance, AfxGetMainWnd()->m_hWnd);
 	InitCamera();
+	InitializeTimer();
 	InitShader();
 	InitBuffers();
 	//InitModel();
@@ -76,7 +79,8 @@ void ViewportClient::OnDraw(CDC* pDC)
 	ID3D11DeviceContext* deviceContext = GetDeviceContext();
 	BeginScene(0.0f, 0.0f, 0.0f, 1.0f);
 	UpdateCamera();
-
+	UpdateInput();
+	UpdateTimer();
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
 	GetWorldMatrix(worldMatrix);
 	GetViewMatrix(viewMatrix);
@@ -96,7 +100,7 @@ void ViewportClient::OnDraw(CDC* pDC)
 	ShaderRender(GetDeviceContext(), GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
 	*/
 
-	//Invalidate(false); 
+	Invalidate(false); 
 	EndScene();
 }
 
@@ -108,7 +112,8 @@ void ViewportClient::OnDraw(CDC* pDC)
 
 void ViewportClient::InitCamera()
 {
-	SetCameraPosition(XMFLOAT3(0.0f, 1.0f, -20.0f));
+	//SetCameraPosition(XMFLOAT3(0.0f, 1.0f, -20.0f));
+	InitializeCamera(XMFLOAT3(0, 1, 0), XMFLOAT3(0, 0, 1), XMFLOAT3(0, 0, -10));
 	SetCameraRotation(XMFLOAT3(0, 0, 0));
 	//SetCameraRotation(XMFLOAT3(90, 0, 180));
 }

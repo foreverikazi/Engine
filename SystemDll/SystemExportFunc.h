@@ -13,6 +13,7 @@ EXTERN SYSTEM_DLL void GetProjectionMatrix(XMMATRIX& projectionMatrix);
 EXTERN SYSTEM_DLL void GetWorldMatrix(XMMATRIX& worldMatrix);
 
 // Camera
+EXTERN SYSTEM_DLL void InitializeCamera(XMFLOAT3 up, XMFLOAT3 look, XMFLOAT3 position);
 EXTERN SYSTEM_DLL void SetCameraPosition(XMFLOAT3 position);
 EXTERN SYSTEM_DLL void SetCameraRotation(XMFLOAT3 rotation);
 EXTERN SYSTEM_DLL XMFLOAT3 GetCameraPosition();
@@ -25,6 +26,10 @@ EXTERN SYSTEM_DLL bool InitializeInput(HINSTANCE hinstance, HWND hwnd);
 EXTERN SYSTEM_DLL void UpdateInput();
 EXTERN SYSTEM_DLL BOOL GetKeyBoardState(BYTE keyID);
 EXTERN SYSTEM_DLL const DIMOUSESTATE* GetMouseState();
+
+// Timer
+EXTERN SYSTEM_DLL void InitializeTimer();
+EXTERN SYSTEM_DLL void UpdateTimer();
 
 // Shader
 EXTERN SYSTEM_DLL bool InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename, WCHAR* psFilename, SHADERBUFFERTYPE type);

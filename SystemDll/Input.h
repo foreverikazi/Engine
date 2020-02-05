@@ -2,7 +2,6 @@
 #define SYSTEM_EXPORT
 #include "SystemDef.h"
 
-
 EXTERN class SYSTEM_DLL Input
 {
 	DECLARE_SINGLE(Input);
