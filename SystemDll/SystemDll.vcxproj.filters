@@ -72,9 +72,6 @@
     <ClInclude Include="ModelShader.h">
       <Filter>Shader</Filter>
     </ClInclude>
-    <ClInclude Include="CubeShader.h">
-      <Filter>Shader</Filter>
-    </ClInclude>
     <ClInclude Include="ShaderMgr.h">
       <Filter>Shader</Filter>
     </ClInclude>
@@ -86,6 +83,9 @@
     </ClInclude>
     <ClInclude Include="TimeMgr.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorVertexShader.h">
+      <Filter>Shader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -110,9 +110,6 @@
     <ClCompile Include="ModelShader.cpp">
       <Filter>Shader</Filter>
     </ClCompile>
-    <ClCompile Include="CubeShader.cpp">
-      <Filter>Shader</Filter>
-    </ClCompile>
     <ClCompile Include="ShaderMgr.cpp">
       <Filter>Shader</Filter>
     </ClCompile>
@@ -124,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="TimeMgr.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorVertexShader.cpp">
+      <Filter>Shader</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -171,7 +171,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\SystemDll\*.h"</Comm
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="CubeShader.h" />
+    <ClInclude Include="ColorVertexShader.h" />
     <ClInclude Include="D3DApp.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Input.h" />
@@ -189,7 +189,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\SystemDll\*.h"</Comm
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CubeShader.cpp" />
+    <ClCompile Include="ColorVertexShader.cpp" />
     <ClCompile Include="D3DApp.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Input.cpp" />

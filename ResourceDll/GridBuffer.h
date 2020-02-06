@@ -12,6 +12,7 @@ public:
 private :
 	float mRadius;
 	float mInterval;
+	
 
 public:
 	GridBuffer();

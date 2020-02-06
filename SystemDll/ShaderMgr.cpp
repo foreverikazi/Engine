@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "ShaderMgr.h"
 #include "Shader.h"
-#include "CubeShader.h"
+#include "ColorVertexShader.h"
 #include "ModelShader.h"
 
 bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename, WCHAR* psFilename, SHADERBUFFERTYPE type)
@@ -16,7 +16,7 @@ bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilen
 	switch (type)
 	{
 	case SHADERBUFFERTYPE::COLORVERTEX:
-		newShader = new CubeShader();
+		newShader = new ColorVertexShader();
 		newShader->InitializeShader(device, hwnd, vsFilename, psFilename);
 		mShaderMap.insert(pair<SHADERBUFFERTYPE, Shader*>(type, newShader));
 		break;

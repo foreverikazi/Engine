@@ -58,7 +58,6 @@ bool GridBuffer::CreateBuffers(ID3D11Device* device)
 	{
 		return false;
 	}
-
 	return true;
 }
 
