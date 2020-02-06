@@ -84,6 +84,9 @@
     <ClInclude Include="CubeBuffer.h">
       <Filter>Buffer</Filter>
     </ClInclude>
+    <ClInclude Include="GridBuffer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -121,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="CubeBuffer.cpp">
       <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="GridBuffer.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

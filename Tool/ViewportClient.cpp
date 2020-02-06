@@ -70,6 +70,7 @@ void ViewportClient::OnInitialUpdate()
 	InitializeTimer();
 	InitShader();
 	InitBuffers();
+
 	//InitModel();
 	//InitLight();
 }
@@ -77,22 +78,19 @@ void ViewportClient::OnInitialUpdate()
 void ViewportClient::OnDraw(CDC* pDC)
 {
 	ID3D11DeviceContext* deviceContext = GetDeviceContext();
-	BeginScene(0.0f, 0.0f, 0.0f, 1.0f);
+	float gray = 56.f / 255.f;
+	BeginScene(gray, gray, gray, 1.0f);
 	UpdateCamera();
 	UpdateInput();
 	UpdateTimer();
-	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
-	GetWorldMatrix(worldMatrix);
-	viewMatrix = GetViewMatrix();
-	projectionMatrix = GetProjectionMatrix();
-	SetMatrixShaderParameters(deviceContext, worldMatrix, viewMatrix, projectionMatrix);
+	UpdateShader(deviceContext);
 	
 	/*
 	SetLightShaderParameters(deviceContext, GetAmbientColor(), GetDiffuseColor(), GetLightDirection(), GetSpecularColor(), GetSpecularPower());
 	SetCameraShaderParameters(deviceContext, GetCameraPosition());
 	*/
 
-	SetShader(deviceContext);
+	//SetShader(deviceContext);
 	RenderBuffers(deviceContext);
 
 	/*
@@ -116,7 +114,7 @@ void ViewportClient::InitCamera()
 	float screenAspect = (float)mScreenWidth / (float)mScreenHeight;
 	InitializeProjectionMatrix(fieldOfView, screenAspect, SCREEN_NEAR, SCREEN_FAR);
 	//SetCameraPosition(XMFLOAT3(0.0f, 1.0f, -20.0f));
-	InitializeCamera(XMFLOAT3(0, 1, 0), XMFLOAT3(0, 0, 1), XMFLOAT3(0, 0, -10));
+	InitializeCamera(XMFLOAT3(0, 1, 0), XMFLOAT3(0, 0, 1), XMFLOAT3(0, 10, -50));
 	SetCameraRotation(XMFLOAT3(0, 0, 0));
 	//SetCameraRotation(XMFLOAT3(90, 0, 180));
 }
@@ -129,12 +127,13 @@ void ViewportClient::InitShader()
 	WCHAR ps[] = L"../Shader/color.ps";
 	//WCHAR vs[] = L"../Shader/light.vs";
 	//WCHAR ps[] = L"../Shader/light.ps";
-	InitializeShader(device, mHwnd, vs, ps, SHADERBUFFERTYPE::CUBE);
+	InitializeShader(device, mHwnd, vs, ps, SHADERBUFFERTYPE::COLORVERTEX);
 }
 
 void ViewportClient::InitBuffers()
 {
-	AddBuffer(GetDevice(), BUFFERTYPE::BUFFERTYPE_CUBE);
+	AddBuffer(GetDevice(), BUFFERTYPE::BUFFERTYPE_CUBE, L"Cube");
+	AddBuffer(GetDevice(), BUFFERTYPE::BUFFERTYPE_GRID, L"Grid");
 }
 
 void ViewportClient::InitModel()
@@ -156,4 +155,13 @@ void ViewportClient::InitLight()
 	SetSpecularColor(XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
 	SetLightDirection(XMFLOAT3(0.0f, 1.0f, -1.0f));
 	SetSpecularPower(32.0f);
+}
+
+void ViewportClient::UpdateShader(ID3D11DeviceContext* deviceContext)
+{
+	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
+	worldMatrix = XMMatrixIdentity();
+	viewMatrix = GetViewMatrix();
+	projectionMatrix = GetProjectionMatrix();
+	SetMatrixShaderParameters(deviceContext, worldMatrix, viewMatrix, projectionMatrix);
 }

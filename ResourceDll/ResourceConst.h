@@ -9,4 +9,5 @@ enum class MESHTYPE
 enum class BUFFERTYPE
 {
 	BUFFERTYPE_CUBE,
+	BUFFERTYPE_GRID,
 };

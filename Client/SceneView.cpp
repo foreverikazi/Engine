@@ -127,8 +127,8 @@ bool SceneView::Frame()
 
 bool SceneView::Render()
 {
-	BeginScene(0.0f, 0.0f, 0.0f, 1.0f);
-	UpdateCamera();
+	//BeginScene(0.0f, 0.0f, 0.0f, 1.0f);
+	//UpdateCamera();
 
 	//// 카메라 및 d3d 객체에서 월드, 뷰 및 투영 행렬을 가져옵니다
 	//XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
@@ -138,20 +138,20 @@ bool SceneView::Render()
 
 	//// 모델 버텍스와 인덱스 버퍼를 그래픽 파이프 라인에 배치하여 드로잉을 준비합니다.
 	//m_Model->Render(m_Direct3D->GetDeviceContext());
-	RenderBuffers(GetDeviceContext());
+	//RenderBuffers(GetDeviceContext());
 	//// 텍스쳐 쉐이더를 사용하여 모델을 렌더링합니다.
 	//if (!m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture()))
 	//{
 	//	return false;
 	//}
-	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
-	GetWorldMatrix(worldMatrix);
-	viewMatrix = GetViewMatrix();
-	projectionMatrix = GetProjectionMatrix();
+	//XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
+	//GetWorldMatrix(worldMatrix);
+	//viewMatrix = GetViewMatrix();
+	//projectionMatrix = GetProjectionMatrix();
 
 	//ShaderRender(GetDeviceContext(), GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
 	//// 버퍼의 내용을 화면에 출력합니다
 	//m_Direct3D->EndScene();
-	EndScene();
+	//EndScene();
 	return true;
 }

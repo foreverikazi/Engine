@@ -1,6 +1,7 @@
 
 #include "pch.h"
 #include "CubeBuffer.h"
+#include "SystemExportFunc.h"
 
 bool CubeBuffer::CreateBuffers(ID3D11Device* device)
 {
@@ -90,6 +91,8 @@ bool CubeBuffer::CreateBuffers(ID3D11Device* device)
 
 void CubeBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
 {
+	SetShader(deviceContext, SHADERBUFFERTYPE::COLORVERTEX);
+
 	unsigned int stride = sizeof(ColorVertex);
 	unsigned int offset = 0;
 

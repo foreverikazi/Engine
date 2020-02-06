@@ -18,7 +18,9 @@
 #include <d3d11.h>
 #include <d3dcompiler.h>
 #include <directxmath.h>
+#include <DirectXPackedVector.h>
 #include <map>
 using namespace DirectX;
+using namespace DirectX::PackedVector;
 
 #endif //PCH_H

@@ -93,7 +93,7 @@
       <PreprocessorDefinitions>_DEBUG;RESOURCEDLL_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>../Reference/Headers/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Reference/Headers/SystemDll/;../Reference/Headers/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -167,6 +167,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\ResourceDll\*.h"</Co
     <ClInclude Include="BufferMgr.h" />
     <ClInclude Include="CubeBuffer.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="GridBuffer.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshMgr.h" />
     <ClInclude Include="Model.h" />
@@ -185,6 +186,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\ResourceDll\*.h"</Co
     <ClCompile Include="BufferMgr.cpp" />
     <ClCompile Include="CubeBuffer.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="GridBuffer.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshMgr.cpp" />
     <ClCompile Include="Model.cpp" />

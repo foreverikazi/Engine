@@ -2,9 +2,9 @@
 #include "BufferMgr.h"
 #include "Buffer.h"
 #include "CubeBuffer.h"
+#include "GridBuffer.h"
 
 BufferMgr::BufferMgr()
-	: mBuffer(nullptr)
 {
 
 }
@@ -14,14 +14,22 @@ BufferMgr::~BufferMgr()
 
 }
 
-bool BufferMgr::AddBuffer(ID3D11Device* device, BUFFERTYPE type)
+bool BufferMgr::AddBuffer(ID3D11Device* device, BUFFERTYPE type, const TCHAR* key)
 {
+	Buffer* newBuffer = nullptr;
+
 	switch (type)
 	{
 	case BUFFERTYPE::BUFFERTYPE_CUBE :
-		mBuffer = new CubeBuffer();
-		mBuffer->CreateBuffers(device);
+		newBuffer = new CubeBuffer();
+		newBuffer->CreateBuffers(device);
+		mBufferMap.insert({ key, newBuffer });
 		break;
+
+	case BUFFERTYPE::BUFFERTYPE_GRID :
+		newBuffer = new GridBuffer();
+		newBuffer->CreateBuffers(device);
+		mBufferMap.insert({ key, newBuffer });
 	}
 	
 	return true;
@@ -29,24 +37,23 @@ bool BufferMgr::AddBuffer(ID3D11Device* device, BUFFERTYPE type)
 
 void BufferMgr::RenderBuffers(ID3D11DeviceContext* deviceContext)
 {
-	if (mBuffer != nullptr)
+	for (auto buffer : mBufferMap)
 	{
-		mBuffer->RenderBuffers(deviceContext);
+		buffer.second->RenderBuffers(deviceContext);
 	}
 }
 
 void BufferMgr::ReleaseBuffers()
 {
-	if (mBuffer != nullptr)
+	for (auto iter = mBufferMap.begin(); iter != mBufferMap.end(); iter ++)
 	{
-		mBuffer->ReleaseBuffer();
-		delete mBuffer;
-		mBuffer = nullptr;
+		if (iter->second != nullptr)
+		{
+			iter->second->ReleaseBuffer();
+			delete iter->second;
+			iter->second = nullptr;
+		}
 	}
-}
 
-
-int BufferMgr::GetIndexCount()
-{
-	return mBuffer->GetIndexCount();
+	mBufferMap.clear();
 }

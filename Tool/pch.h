@@ -21,8 +21,10 @@
 #include <d3d11.h>
 #include <d3dcompiler.h>
 #include <directxmath.h>
+#include <DirectXPackedVector.h>
 
 using namespace DirectX;
+using namespace DirectX::PackedVector;
 
 #pragma comment(lib, "SystemDll.lib")
 #pragma comment(lib, "ResourceDll.lib")

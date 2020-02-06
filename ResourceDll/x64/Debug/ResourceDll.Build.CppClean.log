@@ -2,6 +2,7 @@ c:\users\user\desktop\engine\resourcedll\x64\debug\resourcedll.pch
 c:\users\user\desktop\engine\resourcedll\x64\debug\vc141.pdb
 c:\users\user\desktop\engine\resourcedll\x64\debug\vc141.idb
 c:\users\user\desktop\engine\resourcedll\x64\debug\pch.obj
+c:\users\user\desktop\engine\resourcedll\x64\debug\dllmain.obj
 c:\users\user\desktop\engine\resourcedll\x64\debug\textureutil.obj
 c:\users\user\desktop\engine\resourcedll\x64\debug\stringutil.obj
 c:\users\user\desktop\engine\resourcedll\x64\debug\staticmesh.obj
@@ -9,10 +10,10 @@ c:\users\user\desktop\engine\resourcedll\x64\debug\resourceexportfunc.obj
 c:\users\user\desktop\engine\resourcedll\x64\debug\model.obj
 c:\users\user\desktop\engine\resourcedll\x64\debug\meshmgr.obj
 c:\users\user\desktop\engine\resourcedll\x64\debug\mesh.obj
-c:\users\user\desktop\engine\resourcedll\x64\debug\dllmain.obj
 c:\users\user\desktop\engine\resourcedll\x64\debug\cubebuffer.obj
 c:\users\user\desktop\engine\resourcedll\x64\debug\buffermgr.obj
 c:\users\user\desktop\engine\resourcedll\x64\debug\buffer.obj
+c:\users\user\desktop\engine\resourcedll\x64\debug\gridbuffer.obj
 c:\users\user\desktop\engine\x64\debug\resourcedll.dll
 c:\users\user\desktop\engine\x64\debug\resourcedll.ilk
 c:\users\user\desktop\engine\x64\debug\resourcedll.pdb
@@ -21,6 +22,9 @@ c:\users\user\desktop\engine\x64\debug\resourcedll.exp
 c:\users\user\desktop\engine\resourcedll\x64\debug\resourcedll.tlog\cl.command.1.tlog
 c:\users\user\desktop\engine\resourcedll\x64\debug\resourcedll.tlog\cl.read.1.tlog
 c:\users\user\desktop\engine\resourcedll\x64\debug\resourcedll.tlog\cl.write.1.tlog
+c:\users\user\desktop\engine\resourcedll\x64\debug\resourcedll.tlog\link.13252.delete.1.tlog
+c:\users\user\desktop\engine\resourcedll\x64\debug\resourcedll.tlog\link.16544.delete.1.tlog
+c:\users\user\desktop\engine\resourcedll\x64\debug\resourcedll.tlog\link.244.delete.1.tlog
 c:\users\user\desktop\engine\resourcedll\x64\debug\resourcedll.tlog\link.command.1.tlog
 c:\users\user\desktop\engine\resourcedll\x64\debug\resourcedll.tlog\link.read.1.tlog
 c:\users\user\desktop\engine\resourcedll\x64\debug\resourcedll.tlog\link.write.1.tlog

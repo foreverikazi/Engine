@@ -13,7 +13,7 @@ public:
 	bool InitializeD3D(int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscreen,float screenDepth, float screenNear);
 	void Release3D();
 
-	void BeginScene(float, float, float, float);
+	void BeginScene(const float r, const float g, const float b, const float a);
 	void EndScene();
 
 	ID3D11Device* GetDevice();

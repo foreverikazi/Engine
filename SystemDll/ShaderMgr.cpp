@@ -15,7 +15,7 @@ bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilen
 
 	switch (type)
 	{
-	case SHADERBUFFERTYPE::CUBE :
+	case SHADERBUFFERTYPE::COLORVERTEX:
 		newShader = new CubeShader();
 		newShader->InitializeShader(device, hwnd, vsFilename, psFilename);
 		mShaderMap.insert(pair<SHADERBUFFERTYPE, Shader*>(type, newShader));
@@ -34,34 +34,29 @@ bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilen
 
 void ShaderMgr::ReleaseShader()
 {
-	for (auto iter = mShaderMap.begin(); iter != mShaderMap.end();)
+	for (auto iter = mShaderMap.begin(); iter != mShaderMap.end(); iter++)
 	{
 		if (iter->second != nullptr)
 		{
 			iter->second->ReleaseShader();
-			mShaderMap.erase(iter++);
-		}
-		else
-		{
-			iter++;
+			delete iter->second;
+			iter->second = nullptr;
 		}
 	}
 
 	mShaderMap.clear();
-
-	if (mCurrentShader)
-	{
-		delete mCurrentShader;
-		mCurrentShader = nullptr;
-	}
 }
 
-bool ShaderMgr::SetShader(ID3D11DeviceContext* deviceContext)
+bool ShaderMgr::SetShader(ID3D11DeviceContext* deviceContext, SHADERBUFFERTYPE type)
 {
-	if (mCurrentShader)
+	auto shaderIter = mShaderMap.find(type);
+	Shader* shader = shaderIter->second;
+
+	if (shader)
 	{
-		mCurrentShader->SetShader(deviceContext);
+		shader->SetShader(deviceContext);
 	}
+
 	return true;
 }
 

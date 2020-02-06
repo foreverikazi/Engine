@@ -15,10 +15,12 @@
 #pragma comment(lib, "d3dcompiler.lib")
 #pragma comment(lib, "assimp-vc140-mt.lib")
 #pragma comment(lib, "FreeImage.lib")
+#pragma comment(lib, "SystemDll.lib")
 
 #include <d3d11.h>
 #include <d3dcompiler.h>
 #include <directxmath.h>
+#include <DirectXPackedVector.h>
 
 #include <unordered_map>
 #include <map>
@@ -29,6 +31,6 @@
 #include <atlstr.h>
 
 using namespace DirectX;
-
+using namespace DirectX::PackedVector;
 
 #endif //PCH_H

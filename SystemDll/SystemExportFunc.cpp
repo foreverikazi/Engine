@@ -18,9 +18,9 @@ EXTERN SYSTEM_DLL void Release3D()
 	(*(D3DApp::GetInst()))->Release3D();
 }
 
-EXTERN SYSTEM_DLL void BeginScene(float red, float green, float blue, float alpha)
+EXTERN SYSTEM_DLL void BeginScene(const float r, const float g, const float b, const float a)
 {
-	(*(D3DApp::GetInst()))->BeginScene(red, green, blue, alpha);
+	(*(D3DApp::GetInst()))->BeginScene(r, g, b, a);
 }
 
 EXTERN SYSTEM_DLL void EndScene()
@@ -136,9 +136,9 @@ EXTERN SYSTEM_DLL void ReleaseShader()
 	(*(ShaderMgr::GetInst()))->ReleaseShader();
 }
 
-EXTERN SYSTEM_DLL bool SetShader(ID3D11DeviceContext* deviceContext)
+EXTERN SYSTEM_DLL bool SetShader(ID3D11DeviceContext* deviceContext, SHADERBUFFERTYPE type)
 {
-	return (*(ShaderMgr::GetInst()))->SetShader(deviceContext);
+	return (*(ShaderMgr::GetInst()))->SetShader(deviceContext, type);
 }
 
 EXTERN SYSTEM_DLL void SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, XMMATRIX worldMat, XMMATRIX viewMat, XMMATRIX projMat)

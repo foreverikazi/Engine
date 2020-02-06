@@ -45,6 +45,7 @@ private :
 	void InitBuffers();
 	void InitModel();
 	void InitLight();
+	void UpdateShader(ID3D11DeviceContext* deviceContext);
 };
 
 

@@ -5,9 +5,9 @@
 #include "StringUtil.h"
 #include "TextureUtil.h"
 
-EXTERN RESOURCE_DLL bool AddBuffer(ID3D11Device* device, BUFFERTYPE type)
+EXTERN RESOURCE_DLL bool AddBuffer(ID3D11Device* device, BUFFERTYPE type, const TCHAR* key)
 {
-	return (*(BufferMgr::GetInst()))->AddBuffer(device, type);
+	return (*(BufferMgr::GetInst()))->AddBuffer(device, type, key);
 }
 
 EXTERN RESOURCE_DLL void RenderBuffers(ID3D11DeviceContext* deviceContext)
@@ -18,11 +18,6 @@ EXTERN RESOURCE_DLL void RenderBuffers(ID3D11DeviceContext* deviceContext)
 EXTERN RESOURCE_DLL void ReleaseBuffers(void)
 {
 	(*(BufferMgr::GetInst()))->ReleaseBuffers();
-}
-
-EXTERN RESOURCE_DLL int GetIndexCount()
-{
-	return (*(BufferMgr::GetInst()))->GetIndexCount();
 }
 
 // ╦П╣╗ юс╫ц

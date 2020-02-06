@@ -3,7 +3,6 @@
 #include "ResourceDef.h"
 #include "Buffer.h"
 
-
 EXTERN class RESOURCE_DLL CubeBuffer : public Buffer
 {
 public:

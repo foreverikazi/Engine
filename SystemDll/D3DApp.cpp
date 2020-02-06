@@ -379,13 +379,12 @@ void D3DApp::Release3D()
 }
 
 
-void D3DApp::BeginScene(float red, float green, float blue, float alpha)
+void D3DApp::BeginScene(const float r, const float g, const float b, const float a)
 {
-	// 버퍼를 지울 색을 설정합니다
-	float color[4] = { red, green, blue, alpha };
-
-	// 백버퍼를 지웁니다
-	m_deviceContext->ClearRenderTargetView(m_renderTargetView, color);
+	float fColor[4] = { r, g, b, a };
+	
+ 	// 백버퍼를 지웁니다
+	m_deviceContext->ClearRenderTargetView(m_renderTargetView, fColor);
 
 	// 깊이 버퍼를 지웁니다
 	m_deviceContext->ClearDepthStencilView(m_depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);

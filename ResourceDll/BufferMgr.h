@@ -7,13 +7,12 @@ EXTERN class RESOURCE_DLL BufferMgr
 {
 	DECLARE_SINGLE(BufferMgr);
 private :
-	Buffer* mBuffer;
+	unordered_map<const TCHAR*, Buffer*> mBufferMap;
 
 public:
-	bool AddBuffer(ID3D11Device* pDevice, BUFFERTYPE type);
+	bool AddBuffer(ID3D11Device* pDevice, BUFFERTYPE type, const TCHAR* key);
 		//, BUFFERTYPE Type
 		//, const TCHAR* pBufferKey);
-	int GetIndexCount();
 	/*HRESULT AddBuffer_Terrain(LPDIRECT3DDEVICE9 device
 		, const TCHAR* pBufferKey
 		, const DWORD& dwVtxCntX
