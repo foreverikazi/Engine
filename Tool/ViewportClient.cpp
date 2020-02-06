@@ -64,7 +64,7 @@ void ViewportClient::OnInitialUpdate()
 	mHwnd = m_hWnd; 
 	mHinstance = AfxGetInstanceHandle();
 
-	InitializeD3D(mScreenWidth, mScreenHeight, VSYNC_ENABLED, mHwnd, FULL_SCREEN, SCREEN_DEPTH, SCREEN_NEAR);
+	InitializeD3D(mScreenWidth, mScreenHeight, VSYNC_ENABLED, mHwnd, FULL_SCREEN, SCREEN_FAR, SCREEN_NEAR);
 	InitializeInput(mHinstance, AfxGetMainWnd()->m_hWnd);
 	InitCamera();
 	InitializeTimer();
@@ -83,8 +83,8 @@ void ViewportClient::OnDraw(CDC* pDC)
 	UpdateTimer();
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
 	GetWorldMatrix(worldMatrix);
-	GetViewMatrix(viewMatrix);
-	GetProjectionMatrix(projectionMatrix);
+	viewMatrix = GetViewMatrix();
+	projectionMatrix = GetProjectionMatrix();
 	SetMatrixShaderParameters(deviceContext, worldMatrix, viewMatrix, projectionMatrix);
 	
 	/*
@@ -112,6 +112,9 @@ void ViewportClient::OnDraw(CDC* pDC)
 
 void ViewportClient::InitCamera()
 {
+	float fieldOfView = XM_PI / 4.0f;
+	float screenAspect = (float)mScreenWidth / (float)mScreenHeight;
+	InitializeProjectionMatrix(fieldOfView, screenAspect, SCREEN_NEAR, SCREEN_FAR);
 	//SetCameraPosition(XMFLOAT3(0.0f, 1.0f, -20.0f));
 	InitializeCamera(XMFLOAT3(0, 1, 0), XMFLOAT3(0, 0, 1), XMFLOAT3(0, 0, -10));
 	SetCameraRotation(XMFLOAT3(0, 0, 0));

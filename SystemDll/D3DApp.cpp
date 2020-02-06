@@ -309,13 +309,13 @@ bool D3DApp::InitializeD3D(int screenWidth, int screenHeight, bool vsync, HWND h
 	float screenAspect = (float)screenWidth / (float)screenHeight;
 
 	// 3D 렌더링을위한 투영 행렬을 만듭니다
-	m_projectionMatrix = XMMatrixPerspectiveFovLH(fieldOfView, screenAspect, screenNear, screenDepth);
+	//m_projectionMatrix = XMMatrixPerspectiveFovLH(fieldOfView, screenAspect, screenNear, screenDepth);
 
 	// 세계 행렬을 항등 행렬로 초기화합니다
 	m_worldMatrix = XMMatrixIdentity();
 
 	// 2D 렌더링을위한 직교 투영 행렬을 만듭니다
-	m_orthoMatrix = XMMatrixOrthographicLH((float)screenWidth, (float)screenHeight, screenNear, screenDepth);
+	//m_orthoMatrix = XMMatrixOrthographicLH((float)screenWidth, (float)screenHeight, screenNear, screenDepth);
 
 	return true;
 }

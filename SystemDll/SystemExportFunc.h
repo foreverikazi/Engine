@@ -9,17 +9,18 @@ EXTERN SYSTEM_DLL void BeginScene(float red, float green, float blue, float alph
 EXTERN SYSTEM_DLL void EndScene();
 EXTERN SYSTEM_DLL ID3D11Device* GetDevice();
 EXTERN SYSTEM_DLL ID3D11DeviceContext* GetDeviceContext();
-EXTERN SYSTEM_DLL void GetProjectionMatrix(XMMATRIX& projectionMatrix);
 EXTERN SYSTEM_DLL void GetWorldMatrix(XMMATRIX& worldMatrix);
 
 // Camera
-EXTERN SYSTEM_DLL void InitializeCamera(XMFLOAT3 up, XMFLOAT3 look, XMFLOAT3 position);
-EXTERN SYSTEM_DLL void SetCameraPosition(XMFLOAT3 position);
-EXTERN SYSTEM_DLL void SetCameraRotation(XMFLOAT3 rotation);
+EXTERN SYSTEM_DLL void InitializeCamera(const XMFLOAT3 up, const XMFLOAT3 look, const XMFLOAT3 position);
+EXTERN SYSTEM_DLL void InitializeProjectionMatrix(const float fov, const float aspectRatio, const float nearZ, const float farZ);
+EXTERN SYSTEM_DLL void SetCameraPosition(const XMFLOAT3 position);
+EXTERN SYSTEM_DLL void SetCameraRotation(const XMFLOAT3 rotation);
 EXTERN SYSTEM_DLL XMFLOAT3 GetCameraPosition();
 EXTERN SYSTEM_DLL XMFLOAT3 GetCameraRotation();
 EXTERN SYSTEM_DLL void UpdateCamera();
-EXTERN SYSTEM_DLL void GetViewMatrix(XMMATRIX& viewMatrix);
+EXTERN SYSTEM_DLL XMMATRIX GetViewMatrix();
+EXTERN SYSTEM_DLL XMMATRIX GetProjectionMatrix();
 
 // Input
 EXTERN SYSTEM_DLL bool InitializeInput(HINSTANCE hinstance, HWND hwnd);
@@ -40,11 +41,11 @@ EXTERN SYSTEM_DLL void SetLightShaderParameters(ID3D11DeviceContext* deviceConte
 EXTERN SYSTEM_DLL void SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOAT3 cameraPosition);
 
 // Light
-EXTERN SYSTEM_DLL void SetAmbientColor(XMFLOAT4 ambientColor);
-EXTERN SYSTEM_DLL void SetDiffuseColor(XMFLOAT4 diffuseColor);
-EXTERN SYSTEM_DLL void SetSpecularColor(XMFLOAT4 specularColor);
-EXTERN SYSTEM_DLL void SetLightDirection(XMFLOAT3 direction);
-EXTERN SYSTEM_DLL void SetSpecularPower(float specularPower);
+EXTERN SYSTEM_DLL void SetAmbientColor(const XMFLOAT4 ambientColor);
+EXTERN SYSTEM_DLL void SetDiffuseColor(const XMFLOAT4 diffuseColor);
+EXTERN SYSTEM_DLL void SetSpecularColor(const XMFLOAT4 specularColor);
+EXTERN SYSTEM_DLL void SetLightDirection(const XMFLOAT3 direction);
+EXTERN SYSTEM_DLL void SetSpecularPower(const float specularPower);
 
 EXTERN SYSTEM_DLL XMFLOAT4 GetAmbientColor();
 EXTERN SYSTEM_DLL XMFLOAT4 GetDiffuseColor();

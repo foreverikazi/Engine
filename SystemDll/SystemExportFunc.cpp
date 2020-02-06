@@ -38,28 +38,29 @@ EXTERN SYSTEM_DLL ID3D11DeviceContext* GetDeviceContext()
 	return (*(D3DApp::GetInst()))->GetDeviceContext();
 }
 
-EXTERN SYSTEM_DLL void GetProjectionMatrix(XMMATRIX& projectionMatrix)
-{
-	(*(D3DApp::GetInst()))->GetProjectionMatrix(projectionMatrix);
-}
-
 EXTERN SYSTEM_DLL void GetWorldMatrix(XMMATRIX& worldMatrix)
 {
 	(*(D3DApp::GetInst()))->GetWorldMatrix(worldMatrix);
 }
 
-EXTERN SYSTEM_DLL void InitializeCamera(XMFLOAT3 up, XMFLOAT3 look, XMFLOAT3 position)
+// Camera
+EXTERN SYSTEM_DLL void InitializeCamera(const XMFLOAT3 up, const XMFLOAT3 look, const XMFLOAT3 position)
 {
 	(*(Camera::GetInst()))->InitializeCamera(up, look, position);
 }
 
-// Camera
-EXTERN SYSTEM_DLL void SetCameraPosition(XMFLOAT3 position)
+
+EXTERN SYSTEM_DLL void InitializeProjectionMatrix(const float fov, const float aspectRatio, const float nearZ, const float farZ)
+{
+	(*(Camera::GetInst()))->InitializeProjectionMatrix(fov, aspectRatio, nearZ, farZ);
+}
+
+EXTERN SYSTEM_DLL void SetCameraPosition(const XMFLOAT3 position)
 {
     (*(Camera::GetInst()))->SetPosition(position);
 }
 
-EXTERN SYSTEM_DLL void SetCameraRotation(XMFLOAT3 rotation)
+EXTERN SYSTEM_DLL void SetCameraRotation(const XMFLOAT3 rotation)
 {
 	(*(Camera::GetInst()))->SetRotation(rotation);
 }
@@ -79,9 +80,14 @@ EXTERN SYSTEM_DLL void UpdateCamera()
 	(*(Camera::GetInst()))->UpdateCamera();
 }
 
-EXTERN SYSTEM_DLL void GetViewMatrix(XMMATRIX& viewMatrix)
+EXTERN SYSTEM_DLL XMMATRIX GetViewMatrix()
 {
-	(*(Camera::GetInst()))->GetViewMatrix(viewMatrix);
+	return (*(Camera::GetInst()))->GetViewMatrix();
+}
+
+EXTERN SYSTEM_DLL XMMATRIX GetProjectionMatrix()
+{
+	return (*(Camera::GetInst()))->GetProjectionMatrix();
 }
 
 EXTERN SYSTEM_DLL bool InitializeInput(HINSTANCE hinstance, HWND hwnd)
@@ -150,27 +156,27 @@ EXTERN SYSTEM_DLL void SetCameraShaderParameters(ID3D11DeviceContext* deviceCont
 	(*(ShaderMgr::GetInst()))->SetCameraShaderParameters(deviceContext, cameraPosition);
 }
 
-EXTERN SYSTEM_DLL void SetAmbientColor(XMFLOAT4 ambientColor)
+EXTERN SYSTEM_DLL void SetAmbientColor(const XMFLOAT4 ambientColor)
 {
 	(*(Light::GetInst()))->SetAmbientColor(ambientColor);
 }
 
-EXTERN SYSTEM_DLL void SetDiffuseColor(XMFLOAT4 diffuseColor)
+EXTERN SYSTEM_DLL void SetDiffuseColor(const XMFLOAT4 diffuseColor)
 {
 	(*(Light::GetInst()))->SetDiffuseColor(diffuseColor);
 }
 
-EXTERN SYSTEM_DLL void SetSpecularColor(XMFLOAT4 specularColor)
+EXTERN SYSTEM_DLL void SetSpecularColor(const XMFLOAT4 specularColor)
 {
 	(*(Light::GetInst()))->SetSpecularColor(specularColor);
 }
 
-EXTERN SYSTEM_DLL void SetLightDirection(XMFLOAT3 direction)
+EXTERN SYSTEM_DLL void SetLightDirection(const XMFLOAT3 direction)
 {
 	(*(Light::GetInst()))->SetLightDirection(direction);
 }
 
-EXTERN SYSTEM_DLL void SetSpecularPower(float specularPower)
+EXTERN SYSTEM_DLL void SetSpecularPower(const float specularPower)
 {
 	(*(Light::GetInst()))->SetSpecularPower(specularPower);
 }

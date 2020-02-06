@@ -146,8 +146,8 @@ bool SceneView::Render()
 	//}
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
 	GetWorldMatrix(worldMatrix);
-	GetViewMatrix(viewMatrix);
-	GetProjectionMatrix(projectionMatrix);
+	viewMatrix = GetViewMatrix();
+	projectionMatrix = GetProjectionMatrix();
 
 	//ShaderRender(GetDeviceContext(), GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
 	//// 버퍼의 내용을 화면에 출력합니다

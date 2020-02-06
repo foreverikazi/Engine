@@ -1,4 +1,8 @@
 ﻿  Camera.cpp
+c:\users\user\desktop\engine\systemdll\camera.cpp(155): warning C4244: '인수': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\engine\systemdll\camera.cpp(156): warning C4244: '인수': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SystemExportFunc.cpp
+  코드를 생성하고 있습니다...
   SystemDll.vcxproj -> C:\Users\user\Desktop\Engine\x64\Debug\SystemDll.dll
   C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.lib
   C:\Users\user\Desktop\Engine\x64\Debug\SystemDll.lib

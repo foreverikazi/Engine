@@ -15,7 +15,7 @@ public :
 public :
 	BOOL GetKeyBoardState(BYTE keyID) 
 		{ return int(mKeyboardState[keyID] & 0x80);}
-	const DIMOUSESTATE* GetMouseState() 
+	const DIMOUSESTATE* GetMouseState() const
 		{ return &mMouseState; }
 
 public :

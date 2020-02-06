@@ -6,17 +6,17 @@ EXTERN class SYSTEM_DLL Light
 {
 	DECLARE_SINGLE(Light);
 public :
-	void SetAmbientColor(XMFLOAT4 ambientColor);
-	void SetDiffuseColor(XMFLOAT4 diffuseColor);
-	void SetSpecularColor(XMFLOAT4 specularColor);
-	void SetLightDirection(XMFLOAT3 direction);
-	void SetSpecularPower(float specularPower);
+	void SetAmbientColor(const XMFLOAT4 ambientColor);
+	void SetDiffuseColor(const XMFLOAT4 diffuseColor);
+	void SetSpecularColor(const XMFLOAT4 specularColor);
+	void SetLightDirection(const XMFLOAT3 direction);
+	void SetSpecularPower(const float specularPower);
 
-	XMFLOAT4 GetAmbientColor();
-	XMFLOAT4 GetDiffuseColor();
-	XMFLOAT4 GetSpecularColor();
-	XMFLOAT3 GetLightDirection();
-	float GetSpecularPower();
+	XMFLOAT4 GetAmbientColor() const;
+	XMFLOAT4 GetDiffuseColor() const;
+	XMFLOAT4 GetSpecularColor() const;
+	XMFLOAT3 GetLightDirection() const;
+	float GetSpecularPower() const;
 
 public :
 	Light() = default;
