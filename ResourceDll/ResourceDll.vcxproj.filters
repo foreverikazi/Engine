@@ -66,9 +66,6 @@
     <ClInclude Include="StaticMesh.h">
       <Filter>Mesh\Static</Filter>
     </ClInclude>
-    <ClInclude Include="MeshMgr.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ResourceConst.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -81,14 +78,20 @@
     <ClInclude Include="Model.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="GridBuffer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ColorCubeBuffer.h">
       <Filter>Buffer</Filter>
     </ClInclude>
     <ClInclude Include="TextureCubeBuffer.h">
       <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="LightCubeBuffer.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="GridBuffer.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshMgr.h">
+      <Filter>Mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -113,9 +116,6 @@
     <ClCompile Include="StaticMesh.cpp">
       <Filter>Mesh\Static</Filter>
     </ClCompile>
-    <ClCompile Include="MeshMgr.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="TextureUtil.cpp">
       <Filter>Texture</Filter>
     </ClCompile>
@@ -125,14 +125,20 @@
     <ClCompile Include="Model.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="GridBuffer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ColorCubeBuffer.cpp">
       <Filter>Buffer</Filter>
     </ClCompile>
     <ClCompile Include="TextureCubeBuffer.cpp">
       <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="LightCubeBuffer.cpp">
+      <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="GridBuffer.cpp">
+      <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshMgr.cpp">
+      <Filter>Mesh</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

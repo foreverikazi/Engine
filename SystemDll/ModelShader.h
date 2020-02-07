@@ -6,15 +6,6 @@
 EXTERN class SYSTEM_DLL ModelShader : public Shader
 {
 protected:
-	struct LightBufferType
-	{
-		XMFLOAT4 ambientColor;
-		XMFLOAT4 diffuseColor;
-		XMFLOAT3 lightDirection;
-		float specularPower;
-		XMFLOAT4 specularColor;
-	};
-
 	struct CameraBufferType
 	{
 		XMFLOAT3 cameraPosition;

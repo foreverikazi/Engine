@@ -81,14 +81,17 @@
     <ClInclude Include="Camera.h">
       <Filter>Camera</Filter>
     </ClInclude>
-    <ClInclude Include="TimeMgr.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ColorVertexShader.h">
       <Filter>Shader</Filter>
     </ClInclude>
     <ClInclude Include="TextureShader.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="LightShader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeMgr.h">
+      <Filter>Time</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -122,14 +125,17 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
-    <ClCompile Include="TimeMgr.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ColorVertexShader.cpp">
       <Filter>Shader</Filter>
     </ClCompile>
     <ClCompile Include="TextureShader.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="LightShader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeMgr.cpp">
+      <Filter>Time</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -63,7 +63,6 @@ bool Shader::SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, XMMAT
 }
 bool Shader::SetLightShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOAT4 ambientColor, XMFLOAT4 diffuseColor, XMFLOAT3 lightDirection, XMFLOAT4 specularColor, float specularPower)
 {
-
 	return true;
 }
 

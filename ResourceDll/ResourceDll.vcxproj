@@ -168,6 +168,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\ResourceDll\*.h"</Co
     <ClInclude Include="ColorCubeBuffer.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GridBuffer.h" />
+    <ClInclude Include="LightCubeBuffer.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshMgr.h" />
     <ClInclude Include="Model.h" />
@@ -188,6 +189,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\ResourceDll\*.h"</Co
     <ClCompile Include="ColorCubeBuffer.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="GridBuffer.cpp" />
+    <ClCompile Include="LightCubeBuffer.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshMgr.cpp" />
     <ClCompile Include="Model.cpp" />

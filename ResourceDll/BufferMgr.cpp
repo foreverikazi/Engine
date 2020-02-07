@@ -3,6 +3,7 @@
 #include "Buffer.h"
 #include "ColorCubeBuffer.h"
 #include "TextureCubeBuffer.h"
+#include "LightCubeBuffer.h"
 #include "GridBuffer.h"
 
 BufferMgr::BufferMgr()
@@ -35,6 +36,12 @@ bool BufferMgr::AddBuffer(ID3D11Device* device, BUFFERTYPE type, const TCHAR* ke
 
 	case BUFFERTYPE::BUFFERTYPE_TEXTURE_CUBE :
 		newBuffer = new TextureCubeBuffer();
+		newBuffer->CreateBuffers(device);
+		mBufferMap.insert({ key, newBuffer });
+		break;
+
+	case BUFFERTYPE::BUFFERTYPE_LIGHT_CUBE:
+		newBuffer = new LightCubeBuffer();
 		newBuffer->CreateBuffers(device);
 		mBufferMap.insert({ key, newBuffer });
 		break;

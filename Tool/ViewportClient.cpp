@@ -72,7 +72,7 @@ void ViewportClient::OnInitialUpdate()
 	InitBuffers();
 
 	//InitModel();
-	//InitLight();
+	InitLight();
 }
 
 void ViewportClient::OnDraw(CDC* pDC)
@@ -91,6 +91,7 @@ void ViewportClient::OnDraw(CDC* pDC)
 	*/
 
 	//SetShader(deviceContext);
+	SetLightShaderParameters(deviceContext, GetAmbientColor(), GetDiffuseColor(), GetLightDirection(), GetSpecularColor(), GetSpecularPower());
 	RenderBuffers(deviceContext);
 
 	/*
@@ -123,9 +124,13 @@ void ViewportClient::InitShader()
 {
 	ID3D11Device* device = GetDevice();
 
-	WCHAR vs[] = L"../Shader/TextureShader.vs";
-	WCHAR ps[] = L"../Shader/TextureShader.ps";
-	InitializeShader(device, mHwnd, vs, ps, SHADERBUFFERTYPE::TEXTURE);
+	WCHAR vs[] = L"../Shader/LightShader.vs";
+	WCHAR ps[] = L"../Shader/LightShader.ps";
+	InitializeShader(device, mHwnd, vs, ps, SHADERBUFFERTYPE::LIGHT);
+	/*
+		WCHAR vs[] = L"../Shader/TextureShader.vs";
+		WCHAR ps[] = L"../Shader/TextureShader.ps";
+		InitializeShader(device, mHwnd, vs, ps, SHADERBUFFERTYPE::TEXTURE);*/
 
 	WCHAR vs2[] = L"../Shader/color.vs";
 	WCHAR ps2[] = L"../Shader/color.ps";
@@ -140,8 +145,8 @@ void ViewportClient::InitBuffers()
 	ID3D11DeviceContext* devicecContext = GetDeviceContext();
 	//AddBuffer(device, BUFFERTYPE::BUFFERTYPE_COLOR_CUBE, L"ColorCube");
 	AddBuffer(device, BUFFERTYPE::BUFFERTYPE_GRID, L"Grid");
-	AddBuffer(device, BUFFERTYPE::BUFFERTYPE_TEXTURE_CUBE, L"TextureCube");
-	LoadTextureBuffer(device, devicecContext, L"TextureCube", L"../Content/Cube/seafloor.png");
+	AddBuffer(device, BUFFERTYPE::BUFFERTYPE_LIGHT_CUBE, L"LightCube");
+	LoadTextureBuffer(device, devicecContext, L"LightCube", L"../Content/Cube/seafloor.png");
 }
 
 void ViewportClient::InitModel()
@@ -161,7 +166,7 @@ void ViewportClient::InitLight()
 	SetAmbientColor(XMFLOAT4(0.15f, 0.15f, 0.15f, 1.0f));
 	SetDiffuseColor(XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
 	SetSpecularColor(XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
-	SetLightDirection(XMFLOAT3(0.0f, 1.0f, -1.0f));
+	SetLightDirection(XMFLOAT3(0.2f, 0.0f, 1.0f));
 	SetSpecularPower(32.0f);
 }
 

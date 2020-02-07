@@ -1,4 +1,4 @@
-﻿  ShaderMgr.cpp
+﻿  LightShader.cpp
   SystemDll.vcxproj -> C:\Users\user\Desktop\Engine\x64\Debug\SystemDll.dll
   C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.lib
   C:\Users\user\Desktop\Engine\x64\Debug\SystemDll.lib
@@ -9,6 +9,7 @@
   C:\Users\user\Desktop\Engine\SystemDll\framework.h
   C:\Users\user\Desktop\Engine\SystemDll\Input.h
   C:\Users\user\Desktop\Engine\SystemDll\Light.h
+  C:\Users\user\Desktop\Engine\SystemDll\LightShader.h
   C:\Users\user\Desktop\Engine\SystemDll\ModelShader.h
   C:\Users\user\Desktop\Engine\SystemDll\pch.h
   C:\Users\user\Desktop\Engine\SystemDll\Shader.h
@@ -20,4 +21,4 @@
   C:\Users\user\Desktop\Engine\SystemDll\SystemStruct.h
   C:\Users\user\Desktop\Engine\SystemDll\TextureShader.h
   C:\Users\user\Desktop\Engine\SystemDll\TimeMgr.h
-         17개 파일이 복사되었습니다.
+         18개 파일이 복사되었습니다.

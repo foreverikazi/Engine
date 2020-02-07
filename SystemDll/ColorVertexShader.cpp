@@ -6,7 +6,6 @@ ColorVertexShader::ColorVertexShader()
 	mShaderBufferType = SHADERBUFFERTYPE::COLORVERTEX;
 }
 
-
 bool ColorVertexShader::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename, WCHAR* psFilename)
 {
 	ID3D10Blob* errorMessage = nullptr;

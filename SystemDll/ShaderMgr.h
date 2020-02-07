@@ -17,6 +17,5 @@ public:
 	
 private:
 	map<SHADERBUFFERTYPE, Shader*> mShaderMap;
-	Shader* mCurrentShader;
 };
 

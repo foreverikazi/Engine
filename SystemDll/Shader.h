@@ -12,6 +12,17 @@ protected :
 		XMMATRIX view;
 		XMMATRIX projection;
 	};
+
+	struct LightBufferType
+	{
+		//XMFLOAT4 ambientColor;
+		XMFLOAT4 diffuseColor;
+		XMFLOAT3 lightDirection;
+		float padding;
+		//float specularPower;
+		//XMFLOAT4 specularColor;
+	};
+
 public:
 	virtual bool InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename, WCHAR* psFilename);
 	virtual bool SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, XMMATRIX worldMat, XMMATRIX viewMat, XMMATRIX projMat);

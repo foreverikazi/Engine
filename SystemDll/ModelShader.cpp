@@ -186,11 +186,11 @@ bool ModelShader::SetLightShaderParameters(ID3D11DeviceContext* deviceContext, X
 
 	LightBufferType* dataPtr = (LightBufferType*)mappedResource.pData;
 
-	dataPtr->ambientColor = ambientColor;
+	//dataPtr->ambientColor = ambientColor;
 	dataPtr->diffuseColor = diffuseColor;
 	dataPtr->lightDirection = lightDirection;
-	dataPtr->specularPower = specularPower;
-	dataPtr->specularColor = specularColor;
+	//dataPtr->specularPower = specularPower;
+	//dataPtr->specularColor = specularColor;
 
 	deviceContext->Unmap(mLightBuffer, 0);
 

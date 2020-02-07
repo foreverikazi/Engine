@@ -4,6 +4,7 @@
 #include "ColorVertexShader.h"
 #include "TextureShader.h"
 #include "ModelShader.h"
+#include "LightShader.h"
 
 bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename, WCHAR* psFilename, SHADERBUFFERTYPE type)
 {
@@ -33,6 +34,12 @@ bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilen
 		newShader->InitializeShader(device, hwnd, vsFilename, psFilename);
 		mShaderMap.insert({ type, newShader });
 		break;
+
+	case SHADERBUFFERTYPE::LIGHT :
+		newShader = new LightShader();
+		newShader->InitializeShader(device, hwnd, vsFilename, psFilename);
+		mShaderMap.insert({ type, newShader });
+		break;
 	}
 
 	//SetCurrentShader(type);
@@ -57,11 +64,10 @@ void ShaderMgr::ReleaseShader()
 bool ShaderMgr::SetShader(ID3D11DeviceContext* deviceContext, SHADERBUFFERTYPE type)
 {
 	auto shaderIter = mShaderMap.find(type);
-	Shader* shader = shaderIter->second;
 
-	if (shader)
+	if (shaderIter != mShaderMap.end())
 	{
-		shader->SetShader(deviceContext);
+		shaderIter->second->SetShader(deviceContext);
 	}
 
 	return true;
@@ -69,6 +75,7 @@ bool ShaderMgr::SetShader(ID3D11DeviceContext* deviceContext, SHADERBUFFERTYPE t
 
 void ShaderMgr::SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, XMMATRIX worldMat, XMMATRIX viewMat, XMMATRIX projMat)
 {
+	// 나중에 바꾸자
 	for(auto shader : mShaderMap)
 	{
 		shader.second->SetMatrixShaderParameters(deviceContext, worldMat, viewMat, projMat);
@@ -77,22 +84,18 @@ void ShaderMgr::SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, XM
 
 void ShaderMgr::SetLightShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOAT4 ambientColor, XMFLOAT4 diffuseColor, XMFLOAT3 lightDirection, XMFLOAT4 specularColor, float specularPower)
 {
-	if (mCurrentShader)
+	// 나중에 바꾸자
+	for (auto shader : mShaderMap)
 	{
-		mCurrentShader->SetLightShaderParameters(deviceContext, ambientColor, diffuseColor, lightDirection, specularColor, specularPower);
+		shader.second->SetLightShaderParameters(deviceContext, ambientColor, diffuseColor, lightDirection, specularColor, specularPower);
 	}
 }
 
 void ShaderMgr::SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOAT3 cameraPosition)
 {
-	if (mCurrentShader)
+	// 나중에 바꾸자
+	for (auto shader : mShaderMap)
 	{
-		mCurrentShader->SetCameraShaderParameters(deviceContext, cameraPosition);
+		shader.second->SetCameraShaderParameters(deviceContext, cameraPosition);
 	}
-}
-
-void ShaderMgr::SetCurrentShader(SHADERBUFFERTYPE type)
-{
-	auto shader = mShaderMap.find(type);
-	mCurrentShader = shader->second;
 }

@@ -1,4 +1,4 @@
-﻿  TextureCubeBuffer.cpp
+﻿  LightCubeBuffer.cpp
   ResourceDll.vcxproj -> C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.dll
   C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.lib
   C:\Users\user\Desktop\Engine\x64\Debug\SystemDll.lib
@@ -8,6 +8,7 @@
   C:\Users\user\Desktop\Engine\ResourceDll\ColorCubeBuffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\framework.h
   C:\Users\user\Desktop\Engine\ResourceDll\GridBuffer.h
+  C:\Users\user\Desktop\Engine\ResourceDll\LightCubeBuffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\Mesh.h
   C:\Users\user\Desktop\Engine\ResourceDll\MeshMgr.h
   C:\Users\user\Desktop\Engine\ResourceDll\Model.h
@@ -21,4 +22,4 @@
   C:\Users\user\Desktop\Engine\ResourceDll\StringUtil.h
   C:\Users\user\Desktop\Engine\ResourceDll\TextureCubeBuffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\TextureUtil.h
-         18개 파일이 복사되었습니다.
+         19개 파일이 복사되었습니다.
