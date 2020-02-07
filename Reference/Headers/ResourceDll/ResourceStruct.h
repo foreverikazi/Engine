@@ -7,6 +7,12 @@ struct Vertex
 	XMFLOAT3 normal;
 };
 
+struct TextureVertex
+{
+	XMFLOAT3 position;
+	XMFLOAT2 uv;
+};
+
 struct ColorVertex
 {
 	XMFLOAT3 position;

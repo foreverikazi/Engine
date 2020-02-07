@@ -13,6 +13,7 @@ c:\users\user\desktop\engine\systemdll\x64\debug\dllmain.obj
 c:\users\user\desktop\engine\systemdll\x64\debug\d3dapp.obj
 c:\users\user\desktop\engine\systemdll\x64\debug\cubeshader.obj
 c:\users\user\desktop\engine\systemdll\x64\debug\camera.obj
+c:\users\user\desktop\engine\systemdll\x64\debug\colorvertexshader.obj
 c:\users\user\desktop\engine\x64\debug\systemdll.dll
 c:\users\user\desktop\engine\x64\debug\systemdll.ilk
 c:\users\user\desktop\engine\x64\debug\systemdll.pdb
@@ -21,7 +22,7 @@ c:\users\user\desktop\engine\x64\debug\systemdll.exp
 c:\users\user\desktop\engine\systemdll\x64\debug\systemdll.tlog\cl.command.1.tlog
 c:\users\user\desktop\engine\systemdll\x64\debug\systemdll.tlog\cl.read.1.tlog
 c:\users\user\desktop\engine\systemdll\x64\debug\systemdll.tlog\cl.write.1.tlog
-c:\users\user\desktop\engine\systemdll\x64\debug\systemdll.tlog\link.18104.delete.1.tlog
+c:\users\user\desktop\engine\systemdll\x64\debug\systemdll.tlog\link.16696.delete.1.tlog
 c:\users\user\desktop\engine\systemdll\x64\debug\systemdll.tlog\link.command.1.tlog
 c:\users\user\desktop\engine\systemdll\x64\debug\systemdll.tlog\link.read.1.tlog
 c:\users\user\desktop\engine\systemdll\x64\debug\systemdll.tlog\link.write.1.tlog

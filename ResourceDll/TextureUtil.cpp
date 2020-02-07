@@ -28,14 +28,14 @@ ID3D11ShaderResourceView* TextureUtil::LoadTextureUtil(ID3D11Device* device, ID3
 		fif = FreeImage_GetFIFFromFilename(path.c_str());
 
 	if (fif == FIF_UNKNOWN)
-		return NULL;
+		return nullptr;
 
 	//check that the plugin has reading capabilities and load the file
 	if (FreeImage_FIFSupportsReading(fif))
 		dib = FreeImage_Load(fif, path.c_str());
 
 	//if the image failed to load, return failure
-	if (!dib)	return false;
+	if (!dib)	return nullptr;
 
 	//이미지 형태가 32 비트가 아니면 32로 변환. dx11에 24 format 이 없는 듯하다..
 	if (FreeImage_GetBPP(dib) != 32) {
@@ -50,7 +50,7 @@ ID3D11ShaderResourceView* TextureUtil::LoadTextureUtil(ID3D11Device* device, ID3
 	unsigned int height = FreeImage_GetHeight(dib);
 	//if this somehow one of these failed (they shouldn't), return failure
 	if ((bits == 0) || (width == 0) || (height == 0))
-		return NULL;
+		return nullptr;
 
 
 	//텍스처의 구조체를 설정합니다.

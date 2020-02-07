@@ -15,6 +15,11 @@ EXTERN RESOURCE_DLL void RenderBuffers(ID3D11DeviceContext* deviceContext)
 	(*(BufferMgr::GetInst()))->RenderBuffers(deviceContext);
 }
 
+EXTERN RESOURCE_DLL void LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* key, const TCHAR* fileName)
+{
+	(*(BufferMgr::GetInst()))->LoadTextureBuffer(device, deviceContext, key, fileName);
+}
+
 EXTERN RESOURCE_DLL void ReleaseBuffers(void)
 {
 	(*(BufferMgr::GetInst()))->ReleaseBuffers();

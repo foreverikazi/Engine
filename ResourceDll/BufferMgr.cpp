@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "BufferMgr.h"
 #include "Buffer.h"
-#include "CubeBuffer.h"
+#include "ColorCubeBuffer.h"
+#include "TextureCubeBuffer.h"
 #include "GridBuffer.h"
 
 BufferMgr::BufferMgr()
@@ -20,8 +21,8 @@ bool BufferMgr::AddBuffer(ID3D11Device* device, BUFFERTYPE type, const TCHAR* ke
 
 	switch (type)
 	{
-	case BUFFERTYPE::BUFFERTYPE_CUBE :
-		newBuffer = new CubeBuffer();
+	case BUFFERTYPE::BUFFERTYPE_COLOR_CUBE:
+		newBuffer = new ColorCubeBuffer();
 		newBuffer->CreateBuffers(device);
 		mBufferMap.insert({ key, newBuffer });
 		break;
@@ -30,9 +31,26 @@ bool BufferMgr::AddBuffer(ID3D11Device* device, BUFFERTYPE type, const TCHAR* ke
 		newBuffer = new GridBuffer();
 		newBuffer->CreateBuffers(device);
 		mBufferMap.insert({ key, newBuffer });
+		break;
+
+	case BUFFERTYPE::BUFFERTYPE_TEXTURE_CUBE :
+		newBuffer = new TextureCubeBuffer();
+		newBuffer->CreateBuffers(device);
+		mBufferMap.insert({ key, newBuffer });
+		break;
 	}
 	
 	return true;
+}
+
+void BufferMgr::LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* key, const TCHAR* fileName)
+{
+	Buffer* buffer = FindBuffer(key);
+	
+	if (buffer)
+	{
+		buffer->LoadTextureBuffer(device, deviceContext, fileName);
+	}
 }
 
 void BufferMgr::RenderBuffers(ID3D11DeviceContext* deviceContext)
@@ -56,4 +74,16 @@ void BufferMgr::ReleaseBuffers()
 	}
 
 	mBufferMap.clear();
+}
+
+Buffer* BufferMgr::FindBuffer(const TCHAR* key)
+{
+	auto buffer = mBufferMap.find(key);
+
+	if (buffer != mBufferMap.end())
+	{
+		return buffer->second;
+	}
+
+	return nullptr;
 }

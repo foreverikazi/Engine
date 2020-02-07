@@ -1,9 +1,9 @@
 
 #include "pch.h"
-#include "CubeBuffer.h"
+#include "ColorCubeBuffer.h"
 #include "SystemExportFunc.h"
 
-bool CubeBuffer::CreateBuffers(ID3D11Device* device)
+bool ColorCubeBuffer::CreateBuffers(ID3D11Device* device)
 {
 	mVertexCount = 8;
 	mIndexCount = 36;
@@ -89,7 +89,7 @@ bool CubeBuffer::CreateBuffers(ID3D11Device* device)
 	return true;
 }
 
-void CubeBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
+void ColorCubeBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
 {
 	SetShader(deviceContext, SHADERBUFFERTYPE::COLORVERTEX);
 

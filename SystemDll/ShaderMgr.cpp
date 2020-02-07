@@ -2,6 +2,7 @@
 #include "ShaderMgr.h"
 #include "Shader.h"
 #include "ColorVertexShader.h"
+#include "TextureShader.h"
 #include "ModelShader.h"
 
 bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename, WCHAR* psFilename, SHADERBUFFERTYPE type)
@@ -18,17 +19,23 @@ bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilen
 	case SHADERBUFFERTYPE::COLORVERTEX:
 		newShader = new ColorVertexShader();
 		newShader->InitializeShader(device, hwnd, vsFilename, psFilename);
-		mShaderMap.insert(pair<SHADERBUFFERTYPE, Shader*>(type, newShader));
+		mShaderMap.insert({ type, newShader });
 		break;
 
 	case SHADERBUFFERTYPE::MODEL :
 		newShader = new ModelShader();
 		newShader->InitializeShader(device, hwnd, vsFilename, psFilename);
-		mShaderMap.insert(pair<SHADERBUFFERTYPE, Shader*>(type, newShader));
+		mShaderMap.insert({ type, newShader });
+		break;
+
+	case SHADERBUFFERTYPE::TEXTURE :
+		newShader = new TextureShader();
+		newShader->InitializeShader(device, hwnd, vsFilename, psFilename);
+		mShaderMap.insert({ type, newShader });
 		break;
 	}
 
-	SetCurrentShader(type);
+	//SetCurrentShader(type);
 	return true;
 }
 
@@ -62,9 +69,9 @@ bool ShaderMgr::SetShader(ID3D11DeviceContext* deviceContext, SHADERBUFFERTYPE t
 
 void ShaderMgr::SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, XMMATRIX worldMat, XMMATRIX viewMat, XMMATRIX projMat)
 {
-	if (mCurrentShader)
+	for(auto shader : mShaderMap)
 	{
-		mCurrentShader->SetMatrixShaderParameters(deviceContext, worldMat, viewMat, projMat);
+		shader.second->SetMatrixShaderParameters(deviceContext, worldMat, viewMat, projMat);
 	}
 }
 

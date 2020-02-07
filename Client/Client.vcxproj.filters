@@ -92,5 +92,17 @@
     <None Include="..\Shader\texture.vs">
       <Filter>Shader</Filter>
     </None>
+    <None Include="..\Shader\TextureNormalShader.ps">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="..\Shader\TextureNormalShader.vs">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="..\Shader\TextureShader.ps">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="..\Shader\TextureShader.vs">
+      <Filter>Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

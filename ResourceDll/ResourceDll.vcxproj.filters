@@ -81,11 +81,14 @@
     <ClInclude Include="Model.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="CubeBuffer.h">
-      <Filter>Buffer</Filter>
-    </ClInclude>
     <ClInclude Include="GridBuffer.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorCubeBuffer.h">
+      <Filter>Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureCubeBuffer.h">
+      <Filter>Buffer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -122,11 +125,14 @@
     <ClCompile Include="Model.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="CubeBuffer.cpp">
-      <Filter>Buffer</Filter>
-    </ClCompile>
     <ClCompile Include="GridBuffer.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorCubeBuffer.cpp">
+      <Filter>Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureCubeBuffer.cpp">
+      <Filter>Buffer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

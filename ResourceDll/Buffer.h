@@ -9,6 +9,7 @@ public:
 
 	virtual bool CreateBuffers(ID3D11Device* device) = 0;
 	virtual void RenderBuffers(ID3D11DeviceContext* deviceContext) = 0;
+	virtual void LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* fileName) {}
 	void ReleaseBuffer();
 
 public:

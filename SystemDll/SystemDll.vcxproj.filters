@@ -87,6 +87,9 @@
     <ClInclude Include="ColorVertexShader.h">
       <Filter>Shader</Filter>
     </ClInclude>
+    <ClInclude Include="TextureShader.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -124,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="ColorVertexShader.cpp">
       <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureShader.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

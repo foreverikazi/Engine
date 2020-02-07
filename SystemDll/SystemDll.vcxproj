@@ -185,6 +185,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\SystemDll\*.h"</Comm
     <ClInclude Include="SystemExportFunc.h" />
     <ClInclude Include="SystemMacro.h" />
     <ClInclude Include="SystemStruct.h" />
+    <ClInclude Include="TextureShader.h" />
     <ClInclude Include="TimeMgr.h" />
   </ItemGroup>
   <ItemGroup>
@@ -204,6 +205,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\SystemDll\*.h"</Comm
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderMgr.cpp" />
     <ClCompile Include="SystemExportFunc.cpp" />
+    <ClCompile Include="TextureShader.cpp" />
     <ClCompile Include="TimeMgr.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

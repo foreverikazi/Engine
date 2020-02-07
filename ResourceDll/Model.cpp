@@ -7,7 +7,6 @@
 
 bool Model::LoadModel(ID3D11Device* device, ID3D11DeviceContext* deviceContext,const wstring pPath)
 {
-	//Read Model
 	Assimp::Importer	importer;
 
 	auto flag = aiProcess_Triangulate | aiProcess_GenNormals | aiProcess_CalcTangentSpace | aiProcess_OptimizeMeshes |
@@ -23,54 +22,8 @@ bool Model::LoadModel(ID3D11Device* device, ID3D11DeviceContext* deviceContext,c
 	wstring directoryPath = (*(StringUtil::GetInst()))->GetDirectoryPath(pPath.c_str()).GetString();
 
 	processNode(pScene->mRootNode, pScene, directoryPath);
+
 	return true;
-
-	//정보를 담을 공간
-	//Vertex					vertices;
-	//vector<unsigned long>	indices;
-	//SkinModel*				model = new SkinModel;
-
-	////모델 이름 정의
-	//wstring modelName = MYUTIL::getFileName(path);
-	//model->SetName(modelName);
-
-	////메쉬 정보 구성
-	//for (UINT i = 0; i < pScene->mNumMeshes; i++)
-	//	ProcessMesh(pScene->mMeshes[i], vertices, indices, model->GetMeshList());
-
-	////재질 정보 생성
-	//ProcessMaterial(pScene, model->GetMaterialList(), MYUTIL::GetDirectoryPath(path));
-
-	////계층구조(본) 정보 구성
-	//ProcessNode(pScene->mRootNode, model);
-	////순차적 tm 업데이트를 위해 깊이 값에 맞춰 정렬
-	//sort(model->GetNodeList().begin(), model->GetNodeList().end(),
-	//	[](const NodeInfo* a, const NodeInfo* b)->bool {	return a->depth < b->depth; });
-
-
-	////스키닝 정보
-	//for (UINT i = 0; i < pScene->mNumMeshes; i++) {
-	//	aiMesh* aiMesh = pScene->mMeshes[i];
-
-	//	if (!aiMesh->HasBones())
-	//		continue;
-
-	//	HierarchyMesh* mesh = (HierarchyMesh*)model->GetMeshList()[i];
-	//	ProcessSkin(aiMesh, mesh, vertices, indices, model);
-	//}
-
-	////애니메이션 정보 구성
-	//if (pScene->HasAnimations())
-	//	ProcessAnimation(pScene, model);
-
-	////정점 및 인덱스 정보 생성 실패시 생성한 모델 객체 삭제 후 반환
-	//if (!model->CreateModel(DEVICEMANAGER.GetDevice(), vertices, indices)) {
-	//	SAFE_RELEASE(model);
-	//	return NULL;
-	//}
-
-	////마테리얼 단위로 메쉬 정보 업데이트
-	//model->UpdateMeshByMaterial();
 }
 
 void Model::processNode(aiNode* node, const aiScene* scene, wstring directoryPath)
@@ -154,7 +107,7 @@ vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType type,
 	{
 		aiString str;
 		mat->GetTexture(type, i, &str);
-		// check if texture was loaded before and if so, continue to next iteration: skip loading a new texture
+		
 		bool skip = false;
 		for (unsigned int j = 0; j < textures_loaded.size(); j++)
 		{
@@ -163,7 +116,7 @@ vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType type,
 			if (std::strcmp(texturePath, str.C_Str()) == 0)
 			{
 				textures.push_back(textures_loaded[j]);
-				skip = true; // a texture with the same filepath has already been loaded, continue to next one. (optimization)
+				skip = true; 
 				break;
 			}
 		}

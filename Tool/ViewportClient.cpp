@@ -123,17 +123,25 @@ void ViewportClient::InitShader()
 {
 	ID3D11Device* device = GetDevice();
 
-	WCHAR vs[] = L"../Shader/color.vs";
-	WCHAR ps[] = L"../Shader/color.ps";
+	WCHAR vs[] = L"../Shader/TextureShader.vs";
+	WCHAR ps[] = L"../Shader/TextureShader.ps";
+	InitializeShader(device, mHwnd, vs, ps, SHADERBUFFERTYPE::TEXTURE);
+
+	WCHAR vs2[] = L"../Shader/color.vs";
+	WCHAR ps2[] = L"../Shader/color.ps";
 	//WCHAR vs[] = L"../Shader/light.vs";
 	//WCHAR ps[] = L"../Shader/light.ps";
-	InitializeShader(device, mHwnd, vs, ps, SHADERBUFFERTYPE::COLORVERTEX);
+	InitializeShader(device, mHwnd, vs2, ps2, SHADERBUFFERTYPE::COLORVERTEX);
 }
 
 void ViewportClient::InitBuffers()
 {
-	AddBuffer(GetDevice(), BUFFERTYPE::BUFFERTYPE_CUBE, L"Cube");
-	AddBuffer(GetDevice(), BUFFERTYPE::BUFFERTYPE_GRID, L"Grid");
+	ID3D11Device* device = GetDevice();
+	ID3D11DeviceContext* devicecContext = GetDeviceContext();
+	//AddBuffer(device, BUFFERTYPE::BUFFERTYPE_COLOR_CUBE, L"ColorCube");
+	AddBuffer(device, BUFFERTYPE::BUFFERTYPE_GRID, L"Grid");
+	AddBuffer(device, BUFFERTYPE::BUFFERTYPE_TEXTURE_CUBE, L"TextureCube");
+	LoadTextureBuffer(device, devicecContext, L"TextureCube", L"../Content/Cube/seafloor.png");
 }
 
 void ViewportClient::InitModel()

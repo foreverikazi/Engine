@@ -165,7 +165,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\ResourceDll\*.h"</Co
   <ItemGroup>
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="BufferMgr.h" />
-    <ClInclude Include="CubeBuffer.h" />
+    <ClInclude Include="ColorCubeBuffer.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GridBuffer.h" />
     <ClInclude Include="Mesh.h" />
@@ -179,12 +179,13 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\ResourceDll\*.h"</Co
     <ClInclude Include="ResourceStruct.h" />
     <ClInclude Include="StaticMesh.h" />
     <ClInclude Include="StringUtil.h" />
+    <ClInclude Include="TextureCubeBuffer.h" />
     <ClInclude Include="TextureUtil.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="BufferMgr.cpp" />
-    <ClCompile Include="CubeBuffer.cpp" />
+    <ClCompile Include="ColorCubeBuffer.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="GridBuffer.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -199,6 +200,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\ResourceDll\*.h"</Co
     <ClCompile Include="ResourceExportFunc.cpp" />
     <ClCompile Include="StaticMesh.cpp" />
     <ClCompile Include="StringUtil.cpp" />
+    <ClCompile Include="TextureCubeBuffer.cpp" />
     <ClCompile Include="TextureUtil.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

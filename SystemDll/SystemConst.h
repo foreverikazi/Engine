@@ -4,4 +4,5 @@ enum class SHADERBUFFERTYPE
 {
 	MODEL,
 	COLORVERTEX,
+	TEXTURE,
 };
