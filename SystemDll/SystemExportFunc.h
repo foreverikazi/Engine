@@ -33,12 +33,12 @@ EXTERN SYSTEM_DLL void InitializeTimer();
 EXTERN SYSTEM_DLL void UpdateTimer();
 
 // Shader
-EXTERN SYSTEM_DLL bool InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename, WCHAR* psFilename, SHADERBUFFERTYPE type);
+EXTERN SYSTEM_DLL bool InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename, const SHADERBUFFERTYPE type);
 EXTERN SYSTEM_DLL void ReleaseShader();
-EXTERN SYSTEM_DLL bool SetShader(ID3D11DeviceContext* deviceContext, SHADERBUFFERTYPE type);
-EXTERN SYSTEM_DLL void SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, XMMATRIX worldMat, XMMATRIX viewMat, XMMATRIX projMat);
-EXTERN SYSTEM_DLL void SetLightShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOAT4 ambientColor, XMFLOAT4 diffuseColor, XMFLOAT3 lightDirection, XMFLOAT4 specularColor, float specularPower);
-EXTERN SYSTEM_DLL void SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOAT3 cameraPosition);
+EXTERN SYSTEM_DLL bool SetShader(ID3D11DeviceContext* deviceContext, const SHADERBUFFERTYPE type);
+EXTERN SYSTEM_DLL void SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, const XMMATRIX worldMat, const XMMATRIX viewMat, const XMMATRIX projMat);
+EXTERN SYSTEM_DLL void SetLightShaderParameters(ID3D11DeviceContext* deviceContext, const XMFLOAT4 ambientColor, const XMFLOAT4 diffuseColor, const XMFLOAT3 lightDirection, const XMFLOAT4 specularColor, const float specularPower);
+EXTERN SYSTEM_DLL void SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, const XMFLOAT3 cameraPosition);
 
 // Light
 EXTERN SYSTEM_DLL void SetAmbientColor(const XMFLOAT4 ambientColor);

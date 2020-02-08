@@ -13,12 +13,7 @@ Shader::~Shader()
 {
 }
 
-bool Shader::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename, WCHAR* psFilename)
-{
-	return true;
-}
-
-void Shader::OutputShaderErrorMessage(ID3D10Blob* errorMessage, HWND hwnd, WCHAR* shaderFilename)
+void Shader::OutputShaderErrorMessage(ID3D10Blob* errorMessage, HWND hwnd, const TCHAR* shaderFilename)
 {
 	// 에러 메시지를 출력창에 표시합니다.
 	OutputDebugStringA(reinterpret_cast<const char*>(errorMessage->GetBufferPointer()));
@@ -61,12 +56,12 @@ bool Shader::SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, XMMAT
 
 	return true;
 }
-bool Shader::SetLightShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOAT4 ambientColor, XMFLOAT4 diffuseColor, XMFLOAT3 lightDirection, XMFLOAT4 specularColor, float specularPower)
+bool Shader::SetLightShaderParameters(ID3D11DeviceContext* deviceContext, const XMFLOAT4 ambientColor, const XMFLOAT4 diffuseColor, const XMFLOAT3 lightDirection, const XMFLOAT4 specularColor, const float specularPower)
 {
 	return true;
 }
 
-bool Shader::SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOAT3 cameraPosition)
+bool Shader::SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, const XMFLOAT3 cameraPosition)
 {
 	return true;
 }

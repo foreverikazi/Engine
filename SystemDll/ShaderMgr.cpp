@@ -6,7 +6,7 @@
 #include "ModelShader.h"
 #include "LightShader.h"
 
-bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename, WCHAR* psFilename, SHADERBUFFERTYPE type)
+bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename, const SHADERBUFFERTYPE type)
 {
 	auto shader = mShaderMap.find(type);
 	if (shader != mShaderMap.end()) // 이미 생성된 데이터가 있음
@@ -61,7 +61,7 @@ void ShaderMgr::ReleaseShader()
 	mShaderMap.clear();
 }
 
-bool ShaderMgr::SetShader(ID3D11DeviceContext* deviceContext, SHADERBUFFERTYPE type)
+bool ShaderMgr::SetShader(ID3D11DeviceContext* deviceContext, const SHADERBUFFERTYPE type)
 {
 	auto shaderIter = mShaderMap.find(type);
 
@@ -73,7 +73,7 @@ bool ShaderMgr::SetShader(ID3D11DeviceContext* deviceContext, SHADERBUFFERTYPE t
 	return true;
 }
 
-void ShaderMgr::SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, XMMATRIX worldMat, XMMATRIX viewMat, XMMATRIX projMat)
+void ShaderMgr::SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, const XMMATRIX worldMat, const XMMATRIX viewMat, const XMMATRIX projMat)
 {
 	// 나중에 바꾸자
 	for(auto shader : mShaderMap)
@@ -82,7 +82,7 @@ void ShaderMgr::SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, XM
 	}
 }
 
-void ShaderMgr::SetLightShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOAT4 ambientColor, XMFLOAT4 diffuseColor, XMFLOAT3 lightDirection, XMFLOAT4 specularColor, float specularPower)
+void ShaderMgr::SetLightShaderParameters(ID3D11DeviceContext* deviceContext, const XMFLOAT4 ambientColor, const XMFLOAT4 diffuseColor, const XMFLOAT3 lightDirection, const  XMFLOAT4 specularColor, const float specularPower)
 {
 	// 나중에 바꾸자
 	for (auto shader : mShaderMap)
@@ -91,7 +91,7 @@ void ShaderMgr::SetLightShaderParameters(ID3D11DeviceContext* deviceContext, XMF
 	}
 }
 
-void ShaderMgr::SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, XMFLOAT3 cameraPosition)
+void ShaderMgr::SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, const XMFLOAT3 cameraPosition)
 {
 	// 나중에 바꾸자
 	for (auto shader : mShaderMap)

@@ -6,7 +6,7 @@
 EXTERN class SYSTEM_DLL TextureShader : public Shader
 {
 public :
-	virtual bool InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename, WCHAR* psFilename);
+	virtual bool InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename);
 	virtual bool SetShader(ID3D11DeviceContext* deviceContext);
 	virtual void ReleaseShader();
 

@@ -84,14 +84,9 @@ void ViewportClient::OnDraw(CDC* pDC)
 	UpdateInput();
 	UpdateTimer();
 	UpdateShader(deviceContext);
-	
-	/*
+
 	SetLightShaderParameters(deviceContext, GetAmbientColor(), GetDiffuseColor(), GetLightDirection(), GetSpecularColor(), GetSpecularPower());
 	SetCameraShaderParameters(deviceContext, GetCameraPosition());
-	*/
-
-	//SetShader(deviceContext);
-	SetLightShaderParameters(deviceContext, GetAmbientColor(), GetDiffuseColor(), GetLightDirection(), GetSpecularColor(), GetSpecularPower());
 	RenderBuffers(deviceContext);
 
 	/*
@@ -114,7 +109,6 @@ void ViewportClient::InitCamera()
 	float fieldOfView = XM_PI / 4.0f;
 	float screenAspect = (float)mScreenWidth / (float)mScreenHeight;
 	InitializeProjectionMatrix(fieldOfView, screenAspect, SCREEN_NEAR, SCREEN_FAR);
-	//SetCameraPosition(XMFLOAT3(0.0f, 1.0f, -20.0f));
 	InitializeCamera(XMFLOAT3(0, 1, 0), XMFLOAT3(0, 0, 1), XMFLOAT3(0, 10, -50));
 	SetCameraRotation(XMFLOAT3(0, 0, 0));
 	//SetCameraRotation(XMFLOAT3(90, 0, 180));
@@ -165,7 +159,7 @@ void ViewportClient::InitLight()
 {
 	SetAmbientColor(XMFLOAT4(0.15f, 0.15f, 0.15f, 1.0f));
 	SetDiffuseColor(XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
-	SetSpecularColor(XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
+	SetSpecularColor(XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f));
 	SetLightDirection(XMFLOAT3(0.2f, 0.0f, 1.0f));
 	SetSpecularPower(32.0f);
 }
