@@ -2,6 +2,7 @@
 #include "LightCubeBuffer.h"
 #include "SystemExportFunc.h"
 #include "TextureUtil.h"
+#include "Shader.h"
 
 bool LightCubeBuffer::CreateBuffers(ID3D11Device* device)
 {
@@ -177,9 +178,22 @@ bool LightCubeBuffer::CreateBuffers(ID3D11Device* device)
 	return true;
 }
 
+void LightCubeBuffer::UpdateBuffers(ID3D11DeviceContext* deviceContext)
+{
+	Buffer::UpdateBuffers(deviceContext);
+}
+
+void LightCubeBuffer::UpdateSahder(ID3D11DeviceContext* deviceContext)
+{
+	mShader->UpdateShader(deviceContext);
+	mShader->SetMatrixShaderParameters(deviceContext, mWorldInfo.worldMat, GetViewMatrix(), GetProjectionMatrix());
+	mShader->SetCameraShaderParameters(deviceContext, GetCameraPosition());
+	mShader->SetLightShaderParameters(deviceContext, GetAmbientColor(), GetDiffuseColor(), GetLightDirection(), GetSpecularColor(), GetSpecularPower());
+}
+
 void LightCubeBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
 {
-	SetShader(deviceContext, SHADERBUFFERTYPE::LIGHT);
+	UpdateSahder(deviceContext);
 
 	UINT stride = sizeof(Vertex);
 	UINT offset = 0;
@@ -196,4 +210,14 @@ void LightCubeBuffer::LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContex
 	mTexture = (*(TextureUtil::GetInst()))->LoadTextureUtil(device, deviceContext, fileName);
 }
 
+void LightCubeBuffer::ReleaseBuffer()
+{
+	if (mTexture)
+	{
+		mTexture->Release();
+		mTexture = nullptr;
+	}
+
+	Buffer::ReleaseBuffer();
+}
 

@@ -68,30 +68,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Shader\color.ps">
-      <Filter>Shader</Filter>
-    </None>
-    <None Include="..\Shader\color.vs">
-      <Filter>Shader</Filter>
-    </None>
-    <None Include="..\Shader\texture.ps">
-      <Filter>Shader</Filter>
-    </None>
-    <None Include="..\Shader\shader.vs">
-      <Filter>Shader</Filter>
-    </None>
-    <None Include="..\Shader\light.ps">
-      <Filter>Shader</Filter>
-    </None>
-    <None Include="..\Shader\light.vs">
-      <Filter>Shader</Filter>
-    </None>
-    <None Include="..\Shader\shader.ps">
-      <Filter>Shader</Filter>
-    </None>
-    <None Include="..\Shader\texture.vs">
-      <Filter>Shader</Filter>
-    </None>
     <None Include="..\Shader\TextureShader.ps">
       <Filter>Shader</Filter>
     </None>
@@ -102,6 +78,12 @@
       <Filter>Shader</Filter>
     </None>
     <None Include="..\Shader\LightShader.ps">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="..\Shader\ColorShader.vs">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="..\Shader\ColorShader.ps">
       <Filter>Shader</Filter>
     </None>
   </ItemGroup>

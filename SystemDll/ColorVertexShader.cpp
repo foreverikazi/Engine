@@ -3,7 +3,7 @@
 
 ColorVertexShader::ColorVertexShader()
 {
-	mShaderBufferType = SHADERBUFFERTYPE::COLORVERTEX;
+	mShaderType = SHADERTYPE::COLORVERTEX;
 }
 
 bool ColorVertexShader::InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename)
@@ -85,7 +85,7 @@ bool ColorVertexShader::InitializeShader(ID3D11Device* device, HWND hwnd, const 
 	return true;
 }
 
-bool ColorVertexShader::SetShader(ID3D11DeviceContext* deviceContext)
+bool ColorVertexShader::UpdateShader(ID3D11DeviceContext* deviceContext)
 {
 	deviceContext->IASetInputLayout(mLayout);
 	deviceContext->VSSetShader(mVertexShader, NULL, 0);

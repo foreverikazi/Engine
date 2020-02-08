@@ -2,6 +2,7 @@
 #include "TextureCubeBuffer.h"
 #include "SystemExportFunc.h"
 #include "TextureUtil.h"
+#include "Shader.h"
 
 bool TextureCubeBuffer::CreateBuffers(ID3D11Device* device)
 {
@@ -142,9 +143,22 @@ bool TextureCubeBuffer::CreateBuffers(ID3D11Device* device)
 	return true;
 }
 
+void TextureCubeBuffer::UpdateBuffers(ID3D11DeviceContext* deviceContext)
+{
+
+}
+
+void TextureCubeBuffer::UpdateSahder(ID3D11DeviceContext* deviceContext)
+{
+	mShader->UpdateShader(deviceContext);
+
+	XMMATRIX matWorld = XMMatrixIdentity();
+	mShader->SetMatrixShaderParameters(deviceContext, matWorld, GetViewMatrix(), GetProjectionMatrix());
+}
+
 void TextureCubeBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
 {
-	SetShader(deviceContext, SHADERBUFFERTYPE::TEXTURE);
+	UpdateSahder(deviceContext);
 
 	unsigned int stride = sizeof(TextureVertex);
 	unsigned int offset = 0;

@@ -1,2 +1,2 @@
 ﻿  ViewportClient.cpp
-  Tool.vcxproj -> C:\Users\user\Desktop\Engine\x64\Debug\Tool.exe
+c:\users\user\desktop\engine\tool\viewportclient.cpp(11): fatal error C1083: 포함 파일을 열 수 없습니다. 'StaticLibrary.h': No such file or directory

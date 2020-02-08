@@ -10,7 +10,7 @@ public :
 	bool SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, const XMMATRIX worldMat, const XMMATRIX viewMat, const XMMATRIX projMat);
 	bool SetLightShaderParameters(ID3D11DeviceContext* deviceContext, const XMFLOAT4 ambientColor, const XMFLOAT4 diffuseColor, const XMFLOAT3 lightDirection, const XMFLOAT4 specularColor, const float specularPower);
 	bool SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, const XMFLOAT3 cameraPosition);
-	bool SetShader(ID3D11DeviceContext* deviceContext);
+	bool UpdateShader(ID3D11DeviceContext* deviceContext);
 	void ReleaseShader();
 
 public :

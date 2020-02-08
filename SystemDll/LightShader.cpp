@@ -6,7 +6,7 @@ LightShader::LightShader() :
 	mLightBuffer(nullptr),
 	mCameraBuffer(nullptr)
 {
-	mShaderBufferType = SHADERBUFFERTYPE::LIGHT;
+	mShaderType = SHADERTYPE::LIGHT;
 }
 
 bool LightShader::InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename)
@@ -136,7 +136,7 @@ bool LightShader::InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR*
 	return true;
 }
 
-bool LightShader::SetShader(ID3D11DeviceContext* deviceContext)
+bool LightShader::UpdateShader(ID3D11DeviceContext* deviceContext)
 {
 	deviceContext->IASetInputLayout(mLayout);
 	deviceContext->VSSetShader(mVertexShader, NULL, 0);

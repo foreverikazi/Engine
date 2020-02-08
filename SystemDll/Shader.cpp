@@ -66,7 +66,7 @@ bool Shader::SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, const
 	return true;
 }
 
-bool Shader::SetShader(ID3D11DeviceContext* deviceContext)
+bool Shader::UpdateShader(ID3D11DeviceContext* deviceContext)
 {
 	return true;
 }

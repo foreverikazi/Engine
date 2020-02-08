@@ -1,6 +1,6 @@
 #pragma once
 
-enum class SHADERBUFFERTYPE
+enum class SHADERTYPE
 {
 	MODEL,
 	COLORVERTEX,

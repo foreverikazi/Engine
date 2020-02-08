@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "GridBuffer.h"
 #include "SystemExportFunc.h"
+#include "Shader.h"
 
 GridBuffer::GridBuffer() :
 	mRadius(10),
@@ -61,9 +62,21 @@ bool GridBuffer::CreateBuffers(ID3D11Device* device)
 	return true;
 }
 
+void GridBuffer::UpdateBuffers(ID3D11DeviceContext* deviceContext)
+{
+}
+
+void GridBuffer::UpdateSahder(ID3D11DeviceContext* deviceContext)
+{
+	mShader->UpdateShader(deviceContext);
+
+	XMMATRIX matWorld = XMMatrixIdentity();
+	mShader->SetMatrixShaderParameters(deviceContext, matWorld, GetViewMatrix(), GetProjectionMatrix());
+}
+
 void GridBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
 {
-	SetShader(deviceContext, SHADERBUFFERTYPE::COLORVERTEX);
+	UpdateSahder(deviceContext);
 
 	unsigned int stride = sizeof(ColorVertex);
 	unsigned int offset = 0;

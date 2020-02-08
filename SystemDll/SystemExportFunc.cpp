@@ -7,6 +7,7 @@
 #include "Light.h"
 #include "ShaderMgr.h"
 #include "TimeMgr.h"
+#include "Shader.h"
 
 EXTERN SYSTEM_DLL bool InitializeD3D(int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscreen, float screenDepth, float screenNear)
 {
@@ -120,40 +121,25 @@ EXTERN SYSTEM_DLL void UpdateTimer()
 	(*(TimeMgr::GetInst()))->UpdateTimer();
 }
 
+EXTERN SYSTEM_DLL float GetElapsedTime()
+{
+	return (*(TimeMgr::GetInst()))->GetElapsedTime();
+}
+
 // Shader
-EXTERN SYSTEM_DLL bool InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename, const SHADERBUFFERTYPE type)
+EXTERN SYSTEM_DLL bool InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename, const SHADERTYPE type)
 {
 	return (*(ShaderMgr::GetInst()))->InitializeShader(device, hwnd, vsFilename, psFilename, type);
 }
-
-//EXTERN SYSTEM_DLL bool InitializeShader2(ID3D11Device* device, HWND hwnd, WCHAR* vsFilename, WCHAR* psFilename)
-//{
-//	return (*(Shader::GetInst()))->InitializeShader2(device, hwnd, vsFilename, psFilename);
-//}
 
 EXTERN SYSTEM_DLL void ReleaseShader()
 {
 	(*(ShaderMgr::GetInst()))->ReleaseShader();
 }
 
-EXTERN SYSTEM_DLL bool SetShader(ID3D11DeviceContext* deviceContext, const SHADERBUFFERTYPE type)
+EXTERN SYSTEM_DLL Shader* GetShader(const SHADERTYPE type)
 {
-	return (*(ShaderMgr::GetInst()))->SetShader(deviceContext, type);
-}
-
-EXTERN SYSTEM_DLL void SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, const XMMATRIX worldMat, const XMMATRIX viewMat, const XMMATRIX projMat)
-{
-	(*(ShaderMgr::GetInst()))->SetMatrixShaderParameters(deviceContext, worldMat, viewMat, projMat);
-}
-
-EXTERN SYSTEM_DLL void SetLightShaderParameters(ID3D11DeviceContext* deviceContext, const XMFLOAT4 ambientColor, const XMFLOAT4 diffuseColor, const XMFLOAT3 lightDirection, const XMFLOAT4 specularColor, const float specularPower)
-{
-	(*(ShaderMgr::GetInst()))->SetLightShaderParameters(deviceContext, ambientColor, diffuseColor, lightDirection,specularColor, specularPower);
-}
-
-EXTERN SYSTEM_DLL void SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, const XMFLOAT3 cameraPosition)
-{
-	(*(ShaderMgr::GetInst()))->SetCameraShaderParameters(deviceContext, cameraPosition);
+	return (*(ShaderMgr::GetInst()))->GetShader(type);
 }
 
 EXTERN SYSTEM_DLL void SetAmbientColor(const XMFLOAT4 ambientColor)

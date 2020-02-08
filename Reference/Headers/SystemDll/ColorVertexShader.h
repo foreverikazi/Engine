@@ -7,7 +7,7 @@ EXTERN class SYSTEM_DLL ColorVertexShader : public Shader
 {
 public:
 	virtual bool InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename);
-	virtual bool SetShader(ID3D11DeviceContext* deviceContext);
+	virtual bool UpdateShader(ID3D11DeviceContext* deviceContext);
 	virtual void ReleaseShader();
 public:
 	ColorVertexShader();

@@ -5,6 +5,7 @@
 #include "TextureCubeBuffer.h"
 #include "LightCubeBuffer.h"
 #include "GridBuffer.h"
+#include "SystemExportFunc.h"
 
 BufferMgr::BufferMgr()
 {
@@ -16,37 +17,40 @@ BufferMgr::~BufferMgr()
 
 }
 
-bool BufferMgr::AddBuffer(ID3D11Device* device, BUFFERTYPE type, const TCHAR* key)
+bool BufferMgr::AddBuffer(ID3D11Device* device, BUFFERTYPE bufferType, const SHADERTYPE Shadertype, const TCHAR* key)
 {
 	Buffer* newBuffer = nullptr;
+	Shader* shader = GetShader(Shadertype);
 
-	switch (type)
+	switch (bufferType)
 	{
-	case BUFFERTYPE::BUFFERTYPE_COLOR_CUBE:
+	case BUFFERTYPE::COLOR_CUBE:
 		newBuffer = new ColorCubeBuffer();
-		newBuffer->CreateBuffers(device);
-		mBufferMap.insert({ key, newBuffer });
+		
 		break;
 
-	case BUFFERTYPE::BUFFERTYPE_GRID :
+	case BUFFERTYPE::GRID :
 		newBuffer = new GridBuffer();
-		newBuffer->CreateBuffers(device);
-		mBufferMap.insert({ key, newBuffer });
 		break;
 
-	case BUFFERTYPE::BUFFERTYPE_TEXTURE_CUBE :
+	case BUFFERTYPE::TEXTURE_CUBE :
 		newBuffer = new TextureCubeBuffer();
-		newBuffer->CreateBuffers(device);
-		mBufferMap.insert({ key, newBuffer });
 		break;
 
-	case BUFFERTYPE::BUFFERTYPE_LIGHT_CUBE:
+	case BUFFERTYPE::LIGHT_CUBE:
 		newBuffer = new LightCubeBuffer();
-		newBuffer->CreateBuffers(device);
-		mBufferMap.insert({ key, newBuffer });
 		break;
+
+	default :
+		return false;
 	}
 	
+	if (newBuffer)
+	{
+		newBuffer->CreateBuffers(device);
+		newBuffer->SetShader(shader);
+		mBufferMap.insert({ key, newBuffer });
+	}
 	return true;
 }
 
@@ -60,6 +64,14 @@ void BufferMgr::LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* dev
 	}
 }
 
+void BufferMgr::UpdateBuffers(ID3D11DeviceContext* deviceContext)
+{
+	for (auto buffer : mBufferMap)
+	{
+		buffer.second->UpdateBuffers(deviceContext);
+	}
+}
+
 void BufferMgr::RenderBuffers(ID3D11DeviceContext* deviceContext)
 {
 	for (auto buffer : mBufferMap)
@@ -70,13 +82,13 @@ void BufferMgr::RenderBuffers(ID3D11DeviceContext* deviceContext)
 
 void BufferMgr::ReleaseBuffers()
 {
-	for (auto iter = mBufferMap.begin(); iter != mBufferMap.end(); iter ++)
+	for (auto buffer : mBufferMap)
 	{
-		if (iter->second != nullptr)
+		if (buffer.second != nullptr)
 		{
-			iter->second->ReleaseBuffer();
-			delete iter->second;
-			iter->second = nullptr;
+			buffer.second->ReleaseBuffer();
+			delete buffer.second;
+			buffer.second = nullptr;
 		}
 	}
 

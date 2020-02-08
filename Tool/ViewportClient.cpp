@@ -7,8 +7,8 @@
 #include "SystemExportFunc.h"
 #include "ResourceExportFunc.h"
 #include <filesystem>
-
-
+#include "Buffer.h"
+#include "FrustumCulling.h"
 
 // ViewportClient
 namespace fs = std::experimental::filesystem::v1;
@@ -83,10 +83,14 @@ void ViewportClient::OnDraw(CDC* pDC)
 	UpdateCamera();
 	UpdateInput();
 	UpdateTimer();
-	UpdateShader(deviceContext);
 
-	SetLightShaderParameters(deviceContext, GetAmbientColor(), GetDiffuseColor(), GetLightDirection(), GetSpecularColor(), GetSpecularPower());
-	SetCameraShaderParameters(deviceContext, GetCameraPosition());
+	UpdateBuffers(deviceContext);
+
+	// 임시 회전 적용
+	Buffer* cube = FindBuffer(L"LightCube");
+	XMFLOAT3 rot = cube->GetRotation();
+	cube->SetRotation(XMFLOAT3(rot.x, rot.y + GetElapsedTime(), rot.z));
+
 	RenderBuffers(deviceContext);
 
 	/*
@@ -120,26 +124,27 @@ void ViewportClient::InitShader()
 
 	WCHAR vs[] = L"../Shader/LightShader.vs";
 	WCHAR ps[] = L"../Shader/LightShader.ps";
-	InitializeShader(device, mHwnd, vs, ps, SHADERBUFFERTYPE::LIGHT);
+	InitializeShader(device, mHwnd, vs, ps, SHADERTYPE::LIGHT);
 	/*
 		WCHAR vs[] = L"../Shader/TextureShader.vs";
 		WCHAR ps[] = L"../Shader/TextureShader.ps";
-		InitializeShader(device, mHwnd, vs, ps, SHADERBUFFERTYPE::TEXTURE);*/
+		InitializeShader(device, mHwnd, vs, ps, SHADERTYPE::TEXTURE);*/
 
-	WCHAR vs2[] = L"../Shader/color.vs";
-	WCHAR ps2[] = L"../Shader/color.ps";
+	WCHAR vs2[] = L"../Shader/ColorShader.vs";
+	WCHAR ps2[] = L"../Shader/ColorShader.ps";
 	//WCHAR vs[] = L"../Shader/light.vs";
 	//WCHAR ps[] = L"../Shader/light.ps";
-	InitializeShader(device, mHwnd, vs2, ps2, SHADERBUFFERTYPE::COLORVERTEX);
+	InitializeShader(device, mHwnd, vs2, ps2, SHADERTYPE::COLORVERTEX);
 }
 
 void ViewportClient::InitBuffers()
 {
 	ID3D11Device* device = GetDevice();
 	ID3D11DeviceContext* devicecContext = GetDeviceContext();
-	//AddBuffer(device, BUFFERTYPE::BUFFERTYPE_COLOR_CUBE, L"ColorCube");
-	AddBuffer(device, BUFFERTYPE::BUFFERTYPE_GRID, L"Grid");
-	AddBuffer(device, BUFFERTYPE::BUFFERTYPE_LIGHT_CUBE, L"LightCube");
+	//AddBuffer(device, BUFFERTYPE::COLOR_CUBE, L"ColorCube");
+
+	AddBuffer(device, BUFFERTYPE::GRID, SHADERTYPE::COLORVERTEX, L"Grid");
+	AddBuffer(device, BUFFERTYPE::LIGHT_CUBE, SHADERTYPE::LIGHT, L"LightCube");
 	LoadTextureBuffer(device, devicecContext, L"LightCube", L"../Content/Cube/seafloor.png");
 }
 
@@ -162,13 +167,4 @@ void ViewportClient::InitLight()
 	SetSpecularColor(XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f));
 	SetLightDirection(XMFLOAT3(0.2f, 0.0f, 1.0f));
 	SetSpecularPower(32.0f);
-}
-
-void ViewportClient::UpdateShader(ID3D11DeviceContext* deviceContext)
-{
-	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
-	worldMatrix = XMMatrixIdentity();
-	viewMatrix = GetViewMatrix();
-	projectionMatrix = GetProjectionMatrix();
-	SetMatrixShaderParameters(deviceContext, worldMatrix, viewMatrix, projectionMatrix);
 }

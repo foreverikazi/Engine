@@ -33,7 +33,7 @@ public:
 	virtual bool SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, const XMMATRIX worldMat, const XMMATRIX viewMat, const XMMATRIX projMat);
 	virtual bool SetLightShaderParameters(ID3D11DeviceContext* deviceContext, const XMFLOAT4 ambientColor, const XMFLOAT4 diffuseColor, const XMFLOAT3 lightDirection, const XMFLOAT4 specularColor, const float specularPower);
 	virtual bool SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, const XMFLOAT3 cameraPosition);
-	virtual bool SetShader(ID3D11DeviceContext* deviceContext);
+	virtual bool UpdateShader(ID3D11DeviceContext* deviceContext);
 	virtual void ReleaseShader();
 
 protected:
@@ -48,5 +48,5 @@ protected:
 	ID3D11PixelShader*	mPixelShader;
 	ID3D11InputLayout*	mLayout;
 	ID3D11Buffer*		mMatrixBuffer;
-	SHADERBUFFERTYPE	mShaderBufferType;
+	SHADERTYPE	mShaderType;
 };

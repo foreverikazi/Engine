@@ -2,6 +2,7 @@
 #include "pch.h"
 #include "ColorCubeBuffer.h"
 #include "SystemExportFunc.h"
+#include "Shader.h"
 
 bool ColorCubeBuffer::CreateBuffers(ID3D11Device* device)
 {
@@ -89,9 +90,22 @@ bool ColorCubeBuffer::CreateBuffers(ID3D11Device* device)
 	return true;
 }
 
+void ColorCubeBuffer::UpdateBuffers(ID3D11DeviceContext* deviceContext)
+{
+	
+}
+
+void ColorCubeBuffer::UpdateSahder(ID3D11DeviceContext* deviceContext)
+{
+	mShader->UpdateShader(deviceContext);
+
+	XMMATRIX matWorld = XMMatrixIdentity();
+	mShader->SetMatrixShaderParameters(deviceContext, matWorld, GetViewMatrix(), GetProjectionMatrix());
+}
+
 void ColorCubeBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
 {
-	SetShader(deviceContext, SHADERBUFFERTYPE::COLORVERTEX);
+	UpdateSahder(deviceContext);
 
 	unsigned int stride = sizeof(ColorVertex);
 	unsigned int offset = 0;

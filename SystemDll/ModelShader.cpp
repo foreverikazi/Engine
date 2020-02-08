@@ -6,7 +6,7 @@ ModelShader::ModelShader() :
 	mLightBuffer(nullptr),
 	mCameraBuffer(nullptr)
 {
-	mShaderBufferType = SHADERBUFFERTYPE::MODEL;
+	mShaderType = SHADERTYPE::MODEL;
 }
 
 ModelShader::~ModelShader()
@@ -227,7 +227,7 @@ bool ModelShader::SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, 
 
 }
 
-bool ModelShader::SetShader(ID3D11DeviceContext* deviceContext)
+bool ModelShader::UpdateShader(ID3D11DeviceContext* deviceContext)
 {
 	deviceContext->IASetInputLayout(mLayout);
 	deviceContext->VSSetShader(mVertexShader, NULL, 0);

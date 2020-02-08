@@ -1,7 +1,11 @@
 #include "pch.h"
 #include "Buffer.h"
 
-Buffer::Buffer()
+Buffer::Buffer() :mWorldInfo(
+		XMFLOAT3(1, 1, 1), 
+		XMFLOAT3(0, 0, 0), 
+		XMFLOAT3(0, 0, 0), 
+		XMMatrixIdentity())
 {
 
 }
@@ -11,7 +15,17 @@ Buffer::~Buffer()
 
 }
 
-void Buffer::ReleaseBuffer(void)
+void Buffer::UpdateBuffers(ID3D11DeviceContext* deviceContext)
+{
+	XMMATRIX scaleMat, rotMat, transMat;
+	scaleMat = XMMatrixScaling(mWorldInfo.scale.x, mWorldInfo.scale.y, mWorldInfo.scale.z);
+	rotMat = XMMatrixRotationRollPitchYaw(mWorldInfo.rotation.x, mWorldInfo.rotation.y, mWorldInfo.rotation.z);
+	transMat = XMMatrixTranslation(mWorldInfo.position.x, mWorldInfo.position.y, mWorldInfo.position.z);
+
+	mWorldInfo.worldMat = scaleMat * rotMat * transMat;
+}
+
+void Buffer::ReleaseBuffer()
 {
 	if (mIndexBuffer)
 	{
@@ -24,4 +38,44 @@ void Buffer::ReleaseBuffer(void)
 		mVertexBuffer->Release();
 		mVertexBuffer = 0;
 	}
+}
+
+void Buffer::SetShader(Shader* shader)
+{
+	mShader = shader;
+}
+
+void Buffer::SetPosition(XMFLOAT3 position)
+{
+	mWorldInfo.position = position;
+}
+
+void Buffer::SetScale(XMFLOAT3 scale)
+{
+	mWorldInfo.scale = scale;
+}
+
+void Buffer::SetRotation(XMFLOAT3 rotation)
+{
+	mWorldInfo.rotation = rotation;
+}
+
+XMFLOAT3 Buffer::GetPosition() const
+{
+	return mWorldInfo.position;
+}
+
+XMFLOAT3 Buffer::GetScale() const
+{
+	return mWorldInfo.scale;
+}
+
+XMFLOAT3 Buffer::GetRotation() const
+{
+	return mWorldInfo.rotation;
+}
+
+XMMATRIX Buffer::GetWorldMatrix() const
+{
+	return mWorldInfo.worldMat;
 }

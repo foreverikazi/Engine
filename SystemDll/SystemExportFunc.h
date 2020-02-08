@@ -1,6 +1,7 @@
 #pragma once
 #define SYSTEM_EXPORT
 #include "SystemDef.h"
+class Shader;
 
 // D3DApp
 EXTERN SYSTEM_DLL bool InitializeD3D(int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscreen, float screenDepth, float screenNear);
@@ -31,14 +32,11 @@ EXTERN SYSTEM_DLL const DIMOUSESTATE* GetMouseState();
 // Timer
 EXTERN SYSTEM_DLL void InitializeTimer();
 EXTERN SYSTEM_DLL void UpdateTimer();
-
+EXTERN SYSTEM_DLL float GetElapsedTime();
 // Shader
-EXTERN SYSTEM_DLL bool InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename, const SHADERBUFFERTYPE type);
+EXTERN SYSTEM_DLL bool InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename, const SHADERTYPE type);
 EXTERN SYSTEM_DLL void ReleaseShader();
-EXTERN SYSTEM_DLL bool SetShader(ID3D11DeviceContext* deviceContext, const SHADERBUFFERTYPE type);
-EXTERN SYSTEM_DLL void SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, const XMMATRIX worldMat, const XMMATRIX viewMat, const XMMATRIX projMat);
-EXTERN SYSTEM_DLL void SetLightShaderParameters(ID3D11DeviceContext* deviceContext, const XMFLOAT4 ambientColor, const XMFLOAT4 diffuseColor, const XMFLOAT3 lightDirection, const XMFLOAT4 specularColor, const float specularPower);
-EXTERN SYSTEM_DLL void SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, const XMFLOAT3 cameraPosition);
+EXTERN SYSTEM_DLL Shader* GetShader(const SHADERTYPE type);
 
 // Light
 EXTERN SYSTEM_DLL void SetAmbientColor(const XMFLOAT4 ambientColor);

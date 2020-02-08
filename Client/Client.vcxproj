@@ -180,14 +180,8 @@
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Shader\color.ps" />
-    <None Include="..\Shader\color.vs" />
-    <None Include="..\Shader\light.ps" />
-    <None Include="..\Shader\light.vs" />
-    <None Include="..\Shader\shader.ps" />
-    <None Include="..\Shader\shader.vs" />
-    <None Include="..\Shader\texture.ps" />
-    <None Include="..\Shader\texture.vs" />
+    <None Include="..\Shader\ColorShader.ps" />
+    <None Include="..\Shader\ColorShader.vs" />
     <None Include="..\Shader\LightShader.ps" />
     <None Include="..\Shader\LightShader.vs" />
     <None Include="..\Shader\TextureShader.ps" />

@@ -4,7 +4,7 @@
 TextureShader::TextureShader() :
 	mSampleState(nullptr)
 {
-	mShaderBufferType = SHADERBUFFERTYPE::TEXTURE;
+	mShaderType = SHADERTYPE::TEXTURE;
 }
 
 bool TextureShader::InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename)
@@ -106,7 +106,7 @@ bool TextureShader::InitializeShader(ID3D11Device* device, HWND hwnd, const TCHA
 	return true;
 }
 
-bool TextureShader::SetShader(ID3D11DeviceContext* deviceContext)
+bool TextureShader::UpdateShader(ID3D11DeviceContext* deviceContext)
 {
 	deviceContext->IASetInputLayout(mLayout);
 	deviceContext->VSSetShader(mVertexShader, NULL, 0);
