@@ -19,7 +19,7 @@ SceneView::~SceneView()
 
 bool SceneView::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 {
-	InitializeD3D(screenWidth, screenHeight, VSYNC_ENABLED, hwnd, FULL_SCREEN, SCREEN_DEPTH, SCREEN_NEAR);
+	InitializeD3D(screenWidth, screenHeight, VSYNC_ENABLED, hwnd, FULL_SCREEN, SCREEN_FAR, SCREEN_NEAR);
 	
 	// Direct3D °´Ã¼ »ý¼º
 	//m_Direct3D = new D3DClass;

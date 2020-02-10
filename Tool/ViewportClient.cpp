@@ -9,7 +9,7 @@
 #include <filesystem>
 #include "Buffer.h"
 #include "FrustumCulling.h"
-
+#include "FrustumCulling.cpp"
 // ViewportClient
 namespace fs = std::experimental::filesystem::v1;
 
@@ -32,6 +32,7 @@ ViewportClient::~ViewportClient()
 
 	ReleaseResource();
 	ReleaseSystem();
+	(*(FrustumCulling::GetInst()))->DestroyInst();
 }
 
 void ViewportClient::DoDataExchange(CDataExchange* pDX)
@@ -83,16 +84,22 @@ void ViewportClient::OnDraw(CDC* pDC)
 	UpdateCamera();
 	UpdateInput();
 	UpdateTimer();
-
 	UpdateBuffers(deviceContext);
 
 	// 임시 회전 적용
 	Buffer* cube = FindBuffer(L"LightCube");
+	Buffer* grid = FindBuffer(L"Grid");
 	XMFLOAT3 rot = cube->GetRotation();
 	cube->SetRotation(XMFLOAT3(rot.x, rot.y + GetElapsedTime(), rot.z));
-
-	RenderBuffers(deviceContext);
-
+	
+	FrustumCulling* f = (*(FrustumCulling::GetInst()));
+	f->InitializeFrustum(SCREEN_FAR, GetViewMatrix(), GetProjectionMatrix());
+	if(f->CullingSphere(cube->GetPosition(), 5.0f) == true)
+		cube->RenderBuffers(deviceContext); 
+	
+	grid->RenderBuffers(deviceContext);
+	//RenderBuffers(deviceContext);
+		
 	/*
 	ModelRender(deviceContext);
 	ShaderRender(GetDeviceContext(), GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);

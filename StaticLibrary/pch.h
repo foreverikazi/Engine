@@ -10,4 +10,16 @@
 // 여기에 미리 컴파일하려는 헤더 추가
 #include "framework.h"
 
+#pragma comment(lib, "d3d11.lib")
+#pragma comment(lib, "dxgi.lib")
+#pragma comment(lib, "d3dcompiler.lib")
+
+#include <d3d11.h>
+#include <d3dcompiler.h>
+#include <directxmath.h>
+#include <DirectXPackedVector.h>
+
+using namespace DirectX;
+using namespace DirectX::PackedVector;
+
 #endif //PCH_H
