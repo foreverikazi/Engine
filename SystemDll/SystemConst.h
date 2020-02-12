@@ -6,4 +6,5 @@ enum class SHADERTYPE
 	COLORVERTEX,
 	TEXTURE,
 	LIGHT,
+	SKY,
 };

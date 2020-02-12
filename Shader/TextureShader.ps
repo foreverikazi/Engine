@@ -9,8 +9,5 @@ struct PixelInputType
 
 float4 psMain(PixelInputType input) : SV_TARGET
 {
-    float4 textureColor;
-    textureColor = shaderTexture.Sample(SampleType, input.tex);
-
-    return textureColor;
+    return shaderTexture.Sample(SampleType, input.tex);
 }

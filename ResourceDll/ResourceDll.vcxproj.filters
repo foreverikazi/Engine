@@ -34,6 +34,15 @@
     <Filter Include="Util">
       <UniqueIdentifier>{fd50f865-2913-44db-a653-9154ed1bd76a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Buffer\Cube">
+      <UniqueIdentifier>{0368ae90-4027-49f2-8ab9-dc422ef229c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buffer\Grid">
+      <UniqueIdentifier>{265406fe-9072-4158-a405-8b5134964088}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buffer\Sky">
+      <UniqueIdentifier>{a15aca17-c12e-42ae-8254-49e0c578c40a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -78,20 +87,23 @@
     <ClInclude Include="Model.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="ColorCubeBuffer.h">
-      <Filter>Buffer</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureCubeBuffer.h">
-      <Filter>Buffer</Filter>
-    </ClInclude>
-    <ClInclude Include="LightCubeBuffer.h">
-      <Filter>Buffer</Filter>
-    </ClInclude>
-    <ClInclude Include="GridBuffer.h">
-      <Filter>Buffer</Filter>
-    </ClInclude>
     <ClInclude Include="MeshMgr.h">
       <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorCubeBuffer.h">
+      <Filter>Buffer\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="LightCubeBuffer.h">
+      <Filter>Buffer\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="GridBuffer.h">
+      <Filter>Buffer\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureCubeBuffer.h">
+      <Filter>Buffer\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyBuffer.h">
+      <Filter>Buffer\Sky</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -125,20 +137,23 @@
     <ClCompile Include="Model.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="ColorCubeBuffer.cpp">
-      <Filter>Buffer</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureCubeBuffer.cpp">
-      <Filter>Buffer</Filter>
-    </ClCompile>
-    <ClCompile Include="LightCubeBuffer.cpp">
-      <Filter>Buffer</Filter>
-    </ClCompile>
-    <ClCompile Include="GridBuffer.cpp">
-      <Filter>Buffer</Filter>
-    </ClCompile>
     <ClCompile Include="MeshMgr.cpp">
       <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorCubeBuffer.cpp">
+      <Filter>Buffer\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="LightCubeBuffer.cpp">
+      <Filter>Buffer\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="GridBuffer.cpp">
+      <Filter>Buffer\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureCubeBuffer.cpp">
+      <Filter>Buffer\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyBuffer.cpp">
+      <Filter>Buffer\Sky</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

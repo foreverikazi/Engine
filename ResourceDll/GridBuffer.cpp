@@ -68,10 +68,11 @@ void GridBuffer::UpdateBuffers(ID3D11DeviceContext* deviceContext)
 
 void GridBuffer::UpdateSahder(ID3D11DeviceContext* deviceContext)
 {
-	mShader->UpdateShader(deviceContext);
-
-	XMMATRIX matWorld = XMMatrixIdentity();
-	mShader->SetMatrixShaderParameters(deviceContext, matWorld, GetViewMatrix(), GetProjectionMatrix());
+	if (mShader)
+	{
+		mShader->UpdateShader(deviceContext);
+		mShader->SetMatrixShaderParameters(deviceContext, mWorldInfo.worldMat, GetViewMatrix(), GetProjectionMatrix());
+	}
 }
 
 void GridBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)

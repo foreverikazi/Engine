@@ -3,7 +3,7 @@
 #include "ResourceDef.h"
 #include "Buffer.h"
 
-EXTERN class RESOURCE_DLL GridBuffer : public Buffer
+class GridBuffer : public Buffer
 {
 public:
 	virtual bool CreateBuffers(ID3D11Device* device);

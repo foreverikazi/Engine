@@ -13,11 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\Frame">
-      <UniqueIdentifier>{3092a136-ea4d-4f13-b101-8e9086924e56}</UniqueIdentifier>
+    <Filter Include="Frame">
+      <UniqueIdentifier>{ca248b90-2ccf-4b2c-8fcb-e8fcd5264754}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\View">
-      <UniqueIdentifier>{84d6a337-7ca4-49ba-9d53-c8f2d6247399}</UniqueIdentifier>
+    <Filter Include="View">
+      <UniqueIdentifier>{e637ed47-26b5-4a57-8c88-b619927f2e68}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -58,16 +58,16 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ChildFrm.h">
-      <Filter>소스 파일\Frame</Filter>
+      <Filter>Frame</Filter>
     </ClInclude>
     <ClInclude Include="MainFrm.h">
-      <Filter>소스 파일\Frame</Filter>
+      <Filter>Frame</Filter>
     </ClInclude>
     <ClInclude Include="ContentBrowser.h">
-      <Filter>소스 파일\View</Filter>
+      <Filter>View</Filter>
     </ClInclude>
     <ClInclude Include="ViewportClient.h">
-      <Filter>소스 파일\View</Filter>
+      <Filter>View</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -99,16 +99,16 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ChildFrm.cpp">
-      <Filter>소스 파일\Frame</Filter>
+      <Filter>Frame</Filter>
     </ClCompile>
     <ClCompile Include="MainFrm.cpp">
-      <Filter>소스 파일\Frame</Filter>
+      <Filter>Frame</Filter>
     </ClCompile>
     <ClCompile Include="ContentBrowser.cpp">
-      <Filter>소스 파일\View</Filter>
+      <Filter>View</Filter>
     </ClCompile>
     <ClCompile Include="ViewportClient.cpp">
-      <Filter>소스 파일\View</Filter>
+      <Filter>View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

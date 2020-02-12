@@ -10,11 +10,11 @@ public:
 	virtual void UpdateBuffers(ID3D11DeviceContext* deviceContext);
 	virtual void UpdateSahder(ID3D11DeviceContext* deviceContext);
 	virtual void RenderBuffers(ID3D11DeviceContext* deviceContext);
-	virtual void LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* fileName);
+	virtual bool LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* fileName);
 	virtual void ReleaseBuffer();
 
 public:
-	LightCubeBuffer() = default;
+	LightCubeBuffer();
 	virtual ~LightCubeBuffer() = default;
 
 private:

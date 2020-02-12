@@ -181,6 +181,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\SystemDll\*.h"</Comm
     <ClInclude Include="pch.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderMgr.h" />
+    <ClInclude Include="SkyShader.h" />
     <ClInclude Include="SystemConst.h" />
     <ClInclude Include="SystemDef.h" />
     <ClInclude Include="SystemExportFunc.h" />
@@ -206,6 +207,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\SystemDll\*.h"</Comm
     </ClCompile>
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderMgr.cpp" />
+    <ClCompile Include="SkyShader.cpp" />
     <ClCompile Include="SystemExportFunc.cpp" />
     <ClCompile Include="TextureShader.cpp" />
     <ClCompile Include="TimeMgr.cpp" />

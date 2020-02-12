@@ -4,6 +4,13 @@
 #include "TextureUtil.h"
 #include "Shader.h"
 
+LightCubeBuffer::LightCubeBuffer() :
+	mTexture(nullptr)
+{
+	mWorldInfo.scale = XMFLOAT3(2.0f, 2.0f, 2.0f);
+}
+
+
 bool LightCubeBuffer::CreateBuffers(ID3D11Device* device)
 {
 	mVertexCount = 36;
@@ -185,10 +192,13 @@ void LightCubeBuffer::UpdateBuffers(ID3D11DeviceContext* deviceContext)
 
 void LightCubeBuffer::UpdateSahder(ID3D11DeviceContext* deviceContext)
 {
-	mShader->UpdateShader(deviceContext);
-	mShader->SetMatrixShaderParameters(deviceContext, mWorldInfo.worldMat, GetViewMatrix(), GetProjectionMatrix());
-	mShader->SetCameraShaderParameters(deviceContext, GetCameraPosition());
-	mShader->SetLightShaderParameters(deviceContext, GetAmbientColor(), GetDiffuseColor(), GetLightDirection(), GetSpecularColor(), GetSpecularPower());
+	if (mShader)
+	{
+		mShader->UpdateShader(deviceContext);
+		mShader->SetMatrixShaderParameters(deviceContext, mWorldInfo.worldMat, GetViewMatrix(), GetProjectionMatrix());
+		mShader->SetCameraShaderParameters(deviceContext, GetCameraPosition());
+		mShader->SetLightShaderParameters(deviceContext, GetAmbientColor(), GetDiffuseColor(), GetLightDirection(), GetSpecularColor(), GetSpecularPower());
+	}
 }
 
 void LightCubeBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
@@ -205,9 +215,10 @@ void LightCubeBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
 	deviceContext->Draw(mVertexCount, 0);
 }
 
-void LightCubeBuffer::LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* fileName)
+bool LightCubeBuffer::LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* fileName)
 {
 	mTexture = (*(TextureUtil::GetInst()))->LoadTextureUtil(device, deviceContext, fileName);
+	return true;
 }
 
 void LightCubeBuffer::ReleaseBuffer()

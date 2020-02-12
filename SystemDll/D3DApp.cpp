@@ -1,15 +1,12 @@
 #include "pch.h"
 #include "D3DApp.h"
 
-D3DApp::D3DApp()
+D3DApp::D3DApp() : 
+	mRasterState(nullptr),
+	mDepthStencilView(nullptr),
+	mDepthStencilState(nullptr)
 {
 }
-
-
-D3DApp::D3DApp(const D3DApp& other)
-{
-}
-
 
 D3DApp::~D3DApp()
 {
@@ -244,13 +241,13 @@ bool D3DApp::InitializeD3D(int screenWidth, int screenHeight, bool vsync, HWND h
 	depthStencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 
 	// 깊이 스텐실 상태를 생성합니다
-	if (FAILED(m_device->CreateDepthStencilState(&depthStencilDesc, &m_depthStencilState)))
+	if (FAILED(m_device->CreateDepthStencilState(&depthStencilDesc, &mDepthStencilState)))
 	{
 		return false;
 	}
 
 	// 깊이 스텐실 상태를 설정합니다
-	m_deviceContext->OMSetDepthStencilState(m_depthStencilState, 1);
+	m_deviceContext->OMSetDepthStencilState(mDepthStencilState, 1);
 
 	// 깊이 스텐실 뷰의 구조체를 초기화합니다
 	D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc;
@@ -262,18 +259,18 @@ bool D3DApp::InitializeD3D(int screenWidth, int screenHeight, bool vsync, HWND h
 	depthStencilViewDesc.Texture2D.MipSlice = 0;
 
 	// 깊이 스텐실 뷰를 생성합니다
-	if (FAILED(m_device->CreateDepthStencilView(m_depthStencilBuffer, &depthStencilViewDesc, &m_depthStencilView)))
+	if (FAILED(m_device->CreateDepthStencilView(m_depthStencilBuffer, &depthStencilViewDesc, &mDepthStencilView)))
 	{
 		return false;
 	}
 
 	// 렌더링 대상 뷰와 깊이 스텐실 버퍼를 출력 렌더 파이프 라인에 바인딩합니다
-	m_deviceContext->OMSetRenderTargets(1, &m_renderTargetView, m_depthStencilView);
+	m_deviceContext->OMSetRenderTargets(1, &m_renderTargetView, mDepthStencilView);
 
 	// 그려지는 폴리곤과 방법을 결정할 래스터 구조체를 설정합니다
 	D3D11_RASTERIZER_DESC rasterDesc;
 	rasterDesc.AntialiasedLineEnable = false;
-	rasterDesc.CullMode = D3D11_CULL_BACK;
+	rasterDesc.CullMode = D3D11_CULL_NONE;
 	rasterDesc.DepthBias = 0;
 	rasterDesc.DepthBiasClamp = 0.0f;
 	rasterDesc.DepthClipEnable = true;
@@ -284,13 +281,13 @@ bool D3DApp::InitializeD3D(int screenWidth, int screenHeight, bool vsync, HWND h
 	rasterDesc.SlopeScaledDepthBias = 0.0f;
 
 	// 방금 작성한 구조체에서 래스터 라이저 상태를 만듭니다
-	if (FAILED(m_device->CreateRasterizerState(&rasterDesc, &m_rasterState)))
+	if (FAILED(m_device->CreateRasterizerState(&rasterDesc, &mRasterState)))
 	{
 		return false;
 	}
 
 	// 이제 래스터 라이저 상태를 설정합니다
-	m_deviceContext->RSSetState(m_rasterState);
+	m_deviceContext->RSSetState(mRasterState);
 
 	// 렌더링을 위해 뷰포트를 설정합니다
 	D3D11_VIEWPORT viewport;
@@ -329,22 +326,22 @@ void D3DApp::Release3D()
 		m_swapChain->SetFullscreenState(false, NULL);
 	}
 
-	if (m_rasterState)
+	if (mRasterState)
 	{
-		m_rasterState->Release();
-		m_rasterState = 0;
+		mRasterState->Release();
+		mRasterState = 0;
 	}
 
-	if (m_depthStencilView)
+	if (mDepthStencilView)
 	{
-		m_depthStencilView->Release();
-		m_depthStencilView = 0;
+		mDepthStencilView->Release();
+		mDepthStencilView = 0;
 	}
 
-	if (m_depthStencilState)
+	if (mDepthStencilState)
 	{
-		m_depthStencilState->Release();
-		m_depthStencilState = 0;
+		mDepthStencilState->Release();
+		mDepthStencilState = 0;
 	}
 
 	if (m_depthStencilBuffer)
@@ -387,7 +384,7 @@ void D3DApp::BeginScene(const float r, const float g, const float b, const float
 	m_deviceContext->ClearRenderTargetView(m_renderTargetView, fColor);
 
 	// 깊이 버퍼를 지웁니다
-	m_deviceContext->ClearDepthStencilView(m_depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+	m_deviceContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
 
@@ -441,4 +438,68 @@ void D3DApp::GetVideoCardInfo(char* cardName, int& memory)
 {
 	strcpy_s(cardName, 128, m_videoCardDescription);
 	memory = m_videoCardMemory;
+}
+
+void D3DApp::SetFrontCounterClockwise(const bool clockwise)
+{
+	D3D11_RASTERIZER_DESC rasterDesc;
+	if (mRasterState)
+	{
+		mRasterState->GetDesc(&rasterDesc);
+		rasterDesc.FrontCounterClockwise = clockwise;
+	}
+	
+	if (m_device)
+	{
+		m_device->CreateRasterizerState(&rasterDesc, &mRasterState);
+	}
+}
+
+void D3DApp::SetCullMode(const D3D11_CULL_MODE cullMode)
+{
+	D3D11_RASTERIZER_DESC rasterDesc;
+	if (mRasterState)
+	{
+		mRasterState->GetDesc(&rasterDesc);
+		rasterDesc.CullMode = cullMode;
+	}
+
+	if (m_device)
+	{
+		m_device->CreateRasterizerState(&rasterDesc, &mRasterState);
+		m_deviceContext->RSSetState(mRasterState);
+	}
+}
+
+void D3DApp::SetFillMode(const D3D11_FILL_MODE fillMode)
+{
+	D3D11_RASTERIZER_DESC rasterDesc;
+	if (mRasterState)
+	{
+		mRasterState->GetDesc(&rasterDesc);
+		rasterDesc.FillMode = fillMode;
+	}
+
+	if (m_device)
+	{
+		m_device->CreateRasterizerState(&rasterDesc, &mRasterState);
+		m_deviceContext->RSSetState(mRasterState);
+	}
+}
+
+void D3DApp::SetDepthFunc(const D3D11_COMPARISON_FUNC compFunc)
+{
+	D3D11_DEPTH_STENCIL_DESC depthStencilDesc;
+
+	if (mDepthStencilState)
+	{
+		mDepthStencilState->GetDesc(&depthStencilDesc);
+		depthStencilDesc.DepthFunc = compFunc;
+	}
+
+	if (m_device)
+	{
+		m_device->CreateDepthStencilState(&depthStencilDesc, &mDepthStencilState);
+		m_deviceContext->OMSetDepthStencilState(mDepthStencilState, 0);
+	}
 }

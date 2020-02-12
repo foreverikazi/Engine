@@ -5,6 +5,7 @@
 #include "TextureShader.h"
 #include "ModelShader.h"
 #include "LightShader.h"
+#include "SkyShader.h"
 
 bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename, const SHADERTYPE type)
 {
@@ -19,30 +20,31 @@ bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* v
 	{
 	case SHADERTYPE::COLORVERTEX:
 		newShader = new ColorVertexShader();
-		newShader->InitializeShader(device, hwnd, vsFilename, psFilename);
-		mShaderMap.insert({ type, newShader });
 		break;
 
 	case SHADERTYPE::MODEL :
 		newShader = new ModelShader();
-		newShader->InitializeShader(device, hwnd, vsFilename, psFilename);
-		mShaderMap.insert({ type, newShader });
 		break;
 
 	case SHADERTYPE::TEXTURE :
 		newShader = new TextureShader();
-		newShader->InitializeShader(device, hwnd, vsFilename, psFilename);
-		mShaderMap.insert({ type, newShader });
 		break;
 
 	case SHADERTYPE::LIGHT :
 		newShader = new LightShader();
-		newShader->InitializeShader(device, hwnd, vsFilename, psFilename);
-		mShaderMap.insert({ type, newShader });
 		break;
+
+	case SHADERTYPE::SKY :
+		newShader = new SkyShader();
+		break;
+
+	default :
+		return false;
 	}
 
-	//SetCurrentShader(type);
+	newShader->InitializeShader(device, hwnd, vsFilename, psFilename);
+	mShaderMap.insert({ type, newShader });
+
 	return true;
 }
 
@@ -65,7 +67,7 @@ Shader* ShaderMgr::GetShader(const SHADERTYPE type)
 {
 	auto shaderIter = mShaderMap.find(type);
 
-	if (shaderIter->second != nullptr)
+	if (shaderIter != mShaderMap.end())
 	{
 		return shaderIter->second;
 	}

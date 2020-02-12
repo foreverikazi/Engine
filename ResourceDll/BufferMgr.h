@@ -12,7 +12,7 @@ private :
 
 public:
 	bool AddBuffer(ID3D11Device* pDevice, const BUFFERTYPE bufferType, const SHADERTYPE Shadertype, const TCHAR* key);
-	void LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* key, const TCHAR* fileName);
+	bool LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* key, const TCHAR* fileName);
 	void UpdateBuffers(ID3D11DeviceContext* deviceContext);
 	void RenderBuffers(ID3D11DeviceContext* deviceContext);
 	void ReleaseBuffers();

@@ -184,6 +184,8 @@
     <None Include="..\Shader\ColorShader.vs" />
     <None Include="..\Shader\LightShader.ps" />
     <None Include="..\Shader\LightShader.vs" />
+    <None Include="..\Shader\SkyShader.ps" />
+    <None Include="..\Shader\SkyShader.vs" />
     <None Include="..\Shader\TextureShader.ps" />
     <None Include="..\Shader\TextureShader.vs" />
   </ItemGroup>

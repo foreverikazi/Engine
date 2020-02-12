@@ -1,4 +1,5 @@
-﻿  ResourceDll.vcxproj -> C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.dll
+﻿  LightCubeBuffer.cpp
+  ResourceDll.vcxproj -> C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.dll
   C:\Users\user\Desktop\Engine\x64\Debug\Client.lib
   C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.lib
   C:\Users\user\Desktop\Engine\x64\Debug\StaticLibrary.lib
@@ -20,8 +21,9 @@
   C:\Users\user\Desktop\Engine\ResourceDll\ResourceExportFunc.h
   C:\Users\user\Desktop\Engine\ResourceDll\ResourceMacro.h
   C:\Users\user\Desktop\Engine\ResourceDll\ResourceStruct.h
+  C:\Users\user\Desktop\Engine\ResourceDll\SkyBuffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\StaticMesh.h
   C:\Users\user\Desktop\Engine\ResourceDll\StringUtil.h
   C:\Users\user\Desktop\Engine\ResourceDll\TextureCubeBuffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\TextureUtil.h
-         19개 파일이 복사되었습니다.
+         20개 파일이 복사되었습니다.

@@ -86,5 +86,11 @@
     <None Include="..\Shader\ColorShader.ps">
       <Filter>Shader</Filter>
     </None>
+    <None Include="..\Shader\SkyShader.ps">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="..\Shader\SkyShader.vs">
+      <Filter>Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

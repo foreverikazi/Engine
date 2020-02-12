@@ -1,0 +1,20 @@
+#pragma once
+#define SYSTEM_EXPORT
+#include "SystemDef.h"
+#include "Shader.h"
+
+class SkyShader : public Shader
+{
+public:
+	virtual bool InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename);
+	virtual bool UpdateShader(ID3D11DeviceContext* deviceContext);
+	virtual void ReleaseShader();
+
+public:
+	SkyShader();
+	virtual ~SkyShader() = default;
+
+private:
+	ID3D11SamplerState* mSampleState;
+};
+

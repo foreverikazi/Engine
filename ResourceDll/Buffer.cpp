@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Buffer.h"
 
+
 Buffer::Buffer() :mWorldInfo(
 		XMFLOAT3(1, 1, 1), 
 		XMFLOAT3(0, 0, 0), 

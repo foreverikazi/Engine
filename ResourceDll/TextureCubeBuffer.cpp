@@ -150,10 +150,11 @@ void TextureCubeBuffer::UpdateBuffers(ID3D11DeviceContext* deviceContext)
 
 void TextureCubeBuffer::UpdateSahder(ID3D11DeviceContext* deviceContext)
 {
-	mShader->UpdateShader(deviceContext);
-
-	XMMATRIX matWorld = XMMatrixIdentity();
-	mShader->SetMatrixShaderParameters(deviceContext, matWorld, GetViewMatrix(), GetProjectionMatrix());
+	if (mShader)
+	{
+		mShader->UpdateShader(deviceContext);
+		mShader->SetMatrixShaderParameters(deviceContext, mWorldInfo.worldMat, GetViewMatrix(), GetProjectionMatrix());
+	}
 }
 
 void TextureCubeBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
@@ -169,7 +170,19 @@ void TextureCubeBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
 	deviceContext->Draw(mVertexCount, 0);
 }
 
-void TextureCubeBuffer::LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* fileName)
+bool TextureCubeBuffer::LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* fileName)
 {
 	mTexture = (*(TextureUtil::GetInst()))->LoadTextureUtil(device, deviceContext, fileName);
+	return true;
+}
+
+void TextureCubeBuffer::ReleaseBuffer()
+{
+	if (mTexture)
+	{
+		mTexture->Release();
+		mTexture = nullptr;
+	}
+
+	Buffer::ReleaseBuffer();
 }

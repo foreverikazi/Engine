@@ -9,7 +9,7 @@
 #include <filesystem>
 #include "Buffer.h"
 #include "FrustumCulling.h"
-#include "FrustumCulling.cpp"
+
 // ViewportClient
 namespace fs = std::experimental::filesystem::v1;
 
@@ -89,15 +89,19 @@ void ViewportClient::OnDraw(CDC* pDC)
 	// 임시 회전 적용
 	Buffer* cube = FindBuffer(L"LightCube");
 	Buffer* grid = FindBuffer(L"Grid");
+	Buffer* sky = FindBuffer(L"Sky");
 	XMFLOAT3 rot = cube->GetRotation();
 	cube->SetRotation(XMFLOAT3(rot.x, rot.y + GetElapsedTime(), rot.z));
 	
+	
+
 	FrustumCulling* f = (*(FrustumCulling::GetInst()));
 	f->InitializeFrustum(SCREEN_FAR, GetViewMatrix(), GetProjectionMatrix());
-	if(f->CullingSphere(cube->GetPosition(), 5.0f) == true)
+	if (f->CullingSphere(cube->GetPosition(), 1.0f) == true)
 		cube->RenderBuffers(deviceContext); 
 	
 	grid->RenderBuffers(deviceContext);
+	sky->RenderBuffers(deviceContext);
 	//RenderBuffers(deviceContext);
 		
 	/*
@@ -139,9 +143,11 @@ void ViewportClient::InitShader()
 
 	WCHAR vs2[] = L"../Shader/ColorShader.vs";
 	WCHAR ps2[] = L"../Shader/ColorShader.ps";
-	//WCHAR vs[] = L"../Shader/light.vs";
-	//WCHAR ps[] = L"../Shader/light.ps";
 	InitializeShader(device, mHwnd, vs2, ps2, SHADERTYPE::COLORVERTEX);
+
+	WCHAR vs3[] = L"../Shader/SkyShader.vs";
+	WCHAR ps3[] = L"../Shader/SkyShader.ps";
+	InitializeShader(device, mHwnd, vs3, ps3, SHADERTYPE::SKY);
 }
 
 void ViewportClient::InitBuffers()
@@ -150,9 +156,13 @@ void ViewportClient::InitBuffers()
 	ID3D11DeviceContext* devicecContext = GetDeviceContext();
 	//AddBuffer(device, BUFFERTYPE::COLOR_CUBE, L"ColorCube");
 
+	// 버퍼랑 셰이더를 클래스 하나로 합치는게 편할수도
 	AddBuffer(device, BUFFERTYPE::GRID, SHADERTYPE::COLORVERTEX, L"Grid");
 	AddBuffer(device, BUFFERTYPE::LIGHT_CUBE, SHADERTYPE::LIGHT, L"LightCube");
 	LoadTextureBuffer(device, devicecContext, L"LightCube", L"../Content/Cube/seafloor.png");
+
+	AddBuffer(device, BUFFERTYPE::SKY, SHADERTYPE::SKY, L"Sky");
+	LoadTextureBuffer(device, devicecContext, L"Sky", L"../Content/Terrain/skymap.dds");
 }
 
 void ViewportClient::InitModel()
@@ -169,9 +179,9 @@ void ViewportClient::InitModel()
 
 void ViewportClient::InitLight()
 {
-	SetAmbientColor(XMFLOAT4(0.15f, 0.15f, 0.15f, 1.0f));
+	SetAmbientColor(XMFLOAT4(0.3f, 0.3f, 0.3f, 1.0f));
 	SetDiffuseColor(XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
 	SetSpecularColor(XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f));
-	SetLightDirection(XMFLOAT3(0.2f, 0.0f, 1.0f));
+	SetLightDirection(XMFLOAT3(0.2f, -0.1f, 1.0f));
 	SetSpecularPower(32.0f);
 }

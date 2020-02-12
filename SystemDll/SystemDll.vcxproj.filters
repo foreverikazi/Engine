@@ -93,6 +93,9 @@
     <ClInclude Include="TimeMgr.h">
       <Filter>Time</Filter>
     </ClInclude>
+    <ClInclude Include="SkyShader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -136,6 +139,9 @@
     </ClCompile>
     <ClCompile Include="TimeMgr.cpp">
       <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyShader.cpp">
+      <Filter>Shader</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

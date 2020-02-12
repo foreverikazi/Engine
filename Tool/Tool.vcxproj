@@ -256,6 +256,11 @@
   <ItemGroup>
     <None Include="res\Tool.rc2" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StaticLibrary\StaticLibrary.vcxproj">
+      <Project>{08ae1e9b-3b57-4366-bed4-04cf3b0a8a46}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

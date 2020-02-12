@@ -1,11 +1,13 @@
 #include "pch.h"
 #include "BufferMgr.h"
 #include "Buffer.h"
+#include "SystemExportFunc.h"
 #include "ColorCubeBuffer.h"
 #include "TextureCubeBuffer.h"
 #include "LightCubeBuffer.h"
 #include "GridBuffer.h"
-#include "SystemExportFunc.h"
+#include "SkyBuffer.h"
+
 
 BufferMgr::BufferMgr()
 {
@@ -41,6 +43,10 @@ bool BufferMgr::AddBuffer(ID3D11Device* device, BUFFERTYPE bufferType, const SHA
 		newBuffer = new LightCubeBuffer();
 		break;
 
+	case BUFFERTYPE::SKY :
+		newBuffer = new SkyBuffer();
+		break;
+
 	default :
 		return false;
 	}
@@ -54,14 +60,16 @@ bool BufferMgr::AddBuffer(ID3D11Device* device, BUFFERTYPE bufferType, const SHA
 	return true;
 }
 
-void BufferMgr::LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* key, const TCHAR* fileName)
+bool BufferMgr::LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* key, const TCHAR* fileName)
 {
 	Buffer* buffer = FindBuffer(key);
 	
 	if (buffer)
 	{
-		buffer->LoadTextureBuffer(device, deviceContext, fileName);
+		return buffer->LoadTextureBuffer(device, deviceContext, fileName);
 	}
+
+	return false;
 }
 
 void BufferMgr::UpdateBuffers(ID3D11DeviceContext* deviceContext)

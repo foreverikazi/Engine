@@ -12,4 +12,5 @@ enum class BUFFERTYPE
 	TEXTURE_CUBE,
 	LIGHT_CUBE,
 	GRID,
+	SKY,
 };

@@ -44,6 +44,26 @@ EXTERN SYSTEM_DLL void GetWorldMatrix(XMMATRIX& worldMatrix)
 	(*(D3DApp::GetInst()))->GetWorldMatrix(worldMatrix);
 }
 
+EXTERN SYSTEM_DLL void SetFrontCounterClockwise(const bool clockwise)
+{
+	(*(D3DApp::GetInst()))->SetFrontCounterClockwise(clockwise);
+}
+
+EXTERN SYSTEM_DLL void SetCullMode(const D3D11_CULL_MODE cullMode)
+{
+	(*(D3DApp::GetInst()))->SetCullMode(cullMode);
+}
+
+EXTERN SYSTEM_DLL void SetFillMode(const D3D11_FILL_MODE fillMode)
+{
+	(*(D3DApp::GetInst()))->SetFillMode(fillMode);
+}
+
+EXTERN SYSTEM_DLL void SetDepthFunc(const D3D11_COMPARISON_FUNC compFunc)
+{
+	(*(D3DApp::GetInst()))->SetDepthFunc(compFunc);
+}
+
 // Camera
 EXTERN SYSTEM_DLL void InitializeCamera(const XMFLOAT3 up, const XMFLOAT3 look, const XMFLOAT3 position)
 {

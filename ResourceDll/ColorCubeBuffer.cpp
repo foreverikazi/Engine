@@ -97,10 +97,11 @@ void ColorCubeBuffer::UpdateBuffers(ID3D11DeviceContext* deviceContext)
 
 void ColorCubeBuffer::UpdateSahder(ID3D11DeviceContext* deviceContext)
 {
-	mShader->UpdateShader(deviceContext);
-
-	XMMATRIX matWorld = XMMatrixIdentity();
-	mShader->SetMatrixShaderParameters(deviceContext, matWorld, GetViewMatrix(), GetProjectionMatrix());
+	if (mShader)
+	{
+		mShader->UpdateShader(deviceContext);
+		mShader->SetMatrixShaderParameters(deviceContext, mWorldInfo.worldMat, GetViewMatrix(), GetProjectionMatrix());
+	}
 }
 
 void ColorCubeBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
