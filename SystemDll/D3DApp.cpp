@@ -4,7 +4,8 @@
 D3DApp::D3DApp() : 
 	mRasterState(nullptr),
 	mDepthStencilView(nullptr),
-	mDepthStencilState(nullptr)
+	mDepthStencilState(nullptr),
+	mDepthDisabledStencilState(nullptr)
 {
 }
 
@@ -192,7 +193,6 @@ bool D3DApp::InitializeD3D(int screenWidth, int screenHeight, bool vsync, HWND h
 	backBufferPtr->Release();
 	backBufferPtr = 0;
 
-	// 깊이 버퍼 구조체를 초기화합니다
 	D3D11_TEXTURE2D_DESC depthBufferDesc;
 	ZeroMemory(&depthBufferDesc, sizeof(depthBufferDesc));
 
@@ -215,39 +215,41 @@ bool D3DApp::InitializeD3D(int screenWidth, int screenHeight, bool vsync, HWND h
 		return false;
 	}
 
-	// 스텐실 상태 구조체를 초기화합니다
+#pragma region DepthStencil 초기화
 	D3D11_DEPTH_STENCIL_DESC depthStencilDesc;
 	ZeroMemory(&depthStencilDesc, sizeof(depthStencilDesc));
 
-	// 스텐실 상태 구조체를 작성합니다
 	depthStencilDesc.DepthEnable = true;
 	depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
 	depthStencilDesc.DepthFunc = D3D11_COMPARISON_LESS;
-
 	depthStencilDesc.StencilEnable = true;
 	depthStencilDesc.StencilReadMask = 0xFF;
 	depthStencilDesc.StencilWriteMask = 0xFF;
-
-	// 픽셀 정면의 스텐실 설정입니다
 	depthStencilDesc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 	depthStencilDesc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
 	depthStencilDesc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
 	depthStencilDesc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
-
-	// 픽셀 뒷면의 스텐실 설정입니다
 	depthStencilDesc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 	depthStencilDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
 	depthStencilDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
 	depthStencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 
-	// 깊이 스텐실 상태를 생성합니다
 	if (FAILED(m_device->CreateDepthStencilState(&depthStencilDesc, &mDepthStencilState)))
 	{
 		return false;
 	}
 
-	// 깊이 스텐실 상태를 설정합니다
-	m_deviceContext->OMSetDepthStencilState(mDepthStencilState, 1);
+	depthStencilDesc.DepthEnable = false;
+
+	if (FAILED(m_device->CreateDepthStencilState(&depthStencilDesc, &mDepthDisabledStencilState)))
+	{
+		return false;
+	}
+
+	m_deviceContext->OMSetDepthStencilState(mDepthStencilState, 0x1);
+#pragma endregion
+	
+	
 
 	// 깊이 스텐실 뷰의 구조체를 초기화합니다
 	D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc;
@@ -270,7 +272,7 @@ bool D3DApp::InitializeD3D(int screenWidth, int screenHeight, bool vsync, HWND h
 	// 그려지는 폴리곤과 방법을 결정할 래스터 구조체를 설정합니다
 	D3D11_RASTERIZER_DESC rasterDesc;
 	rasterDesc.AntialiasedLineEnable = false;
-	rasterDesc.CullMode = D3D11_CULL_NONE;
+	rasterDesc.CullMode = D3D11_CULL_BACK;
 	rasterDesc.DepthBias = 0;
 	rasterDesc.DepthBiasClamp = 0.0f;
 	rasterDesc.DepthClipEnable = true;
@@ -500,6 +502,16 @@ void D3DApp::SetDepthFunc(const D3D11_COMPARISON_FUNC compFunc)
 	if (m_device)
 	{
 		m_device->CreateDepthStencilState(&depthStencilDesc, &mDepthStencilState);
-		m_deviceContext->OMSetDepthStencilState(mDepthStencilState, 0);
+		m_deviceContext->OMSetDepthStencilState(mDepthStencilState, 0x1);
 	}
+}
+
+void D3DApp::TurnOffZBuffer()
+{
+	m_deviceContext->OMSetDepthStencilState(mDepthDisabledStencilState, 0x1);
+}
+
+void D3DApp::TurnOnZBuffer()
+{
+	m_deviceContext->OMSetDepthStencilState(mDepthStencilState, 0x1);
 }

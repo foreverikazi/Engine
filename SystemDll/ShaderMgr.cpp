@@ -37,7 +37,6 @@ bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* v
 	case SHADERTYPE::SKY :
 		newShader = new SkyShader();
 		break;
-
 	default :
 		return false;
 	}

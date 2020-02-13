@@ -167,7 +167,7 @@ void SkyBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
 
 	SetCullMode(D3D11_CULL_MODE::D3D11_CULL_NONE);
 	SetDepthFunc(D3D11_COMPARISON_FUNC::D3D11_COMPARISON_LESS_EQUAL);
-	SetFrontCounterClockwise(false);
+	//SetFrontCounterClockwise(false);
 
 	deviceContext->PSSetShaderResources(0, 1, &mTexture);
 	deviceContext->IASetVertexBuffers(0, 1, &mVertexBuffer, &stride, &offset);
@@ -177,7 +177,7 @@ void SkyBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
 
 	SetCullMode(D3D11_CULL_MODE::D3D11_CULL_BACK);
 	SetDepthFunc(D3D11_COMPARISON_FUNC::D3D11_COMPARISON_LESS);
-	SetFrontCounterClockwise(true);
+	//SetFrontCounterClockwise(true);
 }
 
 bool SkyBuffer::LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* fileName)

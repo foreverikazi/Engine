@@ -30,6 +30,9 @@ public:
 	void SetFillMode(const D3D11_FILL_MODE fillMode);
 	void SetDepthFunc(const D3D11_COMPARISON_FUNC compFunc);
 
+	void TurnOffZBuffer();
+	void TurnOnZBuffer();
+
 private:
 	bool m_vsync_enabled = false;
 	int m_videoCardMemory = 0;
@@ -40,6 +43,7 @@ private:
 	ID3D11RenderTargetView* m_renderTargetView = nullptr;
 	ID3D11Texture2D* m_depthStencilBuffer = nullptr;
 	ID3D11DepthStencilState* mDepthStencilState;
+	ID3D11DepthStencilState* mDepthDisabledStencilState;
 	ID3D11DepthStencilView* mDepthStencilView;
 	ID3D11RasterizerState* mRasterState;
 	XMMATRIX m_projectionMatrix;

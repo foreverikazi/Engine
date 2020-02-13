@@ -15,6 +15,8 @@ EXTERN SYSTEM_DLL void SetFrontCounterClockwise(const bool clockwise);
 EXTERN SYSTEM_DLL void SetCullMode(const D3D11_CULL_MODE cullMode);
 EXTERN SYSTEM_DLL void SetFillMode(const D3D11_FILL_MODE fillMode);
 EXTERN SYSTEM_DLL void SetDepthFunc(const D3D11_COMPARISON_FUNC compFunc);
+EXTERN SYSTEM_DLL void TurnOffZBuffer();
+EXTERN SYSTEM_DLL void TurnOnZBuffer();
 
 // Camera
 EXTERN SYSTEM_DLL void InitializeCamera(const XMFLOAT3 up, const XMFLOAT3 look, const XMFLOAT3 position);
@@ -37,6 +39,8 @@ EXTERN SYSTEM_DLL const DIMOUSESTATE* GetMouseState();
 EXTERN SYSTEM_DLL void InitializeTimer();
 EXTERN SYSTEM_DLL void UpdateTimer();
 EXTERN SYSTEM_DLL float GetElapsedTime();
+EXTERN SYSTEM_DLL int GetFPS();
+
 // Shader
 EXTERN SYSTEM_DLL bool InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename, const SHADERTYPE type);
 EXTERN SYSTEM_DLL void ReleaseShader();

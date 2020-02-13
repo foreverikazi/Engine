@@ -1,4 +1,22 @@
-﻿  LightCubeBuffer.cpp
+﻿  pch.cpp
+  BitmapBuffer.cpp
+  Buffer.cpp
+  BufferMgr.cpp
+  ColorCubeBuffer.cpp
+  dllmain.cpp
+  GridBuffer.cpp
+  LightCubeBuffer.cpp
+  Mesh.cpp
+  MeshMgr.cpp
+  Model.cpp
+  ResourceExportFunc.cpp
+  SkyBuffer.cpp
+  StaticMesh.cpp
+  StringUtil.cpp
+  TextureCubeBuffer.cpp
+  TextureUtil.cpp
+  코드를 생성하고 있습니다...
+     C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.lib 라이브러리 및 C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.exp 개체를 생성하고 있습니다.
   ResourceDll.vcxproj -> C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.dll
   C:\Users\user\Desktop\Engine\x64\Debug\Client.lib
   C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.lib
@@ -6,6 +24,7 @@
   C:\Users\user\Desktop\Engine\x64\Debug\SystemDll.lib
   C:\Users\user\Desktop\Engine\x64\Debug\Tool.lib
           5개 파일이 복사되었습니다.
+  C:\Users\user\Desktop\Engine\ResourceDll\BitmapBuffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\Buffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\BufferMgr.h
   C:\Users\user\Desktop\Engine\ResourceDll\ColorCubeBuffer.h
@@ -26,4 +45,4 @@
   C:\Users\user\Desktop\Engine\ResourceDll\StringUtil.h
   C:\Users\user\Desktop\Engine\ResourceDll\TextureCubeBuffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\TextureUtil.h
-         20개 파일이 복사되었습니다.
+         21개 파일이 복사되었습니다.

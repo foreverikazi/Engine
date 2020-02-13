@@ -7,7 +7,7 @@
 #include "LightCubeBuffer.h"
 #include "GridBuffer.h"
 #include "SkyBuffer.h"
-
+#include "BitmapBuffer.h"
 
 BufferMgr::BufferMgr()
 {
@@ -45,6 +45,10 @@ bool BufferMgr::AddBuffer(ID3D11Device* device, BUFFERTYPE bufferType, const SHA
 
 	case BUFFERTYPE::SKY :
 		newBuffer = new SkyBuffer();
+		break;
+
+	case BUFFERTYPE::BITMAP :
+		newBuffer = new BitmapBuffer();
 		break;
 
 	default :

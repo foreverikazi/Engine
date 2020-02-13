@@ -64,6 +64,16 @@ EXTERN SYSTEM_DLL void SetDepthFunc(const D3D11_COMPARISON_FUNC compFunc)
 	(*(D3DApp::GetInst()))->SetDepthFunc(compFunc);
 }
 
+EXTERN SYSTEM_DLL void TurnOffZBuffer()
+{
+	(*(D3DApp::GetInst()))->TurnOffZBuffer();
+}
+
+EXTERN SYSTEM_DLL void TurnOnZBuffer()
+{
+	(*(D3DApp::GetInst()))->TurnOnZBuffer();
+}
+
 // Camera
 EXTERN SYSTEM_DLL void InitializeCamera(const XMFLOAT3 up, const XMFLOAT3 look, const XMFLOAT3 position)
 {
@@ -144,6 +154,11 @@ EXTERN SYSTEM_DLL void UpdateTimer()
 EXTERN SYSTEM_DLL float GetElapsedTime()
 {
 	return (*(TimeMgr::GetInst()))->GetElapsedTime();
+}
+
+EXTERN SYSTEM_DLL int GetFPS()
+{
+	return (*(TimeMgr::GetInst()))->GetFPS();
 }
 
 // Shader

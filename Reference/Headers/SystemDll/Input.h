@@ -1,4 +1,7 @@
 #pragma once
+#ifndef _INPUTCLASS_H_ 
+#define _INPUTCLASS_H_
+#define DIRECTINPUT_VERSION 0x0800
 #define SYSTEM_EXPORT
 #include "SystemDef.h"
 
@@ -29,4 +32,4 @@ private :
 	BYTE					mKeyboardState[256];
 	DIMOUSESTATE 			mMouseState;
 };
-
+#endif

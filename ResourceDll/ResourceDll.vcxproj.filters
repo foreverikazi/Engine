@@ -43,6 +43,9 @@
     <Filter Include="Buffer\Sky">
       <UniqueIdentifier>{a15aca17-c12e-42ae-8254-49e0c578c40a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Buffer\Bitmap">
+      <UniqueIdentifier>{79137fbf-ffb2-4890-bcd0-48fd3a5d7267}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -105,6 +108,9 @@
     <ClInclude Include="SkyBuffer.h">
       <Filter>Buffer\Sky</Filter>
     </ClInclude>
+    <ClInclude Include="BitmapBuffer.h">
+      <Filter>Buffer\Bitmap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -154,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="SkyBuffer.cpp">
       <Filter>Buffer\Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapBuffer.cpp">
+      <Filter>Buffer\Bitmap</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

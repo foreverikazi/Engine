@@ -163,6 +163,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\ResourceDll\*.h"</Co
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BitmapBuffer.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="BufferMgr.h" />
     <ClInclude Include="ColorCubeBuffer.h" />
@@ -185,6 +186,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\ResourceDll\*.h"</Co
     <ClInclude Include="TextureUtil.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BitmapBuffer.cpp" />
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="BufferMgr.cpp" />
     <ClCompile Include="ColorCubeBuffer.cpp" />

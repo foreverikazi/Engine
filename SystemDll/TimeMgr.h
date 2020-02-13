@@ -9,10 +9,9 @@ EXTERN class SYSTEM_DLL TimeMgr
 public :
 	void InitializeTimer();
 	void UpdateTimer();
-	float GetElapsedTime()
-	{
-		return mElapsedTime.count();
-	}
+	float GetElapsedTime();
+	int GetFPS();
+
 public:
 	TimeMgr();
 	~TimeMgr();
@@ -21,5 +20,10 @@ private :
 	chrono::steady_clock::time_point mPrevTime;
 	chrono::steady_clock::time_point mCurrentTime;
 	chrono::duration<float> mElapsedTime;
+
+
+	float	mAccumulateTime;
+	int		mFPS;
+	int		mFrameCount;
 };
 

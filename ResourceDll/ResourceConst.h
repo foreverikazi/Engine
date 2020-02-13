@@ -13,4 +13,5 @@ enum class BUFFERTYPE
 	LIGHT_CUBE,
 	GRID,
 	SKY,
+	BITMAP,
 };

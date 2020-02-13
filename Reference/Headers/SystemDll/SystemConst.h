@@ -7,4 +7,5 @@ enum class SHADERTYPE
 	TEXTURE,
 	LIGHT,
 	SKY,
+	BITMAP,
 };
