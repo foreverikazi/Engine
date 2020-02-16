@@ -22,7 +22,7 @@ public:
 private :
 	ID3D11ShaderResourceView* mTexture;
 	XMFLOAT2 mSize;
-
+	XMMATRIX mViewMat;
 	int mScreenWidth;
 	int mScreenHeight;
 	int mBitmapWidth;

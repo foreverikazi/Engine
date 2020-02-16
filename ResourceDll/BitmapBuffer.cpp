@@ -12,7 +12,7 @@ BitmapBuffer::BitmapBuffer() :
 	mPreviousPosX(0),
 	mPreviousPosY(0)
 {
-
+	mViewMat = GetViewMatrix();
 }
 
 void BitmapBuffer::SetTexturePosition(ID3D11DeviceContext* deviceContext, const XMFLOAT3 position, const XMFLOAT2 size)
@@ -107,7 +107,7 @@ void BitmapBuffer::UpdateSahder(ID3D11DeviceContext* deviceContext)
 	if (mShader)
 	{
 		mShader->UpdateShader(deviceContext);
-		mShader->SetMatrixShaderParameters(deviceContext, mWorldInfo.worldMat, GetViewMatrix(), GetOrthoMatrix());
+		mShader->SetMatrixShaderParameters(deviceContext, mWorldInfo.worldMat, mViewMat, GetOrthoMatrix());
 	}
 }
 

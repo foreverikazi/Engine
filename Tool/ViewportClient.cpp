@@ -117,8 +117,8 @@ void ViewportClient::OnDraw(CDC* pDC)
 	//bitmap->RenderBuffers(deviceContext);
 
 	TurnOnAlphaBlending();
-	//SetFPSText(deviceContext, GetFPS(), XMFLOAT2(-(mScreenWidth / 2.0f) + 10, -(mScreenHeight / 2.0f) + 10));
-	//RenderText(deviceContext);
+	SetFPSText(deviceContext, GetFPS(), XMFLOAT2(-(mScreenWidth / 2.0f) + 10, -(mScreenHeight / 2.0f) + 10));
+	RenderText(deviceContext);
 	TurnOffAlphaBlending();
 
 	TurnOnZBuffer();

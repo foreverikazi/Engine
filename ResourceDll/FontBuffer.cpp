@@ -10,7 +10,7 @@ FontBuffer::FontBuffer() :
 	mMaxLength(20),
 	mTextLength(0)
 {
-	
+	mViewMat = GetViewMatrix();
 }
 
 bool FontBuffer::CreateBuffers(ID3D11Device* device)
@@ -76,8 +76,8 @@ void FontBuffer::UpdateSahder(ID3D11DeviceContext* deviceContext)
 {
 	if (mShader)
 	{
-		//mShader->UpdateShader(deviceContext);
-		mShader->SetMatrixShaderParameters(deviceContext, mWorldInfo.worldMat, GetViewMatrix(), GetOrthoMatrix());
+		mShader->UpdateShader(deviceContext);
+		mShader->SetMatrixShaderParameters(deviceContext, mWorldInfo.worldMat, mViewMat, GetOrthoMatrix());
 		
 		FontShader* shader = dynamic_cast<FontShader*>(mShader);
 		if (shader)
@@ -101,14 +101,10 @@ void FontBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
 	unsigned int stride = sizeof(TextureVertex);
 	unsigned int offset = 0;
 	
-	
+	deviceContext->PSSetShaderResources(0, 1, &mTexture);
 	deviceContext->IASetVertexBuffers(0, 1, &mVertexBuffer, &stride, &offset);
 	deviceContext->IASetIndexBuffer(mIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
 	deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	deviceContext->PSSetShaderResources(0, 1, &mTexture);
-	UpdateSahder(deviceContext);
-	mShader->UpdateShader(deviceContext);
-
 	deviceContext->DrawIndexed(mIndexCount, 0, 0);
 }
 

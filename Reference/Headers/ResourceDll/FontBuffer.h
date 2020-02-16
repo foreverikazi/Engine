@@ -33,5 +33,6 @@ private:
 	XMFLOAT4 mColor;
 	UINT mMaxLength;
 	UINT mTextLength;
+	XMMATRIX mViewMat;
 };
 

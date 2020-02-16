@@ -1,13 +1,15 @@
-﻿  FontBuffer.cpp
+﻿  BitmapBuffer.cpp
+  BufferMgr.cpp
+  FontBuffer.cpp
+  TextMgr.cpp
+  코드를 생성하고 있습니다...
   ResourceDll.vcxproj -> C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.dll
   C:\Users\user\Desktop\Engine\x64\Debug\Client.lib
   C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.lib
   C:\Users\user\Desktop\Engine\x64\Debug\StaticLibrary.lib
-  다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.
   C:\Users\user\Desktop\Engine\x64\Debug\SystemDll.lib
-  다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.
   C:\Users\user\Desktop\Engine\x64\Debug\Tool.lib
-          3개 파일이 복사되었습니다.
+          5개 파일이 복사되었습니다.
   C:\Users\user\Desktop\Engine\ResourceDll\BitmapBuffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\Buffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\BufferMgr.h
