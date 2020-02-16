@@ -11,12 +11,15 @@ EXTERN SYSTEM_DLL void EndScene();
 EXTERN SYSTEM_DLL ID3D11Device* GetDevice();
 EXTERN SYSTEM_DLL ID3D11DeviceContext* GetDeviceContext();
 EXTERN SYSTEM_DLL void GetWorldMatrix(XMMATRIX& worldMatrix);
+EXTERN SYSTEM_DLL XMMATRIX GetOrthoMatrix();
 EXTERN SYSTEM_DLL void SetFrontCounterClockwise(const bool clockwise);
 EXTERN SYSTEM_DLL void SetCullMode(const D3D11_CULL_MODE cullMode);
 EXTERN SYSTEM_DLL void SetFillMode(const D3D11_FILL_MODE fillMode);
 EXTERN SYSTEM_DLL void SetDepthFunc(const D3D11_COMPARISON_FUNC compFunc);
 EXTERN SYSTEM_DLL void TurnOffZBuffer();
 EXTERN SYSTEM_DLL void TurnOnZBuffer();
+EXTERN SYSTEM_DLL void TurnOffAlphaBlending();
+EXTERN SYSTEM_DLL void TurnOnAlphaBlending();
 
 // Camera
 EXTERN SYSTEM_DLL void InitializeCamera(const XMFLOAT3 up, const XMFLOAT3 look, const XMFLOAT3 position);

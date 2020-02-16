@@ -8,6 +8,7 @@
 #include "GridBuffer.h"
 #include "SkyBuffer.h"
 #include "BitmapBuffer.h"
+#include "FontBuffer.h"
 
 BufferMgr::BufferMgr()
 {
@@ -24,6 +25,12 @@ bool BufferMgr::AddBuffer(ID3D11Device* device, BUFFERTYPE bufferType, const SHA
 	Buffer* newBuffer = nullptr;
 	Shader* shader = GetShader(Shadertype);
 
+	if (shader == nullptr)
+	{
+		return false;
+	}
+
+	// 나중에 object 클래스 만들면 팩토리로 코드 바꿀것
 	switch (bufferType)
 	{
 	case BUFFERTYPE::COLOR_CUBE:
@@ -64,13 +71,13 @@ bool BufferMgr::AddBuffer(ID3D11Device* device, BUFFERTYPE bufferType, const SHA
 	return true;
 }
 
-bool BufferMgr::LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* key, const TCHAR* fileName)
+bool BufferMgr::LoadTextureBuffer(ID3D11Device* device, const TCHAR* key, const TCHAR* fileName)
 {
 	Buffer* buffer = FindBuffer(key);
 	
 	if (buffer)
 	{
-		return buffer->LoadTextureBuffer(device, deviceContext, fileName);
+		return buffer->LoadTextureBuffer(device, fileName);
 	}
 
 	return false;

@@ -117,6 +117,8 @@ bool TextureShader::UpdateShader(ID3D11DeviceContext* deviceContext)
 
 void TextureShader::ReleaseShader()
 {
+	SAFE_RELEASE(mSampleState);
+
 	Shader::ReleaseShader();
 }
 

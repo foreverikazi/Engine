@@ -6,6 +6,7 @@
 #include "ModelShader.h"
 #include "LightShader.h"
 #include "SkyShader.h"
+#include "FontShader.h"
 
 bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename, const SHADERTYPE type)
 {
@@ -16,6 +17,7 @@ bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* v
 	}
 	Shader* newShader = nullptr;
 
+	// 나중에 object 클래스 만들면 팩토리로 코드 바꿀것
 	switch (type)
 	{
 	case SHADERTYPE::COLORVERTEX:
@@ -37,6 +39,11 @@ bool ShaderMgr::InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* v
 	case SHADERTYPE::SKY :
 		newShader = new SkyShader();
 		break;
+
+	case SHADERTYPE::FONT :
+		newShader = new FontShader();
+		break;
+
 	default :
 		return false;
 	}

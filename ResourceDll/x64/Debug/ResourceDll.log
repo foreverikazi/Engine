@@ -1,33 +1,18 @@
-﻿  pch.cpp
-  BitmapBuffer.cpp
-  Buffer.cpp
-  BufferMgr.cpp
-  ColorCubeBuffer.cpp
-  dllmain.cpp
-  GridBuffer.cpp
-  LightCubeBuffer.cpp
-  Mesh.cpp
-  MeshMgr.cpp
-  Model.cpp
-  ResourceExportFunc.cpp
-  SkyBuffer.cpp
-  StaticMesh.cpp
-  StringUtil.cpp
-  TextureCubeBuffer.cpp
-  TextureUtil.cpp
-  코드를 생성하고 있습니다...
-     C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.lib 라이브러리 및 C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.exp 개체를 생성하고 있습니다.
+﻿  FontBuffer.cpp
   ResourceDll.vcxproj -> C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.dll
   C:\Users\user\Desktop\Engine\x64\Debug\Client.lib
   C:\Users\user\Desktop\Engine\x64\Debug\ResourceDll.lib
   C:\Users\user\Desktop\Engine\x64\Debug\StaticLibrary.lib
+  다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.
   C:\Users\user\Desktop\Engine\x64\Debug\SystemDll.lib
+  다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.
   C:\Users\user\Desktop\Engine\x64\Debug\Tool.lib
-          5개 파일이 복사되었습니다.
+          3개 파일이 복사되었습니다.
   C:\Users\user\Desktop\Engine\ResourceDll\BitmapBuffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\Buffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\BufferMgr.h
   C:\Users\user\Desktop\Engine\ResourceDll\ColorCubeBuffer.h
+  C:\Users\user\Desktop\Engine\ResourceDll\FontBuffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\framework.h
   C:\Users\user\Desktop\Engine\ResourceDll\GridBuffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\LightCubeBuffer.h
@@ -43,6 +28,7 @@
   C:\Users\user\Desktop\Engine\ResourceDll\SkyBuffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\StaticMesh.h
   C:\Users\user\Desktop\Engine\ResourceDll\StringUtil.h
+  C:\Users\user\Desktop\Engine\ResourceDll\TextMgr.h
   C:\Users\user\Desktop\Engine\ResourceDll\TextureCubeBuffer.h
   C:\Users\user\Desktop\Engine\ResourceDll\TextureUtil.h
-         21개 파일이 복사되었습니다.
+         23개 파일이 복사되었습니다.

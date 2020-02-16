@@ -2,7 +2,6 @@
 #define SYSTEM_EXPORT
 #include "SystemDef.h"
 
-
 EXTERN class SYSTEM_DLL Shader
 {
 protected :
@@ -28,6 +27,11 @@ protected :
 		float padding;
 	};
 
+	struct ColorBufferType
+	{
+		XMFLOAT4 color;
+	};
+
 public:
 	virtual bool InitializeShader(ID3D11Device* device, HWND hwnd, const TCHAR* vsFilename, const TCHAR* psFilename) = 0;
 	virtual bool SetMatrixShaderParameters(ID3D11DeviceContext* deviceContext, const XMMATRIX worldMat, const XMMATRIX viewMat, const XMMATRIX projMat);
@@ -35,6 +39,8 @@ public:
 	virtual bool SetCameraShaderParameters(ID3D11DeviceContext* deviceContext, const XMFLOAT3 cameraPosition);
 	virtual bool UpdateShader(ID3D11DeviceContext* deviceContext);
 	virtual void ReleaseShader();
+
+	SHADERTYPE GetShaderType() const;
 
 protected:
 	void OutputShaderErrorMessage(ID3D10Blob* errorMessage, HWND hwnd, const TCHAR* shaderFilename);

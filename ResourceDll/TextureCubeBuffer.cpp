@@ -170,9 +170,14 @@ void TextureCubeBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
 	deviceContext->Draw(mVertexCount, 0);
 }
 
-bool TextureCubeBuffer::LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* fileName)
+bool TextureCubeBuffer::LoadTextureBuffer(ID3D11Device* device, const TCHAR* fileName)
 {
-	mTexture = (*(TextureUtil::GetInst()))->LoadTextureUtil(device, deviceContext, fileName);
+	HRESULT result = D3DX11CreateShaderResourceViewFromFile(device, fileName, 0, 0, &mTexture, 0);
+	if (FAILED(result))
+	{
+		return false;
+	}
+
 	return true;
 }
 

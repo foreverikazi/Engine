@@ -107,7 +107,7 @@ void BitmapBuffer::UpdateSahder(ID3D11DeviceContext* deviceContext)
 	if (mShader)
 	{
 		mShader->UpdateShader(deviceContext);
-		mShader->SetMatrixShaderParameters(deviceContext, mWorldInfo.worldMat, GetViewMatrix(), GetProjectionMatrix());
+		mShader->SetMatrixShaderParameters(deviceContext, mWorldInfo.worldMat, GetViewMatrix(), GetOrthoMatrix());
 	}
 }
 
@@ -117,16 +117,15 @@ void BitmapBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
 
 	unsigned int stride = sizeof(TextureVertex);
 	unsigned int offset = 0;
-	TurnOffZBuffer();
+
 	deviceContext->PSSetShaderResources(0, 1, &mTexture);
 	deviceContext->IASetVertexBuffers(0, 1, &mVertexBuffer, &stride, &offset);
 	deviceContext->IASetIndexBuffer(mIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
 	deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	deviceContext->DrawIndexed(mIndexCount, 0, 0);
-	TurnOnZBuffer();
 }
 
-bool BitmapBuffer::LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* fileName)
+bool BitmapBuffer::LoadTextureBuffer(ID3D11Device* device, const TCHAR* fileName)
 {
 	HRESULT result = D3DX11CreateShaderResourceViewFromFile(device, fileName, 0, 0, &mTexture, 0);
 	if (FAILED(result))
@@ -139,11 +138,7 @@ bool BitmapBuffer::LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* 
 
 void BitmapBuffer::ReleaseBuffer()
 {
-	if (mTexture)
-	{
-		mTexture->Release();
-		mTexture = nullptr;
-	}
+	SAFE_RELEASE(mTexture);
 
 	Buffer::ReleaseBuffer();
 }

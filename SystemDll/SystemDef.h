@@ -13,3 +13,4 @@ using namespace DirectX::PackedVector;
 #include "SystemMacro.h"
 #include "SystemStruct.h"
 #include "SystemConst.h"
+#include "Macro.h"

@@ -8,4 +8,5 @@ enum class SHADERTYPE
 	LIGHT,
 	SKY,
 	BITMAP,
+	FONT,
 };

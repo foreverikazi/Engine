@@ -7,3 +7,4 @@ using namespace std;
 #include "ResourceMacro.h"
 #include "ResourceStruct.h"
 #include "ResourceConst.h"
+#include "Macro.h"

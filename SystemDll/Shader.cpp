@@ -91,3 +91,8 @@ void Shader::ReleaseShader()
 		mVertexShader = 0;
 	}
 }
+
+SHADERTYPE Shader::GetShaderType() const
+{
+	return mShaderType;
+}

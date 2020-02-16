@@ -14,4 +14,5 @@ enum class BUFFERTYPE
 	GRID,
 	SKY,
 	BITMAP,
+	FONT
 };

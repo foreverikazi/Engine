@@ -94,8 +94,7 @@
       <PreprocessorDefinitions>_DEBUG;SYSTEMDLL_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../StaticLibrary/</AdditionalIncludeDirectories>
       <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -173,6 +172,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\SystemDll\*.h"</Comm
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ColorVertexShader.h" />
     <ClInclude Include="D3DApp.h" />
+    <ClInclude Include="FontShader.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Light.h" />
@@ -195,6 +195,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\SystemDll\*.h"</Comm
     <ClCompile Include="ColorVertexShader.cpp" />
     <ClCompile Include="D3DApp.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="FontShader.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="LightShader.cpp" />

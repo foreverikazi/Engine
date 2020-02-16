@@ -8,25 +8,26 @@ cbuffer MatrixBuffer
 struct VertexInputType
 {
     float4 position : POSITION;
-    float2 tex : TEXCOORD;
+	float2 tex : TEXCOORD0;
 };
 
 struct PixelInputType
 {
     float4 position : SV_POSITION;
-    float2 tex : TEXCOORD;
+    float2 tex : TEXCOORD0;
 };
 
 PixelInputType vsMain(VertexInputType input)
 {
     PixelInputType output;
-    input.position.w = 1.0f;
+
+	input.position.w = 1.0f;
 
     output.position = mul(input.position, matWorld);
     output.position = mul(output.position, matView);
     output.position = mul(output.position, matProj);
 
     output.tex = input.tex;
-    
+
     return output;
 }

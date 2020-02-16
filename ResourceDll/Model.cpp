@@ -149,6 +149,7 @@ void Model::RenderModel(ID3D11DeviceContext* deviceContext)
 	{
 		mesh.DrawMesh(deviceContext);
 	}
+
 	//for (int i = 0; i < meshes.size(); i++)
 	//{
 	//	//Update Constant buffer with WVP Matrix

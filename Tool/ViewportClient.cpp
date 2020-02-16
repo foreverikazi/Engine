@@ -29,6 +29,7 @@ ViewportClient::~ViewportClient()
 	ReleaseModel();
 	ReleaseShader();
 	ReleaseBuffers();
+	ReleaseText();
 	Release3D();
 
 	ReleaseResource();
@@ -75,11 +76,14 @@ void ViewportClient::OnInitialUpdate()
 
 	//InitModel();
 	InitLight();
+
+
 }
 
 void ViewportClient::OnDraw(CDC* pDC)
 {
 	ID3D11DeviceContext* deviceContext = GetDeviceContext();
+
 	float gray = 56.f / 255.f;
 	BeginScene(gray, gray, gray, 1.0f);
 	UpdateCamera();
@@ -92,16 +96,14 @@ void ViewportClient::OnDraw(CDC* pDC)
 	Buffer* grid = FindBuffer(L"Grid");
 	Buffer* sky = FindBuffer(L"Sky");
 	
-	
 	XMFLOAT3 rot = cube->GetRotation();
 	cube->SetRotation(XMFLOAT3(rot.x, rot.y + GetElapsedTime(), rot.z));
 	
-	
 	// 라이트 큐브
-	FrustumCulling* f = (*(FrustumCulling::GetInst()));
-	f->InitializeFrustum(SCREEN_FAR, GetViewMatrix(), GetProjectionMatrix());
-	if (f->CullingSphere(cube->GetPosition(), 1.0f) == true)
-		cube->RenderBuffers(deviceContext); 
+	//FrustumCulling* f = (*(FrustumCulling::GetInst()));
+	//f->InitializeFrustum(SCREEN_FAR, GetViewMatrix(), GetProjectionMatrix());
+	//if (f->CullingSphere(cube->GetPosition(), 1.0f) == true)
+		//cube->RenderBuffers(deviceContext); 
 	
 	// 그리드
 	grid->RenderBuffers(deviceContext);
@@ -109,22 +111,24 @@ void ViewportClient::OnDraw(CDC* pDC)
 	// 스카이
 	sky->RenderBuffers(deviceContext);
 
+	TurnOffZBuffer();
 	// 2D 텍스처
-	Buffer* bitmap = FindBuffer(L"Bitmap");
-	bitmap->RenderBuffers(deviceContext);
-	
-	// 텍스처 큐브
-	//Buffer* textureCube = FindBuffer(L"TextureCube");
-	//textureCube->RenderBuffers(deviceContext);
+	//Buffer* bitmap = FindBuffer(L"Bitmap");
+	//bitmap->RenderBuffers(deviceContext);
 
-	//int fps = GetFPS();
-	//RenderBuffers(deviceContext);
-		
+	TurnOnAlphaBlending();
+	//SetFPSText(deviceContext, GetFPS(), XMFLOAT2(-(mScreenWidth / 2.0f) + 10, -(mScreenHeight / 2.0f) + 10));
+	//RenderText(deviceContext);
+	TurnOffAlphaBlending();
+
+	TurnOnZBuffer();
 	/*
 	ModelRender(deviceContext);
 	ShaderRender(GetDeviceContext(), GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
 	*/
-
+	//SetText(deviceContext, L"Hello", XMFLOAT2(0, 0), XMFLOAT4(0, 1, 0, 1));
+	
+	
 	Invalidate(false); 
 	EndScene();
 }
@@ -149,46 +153,58 @@ void ViewportClient::InitShader()
 {
 	ID3D11Device* device = GetDevice();
 
-	WCHAR vs[] = L"../Shader/LightShader.vs";
-	WCHAR ps[] = L"../Shader/LightShader.ps";
+	WCHAR* vs = L"../Shader/LightShader.vs";
+	WCHAR* ps = L"../Shader/LightShader.ps";
 	InitializeShader(device, mHwnd, vs, ps, SHADERTYPE::LIGHT);
 	
-	WCHAR vs2[] = L"../Shader/TextureShader.vs";
-	WCHAR ps2[] = L"../Shader/TextureShader.ps";
-	InitializeShader(device, mHwnd, vs2, ps2, SHADERTYPE::TEXTURE);
+	vs = L"../Shader/TextureShader.vs";
+	ps = L"../Shader/TextureShader.ps";
+	InitializeShader(device, mHwnd, vs, ps, SHADERTYPE::TEXTURE);
+	
+	vs = L"../Shader/ColorShader.vs";
+	ps = L"../Shader/ColorShader.ps";
+	InitializeShader(device, mHwnd, vs, ps, SHADERTYPE::COLORVERTEX);
 
-	WCHAR vs3[] = L"../Shader/ColorShader.vs";
-	WCHAR ps3[] = L"../Shader/ColorShader.ps";
-	InitializeShader(device, mHwnd, vs3, ps3, SHADERTYPE::COLORVERTEX);
+	vs = L"../Shader/SkyShader.vs";
+	ps = L"../Shader/SkyShader.ps";
+	InitializeShader(device, mHwnd, vs, ps, SHADERTYPE::SKY);
 
-	WCHAR vs4[] = L"../Shader/SkyShader.vs";
-	WCHAR ps4[] = L"../Shader/SkyShader.ps";
-	InitializeShader(device, mHwnd, vs4, ps4, SHADERTYPE::SKY);
+	vs = L"../Shader/SkyShader.vs";
+	ps = L"../Shader/SkyShader.ps";
+	InitializeShader(device, mHwnd, vs, ps, SHADERTYPE::SKY);
+
+	vs = L"../Shader/FontShader.vs";
+	ps = L"../Shader/FontShader.ps";
+	InitializeShader(device, mHwnd, vs, ps, SHADERTYPE::FONT);
 }
 
 void ViewportClient::InitBuffers()
 {
 	ID3D11Device* device = GetDevice();
-	ID3D11DeviceContext* devicecContext = GetDeviceContext();
+	ID3D11DeviceContext* deviceContext = GetDeviceContext();
 	//AddBuffer(device, BUFFERTYPE::COLOR_CUBE, L"ColorCube");
 
 	// 버퍼랑 셰이더를 클래스 하나로 합치는게 편할수도
 	// Texture Cube
 	AddBuffer(device, BUFFERTYPE::TEXTURE_CUBE, SHADERTYPE::TEXTURE, L"TextureCube");
-	LoadTextureBuffer(device, devicecContext, L"TextureCube", L"../Content/Cube/seafloor.png");
-	
+	LoadTextureBuffer(device, L"TextureCube", L"../Content/Cube/seafloor.png");
+
 	AddBuffer(device, BUFFERTYPE::GRID, SHADERTYPE::COLORVERTEX, L"Grid");
 	AddBuffer(device, BUFFERTYPE::LIGHT_CUBE, SHADERTYPE::LIGHT, L"LightCube");
-	LoadTextureBuffer(device, devicecContext, L"LightCube", L"../Content/Cube/seafloor.png");
+	LoadTextureBuffer(device, L"LightCube", L"../Content/Cube/seafloor.png");
 
 	AddBuffer(device, BUFFERTYPE::SKY, SHADERTYPE::SKY, L"Sky");
-	LoadTextureBuffer(device, devicecContext, L"Sky", L"../Content/Terrain/skymap.dds");
+	LoadTextureBuffer(device, L"Sky", L"../Content/Terrain/skymap.dds");
 
 	AddBuffer(device, BUFFERTYPE::BITMAP, SHADERTYPE::TEXTURE, L"Bitmap");
 	Buffer* bitmap = FindBuffer(L"Bitmap");
 	BitmapBuffer * bit = dynamic_cast<BitmapBuffer*>(bitmap);
-	LoadTextureBuffer(device, devicecContext, L"Bitmap", L"../Content/Cube/seafloor.png");
-	bit->SetTexturePosition(devicecContext, XMFLOAT3(0, 0, 0), XMFLOAT2(3, 3));
+	LoadTextureBuffer(device, L"Bitmap", L"../Content/Cube/seafloor.png");
+	bit->SetTexturePosition(deviceContext, XMFLOAT3(0, 0, 0), XMFLOAT2(100, 100));
+	
+	AddFontBuffer(device, L"../Content/Font/fontdata.txt", L"../Content/Font/font.dds");
+	SetText(deviceContext, L"Hello", XMFLOAT2(0, 0), XMFLOAT4(1, 1, 1, 1));
+
 }
 
 void ViewportClient::InitModel()

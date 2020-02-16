@@ -39,9 +39,9 @@ EXTERN SYSTEM_DLL ID3D11DeviceContext* GetDeviceContext()
 	return (*(D3DApp::GetInst()))->GetDeviceContext();
 }
 
-EXTERN SYSTEM_DLL void GetWorldMatrix(XMMATRIX& worldMatrix)
+EXTERN SYSTEM_DLL XMMATRIX GetOrthoMatrix()
 {
-	(*(D3DApp::GetInst()))->GetWorldMatrix(worldMatrix);
+	return (*(D3DApp::GetInst()))->GetOrthoMatrix();
 }
 
 EXTERN SYSTEM_DLL void SetFrontCounterClockwise(const bool clockwise)
@@ -72,6 +72,16 @@ EXTERN SYSTEM_DLL void TurnOffZBuffer()
 EXTERN SYSTEM_DLL void TurnOnZBuffer()
 {
 	(*(D3DApp::GetInst()))->TurnOnZBuffer();
+}
+
+EXTERN SYSTEM_DLL void TurnOffAlphaBlending()
+{
+	(*(D3DApp::GetInst()))->TurnOffAlphaBlending();
+}
+
+EXTERN SYSTEM_DLL void TurnOnAlphaBlending()
+{
+	(*(D3DApp::GetInst()))->TurnOnAlphaBlending();
 }
 
 // Camera

@@ -91,7 +91,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>../Reference/Headers/ResourceDll/;../Reference/Headers/SystemDll/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../StaticLibrary/;../Reference/Headers/ResourceDll/;../Reference/Headers/SystemDll/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -182,6 +182,8 @@
   <ItemGroup>
     <None Include="..\Shader\ColorShader.ps" />
     <None Include="..\Shader\ColorShader.vs" />
+    <None Include="..\Shader\FontShader.ps" />
+    <None Include="..\Shader\FontShader.vs" />
     <None Include="..\Shader\LightShader.ps" />
     <None Include="..\Shader\LightShader.vs" />
     <None Include="..\Shader\SkyShader.ps" />

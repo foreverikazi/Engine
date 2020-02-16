@@ -207,7 +207,7 @@ void MainApp::InitializeWindows(int& screenWidth, int& screenHeight)
 	else
 	{
 		// 윈도우 모드의 경우 800 * 600 크기를 지정합니다.
-		screenWidth = 800;
+		screenWidth = 1600;
 		screenHeight = 600;
 
 		// 윈도우 창을 가로, 세로의 정 가운데 오도록 합니다.

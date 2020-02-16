@@ -20,7 +20,7 @@ bool SkyBuffer::CreateBuffers(ID3D11Device* device)
 	float sphereYaw = 0.0f;
 	float spherePitch = 0.0f;
 
-	std::vector<TextureVertex> vertices(mVertexCount);
+	vector<TextureVertex> vertices(mVertexCount);
 
 	XMVECTOR currVertPos = XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
 
@@ -69,7 +69,7 @@ bool SkyBuffer::CreateBuffers(ID3D11Device* device)
 	}
 
 
-	std::vector<DWORD> indices(mIndexCount);
+	vector<DWORD> indices(mIndexCount);
 
 		int k = 0;
 		for (DWORD l = 0; l < mLongLine - 1; ++l)
@@ -164,10 +164,8 @@ void SkyBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
 	unsigned int stride = sizeof(TextureVertex);
 	unsigned int offset = 0;
 
-
 	SetCullMode(D3D11_CULL_MODE::D3D11_CULL_NONE);
 	SetDepthFunc(D3D11_COMPARISON_FUNC::D3D11_COMPARISON_LESS_EQUAL);
-	//SetFrontCounterClockwise(false);
 
 	deviceContext->PSSetShaderResources(0, 1, &mTexture);
 	deviceContext->IASetVertexBuffers(0, 1, &mVertexBuffer, &stride, &offset);
@@ -177,10 +175,9 @@ void SkyBuffer::RenderBuffers(ID3D11DeviceContext* deviceContext)
 
 	SetCullMode(D3D11_CULL_MODE::D3D11_CULL_BACK);
 	SetDepthFunc(D3D11_COMPARISON_FUNC::D3D11_COMPARISON_LESS);
-	//SetFrontCounterClockwise(true);
 }
 
-bool SkyBuffer::LoadTextureBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceContext, const TCHAR* fileName)
+bool SkyBuffer::LoadTextureBuffer(ID3D11Device* device, const TCHAR* fileName)
 {
 	ID3D11Texture2D* texture2D;
 	D3DX11_IMAGE_LOAD_INFO loadInfo;

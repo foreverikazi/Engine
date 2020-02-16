@@ -1,5 +1,2 @@
-﻿  pch.cpp
-  FrustumCulling.cpp
-  StaticLibrary.cpp
-  코드를 생성하고 있습니다...
+﻿  FrustumCulling.cpp
   StaticLibrary.vcxproj -> C:\Users\user\Desktop\Engine\x64\Debug\StaticLibrary.lib

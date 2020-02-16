@@ -28,17 +28,8 @@ void Buffer::UpdateBuffers(ID3D11DeviceContext* deviceContext)
 
 void Buffer::ReleaseBuffer()
 {
-	if (mIndexBuffer)
-	{
-		mIndexBuffer->Release();
-		mIndexBuffer = 0;
-	}
-
-	if (mVertexBuffer)
-	{
-		mVertexBuffer->Release();
-		mVertexBuffer = 0;
-	}
+	SAFE_RELEASE(mIndexBuffer);
+	SAFE_RELEASE(mVertexBuffer);
 }
 
 void Buffer::SetShader(Shader* shader)
@@ -46,17 +37,17 @@ void Buffer::SetShader(Shader* shader)
 	mShader = shader;
 }
 
-void Buffer::SetPosition(XMFLOAT3 position)
+void Buffer::SetPosition(const XMFLOAT3 position)
 {
 	mWorldInfo.position = position;
 }
 
-void Buffer::SetScale(XMFLOAT3 scale)
+void Buffer::SetScale(const XMFLOAT3 scale)
 {
 	mWorldInfo.scale = scale;
 }
 
-void Buffer::SetRotation(XMFLOAT3 rotation)
+void Buffer::SetRotation(const XMFLOAT3 rotation)
 {
 	mWorldInfo.rotation = rotation;
 }
@@ -79,4 +70,9 @@ XMFLOAT3 Buffer::GetRotation() const
 XMMATRIX Buffer::GetWorldMatrix() const
 {
 	return mWorldInfo.worldMat;
+}
+
+int Buffer::GetIndexCount() const
+{
+	return mIndexCount;
 }

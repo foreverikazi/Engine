@@ -18,9 +18,7 @@ public:
 	ID3D11Device* GetDevice();
 	ID3D11DeviceContext* GetDeviceContext();
 
-	void GetProjectionMatrix(XMMATRIX&);
-	void GetWorldMatrix(XMMATRIX&);
-	void GetOrthoMatrix(XMMATRIX&);
+	XMMATRIX GetOrthoMatrix() const;
 
 	void GetVideoCardInfo(char*, int&);
 
@@ -32,22 +30,24 @@ public:
 
 	void TurnOffZBuffer();
 	void TurnOnZBuffer();
+	void TurnOffAlphaBlending();
+	void TurnOnAlphaBlending();
 
 private:
-	bool m_vsync_enabled = false;
-	int m_videoCardMemory = 0;
-	char m_videoCardDescription[128] = { 0, };
-	IDXGISwapChain* m_swapChain = nullptr;
-	ID3D11Device* m_device = nullptr;
-	ID3D11DeviceContext* m_deviceContext = nullptr;
-	ID3D11RenderTargetView* m_renderTargetView = nullptr;
-	ID3D11Texture2D* m_depthStencilBuffer = nullptr;
+	bool mVsyncEnabled;
+	int mVideoCardMemory;
+	char mVideoCardDescription[128];
+	IDXGISwapChain* mSwapChain;
+	ID3D11Device* mDevice;
+	ID3D11DeviceContext* mDeviceContext;
+	ID3D11RenderTargetView* mRenderTargetView;
+	ID3D11Texture2D* mDepthStencilBuffer;
 	ID3D11DepthStencilState* mDepthStencilState;
 	ID3D11DepthStencilState* mDepthDisabledStencilState;
 	ID3D11DepthStencilView* mDepthStencilView;
 	ID3D11RasterizerState* mRasterState;
-	XMMATRIX m_projectionMatrix;
-	XMMATRIX m_worldMatrix;
-	XMMATRIX m_orthoMatrix;
+	ID3D11BlendState* mAlphaEnableBlendingState;
+	ID3D11BlendState* mAlphaDisableBlendingState;
+	XMMATRIX mOrthoMatrix;
 };
 

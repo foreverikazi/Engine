@@ -3,14 +3,26 @@
 #include "../include/FreeImage.h"
 #include <atlstr.h>
 
-TextureUtil::TextureUtil()
+TextureUtil::TextureUtil() : 
+	mDiffuseRV(nullptr),
+	mTexture(nullptr)
 {
 
 }
 
 TextureUtil::~TextureUtil()
 {
+	if (mDiffuseRV)
+	{
+		mDiffuseRV->Release();
+		mDiffuseRV = nullptr;
+	}
 
+	if (mTexture)
+	{
+		mTexture->Release();
+		mTexture = nullptr;
+	}
 }
 
 ID3D11ShaderResourceView* TextureUtil::LoadTextureUtil(ID3D11Device* device, ID3D11DeviceContext* deviceContext, wstring fileName)

@@ -46,6 +46,9 @@
     <Filter Include="Buffer\Bitmap">
       <UniqueIdentifier>{79137fbf-ffb2-4890-bcd0-48fd3a5d7267}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Text">
+      <UniqueIdentifier>{68930bfb-88b6-4ade-9abb-8c817bd16f04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -111,6 +114,12 @@
     <ClInclude Include="BitmapBuffer.h">
       <Filter>Buffer\Bitmap</Filter>
     </ClInclude>
+    <ClInclude Include="FontBuffer.h">
+      <Filter>Text</Filter>
+    </ClInclude>
+    <ClInclude Include="TextMgr.h">
+      <Filter>Text</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -163,6 +172,12 @@
     </ClCompile>
     <ClCompile Include="BitmapBuffer.cpp">
       <Filter>Buffer\Bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="FontBuffer.cpp">
+      <Filter>Text</Filter>
+    </ClCompile>
+    <ClCompile Include="TextMgr.cpp">
+      <Filter>Text</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

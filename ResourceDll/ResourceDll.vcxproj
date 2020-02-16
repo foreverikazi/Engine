@@ -93,7 +93,7 @@
       <PreprocessorDefinitions>_DEBUG;RESOURCEDLL_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>../Reference/Headers/SystemDll/;../Reference/Headers/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../StaticLibrary/;../Reference/Headers/SystemDll/;../Reference/Headers/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -167,6 +167,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\ResourceDll\*.h"</Co
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="BufferMgr.h" />
     <ClInclude Include="ColorCubeBuffer.h" />
+    <ClInclude Include="FontBuffer.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GridBuffer.h" />
     <ClInclude Include="LightCubeBuffer.h" />
@@ -182,6 +183,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\ResourceDll\*.h"</Co
     <ClInclude Include="SkyBuffer.h" />
     <ClInclude Include="StaticMesh.h" />
     <ClInclude Include="StringUtil.h" />
+    <ClInclude Include="TextMgr.h" />
     <ClInclude Include="TextureCubeBuffer.h" />
     <ClInclude Include="TextureUtil.h" />
   </ItemGroup>
@@ -191,6 +193,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\ResourceDll\*.h"</Co
     <ClCompile Include="BufferMgr.cpp" />
     <ClCompile Include="ColorCubeBuffer.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="FontBuffer.cpp" />
     <ClCompile Include="GridBuffer.cpp" />
     <ClCompile Include="LightCubeBuffer.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -206,6 +209,7 @@ copy /Y "$(ProjectDir)*.h" "$(SolutionDir)Reference\Headers\ResourceDll\*.h"</Co
     <ClCompile Include="SkyBuffer.cpp" />
     <ClCompile Include="StaticMesh.cpp" />
     <ClCompile Include="StringUtil.cpp" />
+    <ClCompile Include="TextMgr.cpp" />
     <ClCompile Include="TextureCubeBuffer.cpp" />
     <ClCompile Include="TextureUtil.cpp" />
   </ItemGroup>

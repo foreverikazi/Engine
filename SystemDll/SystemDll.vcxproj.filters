@@ -96,6 +96,9 @@
     <ClInclude Include="SkyShader.h">
       <Filter>Shader</Filter>
     </ClInclude>
+    <ClInclude Include="FontShader.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -142,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="SkyShader.cpp">
       <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="FontShader.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
